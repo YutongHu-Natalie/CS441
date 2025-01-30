@@ -1,108 +1,108 @@
-,Geogrpahic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Age,Year,Value,Nature of the Data Code,ObjectId
-0,462,Maldives,MDV,73.0967254638672,-0.614385008811951,Central and Southern Asia,F,15 to 49 years old,2017,53.9,C,1
-1,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 49 years old,2006,9.6,C,2
-2,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 49 years old,2013,6.5,C,3
-3,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 49 years old,2018,5.3,C,4
-4,478,Mauritania,MRT,-10.3318729400635,20.2608947753906,Sub-Saharan Africa,F,15 to 49 years old,2021,25.3,C,5
-5,496,Mongolia,MNG,103.072807312012,46.8389205932617,Eastern and South-Eastern Asia,F,15 to 49 years old,2018,63.2,C,6
-6,498,Republic of Moldova,MDA,28.4650630950928,47.2023696899414,Europe and Northern America,F,15 to 49 years old,2020,72.9,C,7
-7,508,Mozambique,MOZ,38.1847991943359,-14.2796392440796,Sub-Saharan Africa,F,15 to 49 years old,2011,49.1,C,8
-8,516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,F,15 to 49 years old,2007,67.1,C,9
-9,516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,F,15 to 49 years old,2013,71.2,C,10
-10,524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,F,15 to 49 years old,2011,59.5,C,11
-11,524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,F,15 to 49 years old,2016,47.6,C,12
-12,562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,F,15 to 49 years old,2006,9.3,C,13
-13,562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,F,15 to 49 years old,2012,7.3,C,14
-14,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 49 years old,2008,47.1,C,15
-15,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 49 years old,2013,50.8,C,16
-16,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 49 years old,2018,28.6,C,17
-17,586,Pakistan,PAK,68.8047943115234,29.3649158477783,Central and Southern Asia,F,15 to 49 years old,2018,31.5,C,18
-18,591,Panama,PAN,-81.2661666870117,8.45096588134766,Latin America and the Caribbean,F,15 to 49 years old,2014,79.1,C,19
-19,598,Papua New Guinea,PNG,145.858779907227,-6.75605726242065,"Oceania, exc. Australia and New Zealand",F,15 to 49 years old,2018,56.7,C,20
-20,608,Philippines,PHL,120.860145568848,14.1659173965454,Eastern and South-Eastern Asia,F,15 to 49 years old,2017,79.8,C,21
-21,626,Timor-Leste,TLS,125.945106506348,-8.7974967956543,Eastern and South-Eastern Asia,F,15 to 49 years old,2016,35.9,C,22
-22,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 49 years old,2010,60.1,C,23
-23,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 49 years old,2015,69.5,C,24
-24,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 49 years old,2020,61.3,C,25
-25,678,Sao Tome and Principe,STP,6.60977220535278,0.241554871201515,Sub-Saharan Africa,F,15 to 49 years old,2008,46.2,C,26
-26,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2011,13.2,C,27
-27,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2015,7.1,C,28
-28,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2016,4.9,C,29
-29,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2017,5.8,C,30
-30,688,Serbia,SRB,20.8058757781982,44.0314559936523,Europe and Northern America,F,15 to 49 years old,2019,96.2,C,31
-31,694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,F,15 to 49 years old,2013,40.2,C,32
-32,694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,F,15 to 49 years old,2019,27.8,C,33
-33,710,South Africa,ZAF,24.6718444824219,-29.9995746612549,Sub-Saharan Africa,F,15 to 49 years old,2016,60.5,C,34
-34,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 49 years old,2006,52.5,C,35
-35,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 49 years old,2011,58.8,C,36
-36,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 49 years old,2015,59.9,C,37
-37,748,Eswatini,SWZ,31.5014934539795,-26.5647106170654,Sub-Saharan Africa,F,15 to 49 years old,2007,48.9,C,38
-38,762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,F,15 to 49 years old,2012,40.9,C,39
-39,762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,F,15 to 49 years old,2017,27.2,C,40
-40,768,Togo,TGO,0.978357672691345,8.53209590911865,Sub-Saharan Africa,F,15 to 49 years old,2014,29.6,C,41
-41,795,Turkmenistan,TKM,58.9787673950195,40.091236114502,Central and Southern Asia,F,15 to 49 years old,2019,59.3,C,42
-42,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 49 years old,2006,48.0,C,43
-43,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 49 years old,2011,49.0,C,44
-44,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 49 years old,2016,58.5,C,45
-45,804,Ukraine,UKR,31.4027080535889,49.0073585510254,Europe and Northern America,F,15 to 49 years old,2007,81.0,C,46
-46,807,North Macedonia,MKD,21.7007904052734,41.6004791259766,Europe and Northern America,F,15 to 49 years old,2019,88.1,C,47
-47,834,United Republic of Tanzania,TZA,34.8052101135254,-6.26533269882202,Sub-Saharan Africa,F,15 to 49 years old,2010,46.8,C,48
-48,854,Burkina Faso,BFA,-1.74284386634827,12.2749109268188,Sub-Saharan Africa,F,15 to 49 years old,2010,20.3,C,49
-49,860,Uzbekistan,UZB,63.1194458007813,41.7756042480469,Central and Southern Asia,F,15 to 49 years old,2022,70.4,C,50
-50,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 49 years old,2007,39.5,C,51
-51,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 49 years old,2014,46.6,C,52
-52,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 49 years old,2018,46.5,C,53
-53,8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,F,15 to 49 years old,2009,61.5,C,54
-54,8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,F,15 to 49 years old,2018,61.9,C,55
-55,24,Angola,AGO,17.5781707763672,-12.3372478485107,Sub-Saharan Africa,F,15 to 49 years old,2016,39.2,C,56
-56,50,Bangladesh,BGD,89.1766052246094,22.8696155548096,Central and Southern Asia,F,15 to 49 years old,2018,63.8,C,57
-57,51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,F,15 to 49 years old,2010,64.3,C,58
-58,51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,F,15 to 49 years old,2016,61.8,C,59
-59,104,Myanmar,MMR,96.5175247192383,21.1933288574219,Eastern and South-Eastern Asia,F,15 to 49 years old,2016,67.5,C,60
-60,108,Burundi,BDI,29.8908100128174,-3.36638736724854,Sub-Saharan Africa,F,15 to 49 years old,2010,49.0,C,61
-61,108,Burundi,BDI,29.8908100128174,-3.36638736724854,Sub-Saharan Africa,F,15 to 49 years old,2017,40.3,C,62
-62,116,Cambodia,KHM,104.922836303711,12.7116374969482,Eastern and South-Eastern Asia,F,15 to 49 years old,2010,74.6,C,63
-63,116,Cambodia,KHM,104.922836303711,12.7116374969482,Eastern and South-Eastern Asia,F,15 to 49 years old,2014,75.6,C,64
-64,120,Cameroon,CMR,12.741982460022,5.69238710403442,Sub-Saharan Africa,F,15 to 49 years old,2011,38.1,C,65
-65,120,Cameroon,CMR,12.741982460022,5.69238710403442,Sub-Saharan Africa,F,15 to 49 years old,2018,34.8,C,66
-66,148,Chad,TCD,18.6661834716797,15.36279296875,Sub-Saharan Africa,F,15 to 49 years old,2015,27.1,C,67
-67,174,Comoros,COM,43.3423461914063,-11.6612176895142,Sub-Saharan Africa,F,15 to 49 years old,2012,20.8,C,68
-68,178,Congo,COG,15.2205257415772,-0.840544104576111,Sub-Saharan Africa,F,15 to 49 years old,2012,26.8,C,69
-69,180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,F,15 to 49 years old,2007,19.3,C,70
-70,180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,F,15 to 49 years old,2014,30.7,C,71
-71,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 49 years old,2006,41.1,C,72
-72,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 49 years old,2012,38.2,C,73
-73,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 49 years old,2018,25.2,C,74
-74,214,Dominican Republic,DOM,-70.4984741210938,18.8983211517334,Latin America and the Caribbean,F,15 to 49 years old,2007,77.0,C,75
-75,218,Ecuador,ECU,-78.3700561523438,-1.4477858543396,Latin America and the Caribbean,F,15 to 49 years old,2018,86.7,C,76
-76,231,Ethiopia,ETH,39.6350517272949,8.63122272491455,Sub-Saharan Africa,F,15 to 49 years old,2011,53.4,C,77
-77,231,Ethiopia,ETH,39.6350517272949,8.63122272491455,Sub-Saharan Africa,F,15 to 49 years old,2016,38.0,C,78
-78,242,Fiji,FJI,177.966094970703,-17.8330154418945,"Oceania, exc. Australia and New Zealand",F,15 to 49 years old,2021,61.6,C,79
-79,266,Gabon,GAB,11.7872772216797,-0.606876194477081,Sub-Saharan Africa,F,15 to 49 years old,2012,48.0,C,80
-80,268,Georgia,GEO,43.3713607788086,42.0481300354004,Northern Africa and Western Asia,F,15 to 49 years old,2018,82.4,C,81
-81,270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,F,15 to 49 years old,2013,40.5,C,82
-82,270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,F,15 to 49 years old,2020,19.5,C,83
-83,288,Ghana,GHA,-1.2056235074997,7.96482515335083,Sub-Saharan Africa,F,15 to 49 years old,2008,54.1,C,84
-84,288,Ghana,GHA,-1.2056235074997,7.96482515335083,Sub-Saharan Africa,F,15 to 49 years old,2014,52.0,C,85
-85,320,Guatemala,GTM,-91.2312774658203,15.0027370452881,Latin America and the Caribbean,F,15 to 49 years old,2015,64.8,C,86
-86,324,Guinea,GIN,-11.2817344665527,11.002103805542,Sub-Saharan Africa,F,15 to 49 years old,2012,22.7,C,87
-87,324,Guinea,GIN,-11.2817344665527,11.002103805542,Sub-Saharan Africa,F,15 to 49 years old,2018,15.2,C,88
-88,328,Guyana,GUY,-58.9732208251953,4.78801298141479,Latin America and the Caribbean,F,15 to 49 years old,2009,71.3,C,89
-89,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 49 years old,2006,53.6,C,90
-90,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 49 years old,2012,56.3,C,91
-91,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 49 years old,2017,57.1,C,92
-92,340,Honduras,HND,-86.5997467041016,14.822431564331,Latin America and the Caribbean,F,15 to 49 years old,2012,70.3,C,93
-93,356,India,IND,79.3608474731445,22.3464202880859,Central and Southern Asia,F,15 to 49 years old,2021,65.6,C,94
-94,384,Côte d'Ivoire,CIV,-5.55269002914429,7.62211608886719,Sub-Saharan Africa,F,15 to 49 years old,2012,25.2,C,95
-95,400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,F,15 to 49 years old,2012,72.6,C,96
-96,400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,F,15 to 49 years old,2018,58.2,C,97
-97,404,Kenya,KEN,37.860969543457,0.534797251224518,Sub-Saharan Africa,F,15 to 49 years old,2014,56.0,C,98
-98,417,Kyrgyzstan,KGZ,74.5232467651367,41.462043762207,Central and Southern Asia,F,15 to 49 years old,2012,76.6,C,99
-99,426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,F,15 to 49 years old,2009,53.8,C,100
-100,426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,F,15 to 49 years old,2014,60.9,C,101
-101,430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,F,15 to 49 years old,2013,67.2,C,102
-102,430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,F,15 to 49 years old,2020,58.8,C,103
-103,450,Madagascar,MDG,46.6982345581055,-19.3851470947266,Sub-Saharan Africa,F,15 to 49 years old,2009,73.6,C,104
-104,450,Madagascar,MDG,46.6982345581055,-19.3851470947266,Sub-Saharan Africa,F,15 to 49 years old,2021,72.0,C,105
-105,454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,F,15 to 49 years old,2010,42.2,C,106
-106,454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,F,15 to 49 years old,2016,44.7,C,107
+Unnamed: 0,Geogrpahic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Age,Year,Value,Nature of the Data Code
+0,462,Maldives,MDV,73.0967254638672,-0.614385008811951,Central and Southern Asia,F,15 to 49 years old,2017,53.9,C
+1,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 49 years old,2006,9.6,C
+2,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 49 years old,2013,6.5,C
+3,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 49 years old,2018,5.3,C
+4,478,Mauritania,MRT,-10.3318729400635,20.2608947753906,Sub-Saharan Africa,F,15 to 49 years old,2021,25.3,C
+5,496,Mongolia,MNG,103.072807312012,46.8389205932617,Eastern and South-Eastern Asia,F,15 to 49 years old,2018,63.2,C
+6,498,Republic of Moldova,MDA,28.4650630950928,47.2023696899414,Europe and Northern America,F,15 to 49 years old,2020,72.9,C
+7,508,Mozambique,MOZ,38.1847991943359,-14.2796392440796,Sub-Saharan Africa,F,15 to 49 years old,2011,49.1,C
+8,516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,F,15 to 49 years old,2007,67.1,C
+9,516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,F,15 to 49 years old,2013,71.2,C
+10,524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,F,15 to 49 years old,2011,59.5,C
+11,524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,F,15 to 49 years old,2016,47.6,C
+12,562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,F,15 to 49 years old,2006,9.3,C
+13,562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,F,15 to 49 years old,2012,7.3,C
+14,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 49 years old,2008,47.1,C
+15,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 49 years old,2013,50.8,C
+16,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 49 years old,2018,28.6,C
+17,586,Pakistan,PAK,68.8047943115234,29.3649158477783,Central and Southern Asia,F,15 to 49 years old,2018,31.5,C
+18,591,Panama,PAN,-81.2661666870117,8.45096588134766,Latin America and the Caribbean,F,15 to 49 years old,2014,79.1,C
+19,598,Papua New Guinea,PNG,145.858779907227,-6.75605726242065,"Oceania, exc. Australia and New Zealand",F,15 to 49 years old,2018,56.7,C
+20,608,Philippines,PHL,120.860145568848,14.1659173965454,Eastern and South-Eastern Asia,F,15 to 49 years old,2017,79.8,C
+21,626,Timor-Leste,TLS,125.945106506348,-8.7974967956543,Eastern and South-Eastern Asia,F,15 to 49 years old,2016,35.9,C
+22,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 49 years old,2010,60.1,C
+23,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 49 years old,2015,69.5,C
+24,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 49 years old,2020,61.3,C
+25,678,Sao Tome and Principe,STP,6.60977220535278,0.241554871201515,Sub-Saharan Africa,F,15 to 49 years old,2008,46.2,C
+26,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2011,13.2,C
+27,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2015,7.1,C
+28,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2016,4.9,C
+29,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 49 years old,2017,5.8,C
+30,688,Serbia,SRB,20.8058757781982,44.0314559936523,Europe and Northern America,F,15 to 49 years old,2019,96.2,C
+31,694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,F,15 to 49 years old,2013,40.2,C
+32,694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,F,15 to 49 years old,2019,27.8,C
+33,710,South Africa,ZAF,24.6718444824219,-29.9995746612549,Sub-Saharan Africa,F,15 to 49 years old,2016,60.5,C
+34,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 49 years old,2006,52.5,C
+35,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 49 years old,2011,58.8,C
+36,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 49 years old,2015,59.9,C
+37,748,Eswatini,SWZ,31.5014934539795,-26.5647106170654,Sub-Saharan Africa,F,15 to 49 years old,2007,48.9,C
+38,762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,F,15 to 49 years old,2012,40.9,C
+39,762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,F,15 to 49 years old,2017,27.2,C
+40,768,Togo,TGO,0.978357672691345,8.53209590911865,Sub-Saharan Africa,F,15 to 49 years old,2014,29.6,C
+41,795,Turkmenistan,TKM,58.9787673950195,40.091236114502,Central and Southern Asia,F,15 to 49 years old,2019,59.3,C
+42,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 49 years old,2006,48.0,C
+43,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 49 years old,2011,49.0,C
+44,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 49 years old,2016,58.5,C
+45,804,Ukraine,UKR,31.4027080535889,49.0073585510254,Europe and Northern America,F,15 to 49 years old,2007,81.0,C
+46,807,North Macedonia,MKD,21.7007904052734,41.6004791259766,Europe and Northern America,F,15 to 49 years old,2019,88.1,C
+47,834,United Republic of Tanzania,TZA,34.8052101135254,-6.26533269882202,Sub-Saharan Africa,F,15 to 49 years old,2010,46.8,C
+48,854,Burkina Faso,BFA,-1.74284386634827,12.2749109268188,Sub-Saharan Africa,F,15 to 49 years old,2010,20.3,C
+49,860,Uzbekistan,UZB,63.1194458007813,41.7756042480469,Central and Southern Asia,F,15 to 49 years old,2022,70.4,C
+50,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 49 years old,2007,39.5,C
+51,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 49 years old,2014,46.6,C
+52,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 49 years old,2018,46.5,C
+53,8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,F,15 to 49 years old,2009,61.5,C
+54,8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,F,15 to 49 years old,2018,61.9,C
+55,24,Angola,AGO,17.5781707763672,-12.3372478485107,Sub-Saharan Africa,F,15 to 49 years old,2016,39.2,C
+56,50,Bangladesh,BGD,89.1766052246094,22.8696155548096,Central and Southern Asia,F,15 to 49 years old,2018,63.8,C
+57,51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,F,15 to 49 years old,2010,64.3,C
+58,51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,F,15 to 49 years old,2016,61.8,C
+59,104,Myanmar,MMR,96.5175247192383,21.1933288574219,Eastern and South-Eastern Asia,F,15 to 49 years old,2016,67.5,C
+60,108,Burundi,BDI,29.8908100128174,-3.36638736724854,Sub-Saharan Africa,F,15 to 49 years old,2010,49.0,C
+61,108,Burundi,BDI,29.8908100128174,-3.36638736724854,Sub-Saharan Africa,F,15 to 49 years old,2017,40.3,C
+62,116,Cambodia,KHM,104.922836303711,12.7116374969482,Eastern and South-Eastern Asia,F,15 to 49 years old,2010,74.6,C
+63,116,Cambodia,KHM,104.922836303711,12.7116374969482,Eastern and South-Eastern Asia,F,15 to 49 years old,2014,75.6,C
+64,120,Cameroon,CMR,12.741982460022,5.69238710403442,Sub-Saharan Africa,F,15 to 49 years old,2011,38.1,C
+65,120,Cameroon,CMR,12.741982460022,5.69238710403442,Sub-Saharan Africa,F,15 to 49 years old,2018,34.8,C
+66,148,Chad,TCD,18.6661834716797,15.36279296875,Sub-Saharan Africa,F,15 to 49 years old,2015,27.1,C
+67,174,Comoros,COM,43.3423461914063,-11.6612176895142,Sub-Saharan Africa,F,15 to 49 years old,2012,20.8,C
+68,178,Congo,COG,15.2205257415772,-0.840544104576111,Sub-Saharan Africa,F,15 to 49 years old,2012,26.8,C
+69,180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,F,15 to 49 years old,2007,19.3,C
+70,180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,F,15 to 49 years old,2014,30.7,C
+71,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 49 years old,2006,41.1,C
+72,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 49 years old,2012,38.2,C
+73,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 49 years old,2018,25.2,C
+74,214,Dominican Republic,DOM,-70.4984741210938,18.8983211517334,Latin America and the Caribbean,F,15 to 49 years old,2007,77.0,C
+75,218,Ecuador,ECU,-78.3700561523438,-1.4477858543396,Latin America and the Caribbean,F,15 to 49 years old,2018,86.7,C
+76,231,Ethiopia,ETH,39.6350517272949,8.63122272491455,Sub-Saharan Africa,F,15 to 49 years old,2011,53.4,C
+77,231,Ethiopia,ETH,39.6350517272949,8.63122272491455,Sub-Saharan Africa,F,15 to 49 years old,2016,38.0,C
+78,242,Fiji,FJI,177.966094970703,-17.8330154418945,"Oceania, exc. Australia and New Zealand",F,15 to 49 years old,2021,61.6,C
+79,266,Gabon,GAB,11.7872772216797,-0.606876194477081,Sub-Saharan Africa,F,15 to 49 years old,2012,48.0,C
+80,268,Georgia,GEO,43.3713607788086,42.0481300354004,Northern Africa and Western Asia,F,15 to 49 years old,2018,82.4,C
+81,270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,F,15 to 49 years old,2013,40.5,C
+82,270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,F,15 to 49 years old,2020,19.5,C
+83,288,Ghana,GHA,-1.2056235074997,7.96482515335083,Sub-Saharan Africa,F,15 to 49 years old,2008,54.1,C
+84,288,Ghana,GHA,-1.2056235074997,7.96482515335083,Sub-Saharan Africa,F,15 to 49 years old,2014,52.0,C
+85,320,Guatemala,GTM,-91.2312774658203,15.0027370452881,Latin America and the Caribbean,F,15 to 49 years old,2015,64.8,C
+86,324,Guinea,GIN,-11.2817344665527,11.002103805542,Sub-Saharan Africa,F,15 to 49 years old,2012,22.7,C
+87,324,Guinea,GIN,-11.2817344665527,11.002103805542,Sub-Saharan Africa,F,15 to 49 years old,2018,15.2,C
+88,328,Guyana,GUY,-58.9732208251953,4.78801298141479,Latin America and the Caribbean,F,15 to 49 years old,2009,71.3,C
+89,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 49 years old,2006,53.6,C
+90,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 49 years old,2012,56.3,C
+91,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 49 years old,2017,57.1,C
+92,340,Honduras,HND,-86.5997467041016,14.822431564331,Latin America and the Caribbean,F,15 to 49 years old,2012,70.3,C
+93,356,India,IND,79.3608474731445,22.3464202880859,Central and Southern Asia,F,15 to 49 years old,2021,65.6,C
+94,384,Côte d'Ivoire,CIV,-5.55269002914429,7.62211608886719,Sub-Saharan Africa,F,15 to 49 years old,2012,25.2,C
+95,400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,F,15 to 49 years old,2012,72.6,C
+96,400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,F,15 to 49 years old,2018,58.2,C
+97,404,Kenya,KEN,37.860969543457,0.534797251224518,Sub-Saharan Africa,F,15 to 49 years old,2014,56.0,C
+98,417,Kyrgyzstan,KGZ,74.5232467651367,41.462043762207,Central and Southern Asia,F,15 to 49 years old,2012,76.6,C
+99,426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,F,15 to 49 years old,2009,53.8,C
+100,426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,F,15 to 49 years old,2014,60.9,C
+101,430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,F,15 to 49 years old,2013,67.2,C
+102,430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,F,15 to 49 years old,2020,58.8,C
+103,450,Madagascar,MDG,46.6982345581055,-19.3851470947266,Sub-Saharan Africa,F,15 to 49 years old,2009,73.6,C
+104,450,Madagascar,MDG,46.6982345581055,-19.3851470947266,Sub-Saharan Africa,F,15 to 49 years old,2021,72.0,C
+105,454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,F,15 to 49 years old,2010,42.2,C
+106,454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,F,15 to 49 years old,2016,44.7,C
