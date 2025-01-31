@@ -1,138 +1,60 @@
-Geogrpahic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Year,Sex Code,Age,Value(%),Value Lower Bound(%),Value Upper Bound(%),Nature of the Data Code
+Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Year,Sex Code,Age,Value(%),Value Lower Bound(%),Value Upper Bound(%),Nature of the Data Code
 4,Afghanistan,AFG,66.0268783569336,33.831600189209,Central and Southern Asia,2018,F,15 to 49 years old,34.7,21.7,50.4,E
 8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,2018,F,15 to 49 years old,6.2,4.4,8.9,E
 24,Angola,AGO,17.5781707763672,-12.3372478485107,Sub-Saharan Africa,2018,F,15 to 49 years old,24.7,14.5,38.8,E
+31,Azerbaijan,AZE,50.0106468200684,40.3922958374023,Northern Africa and Western Asia,2018,F,15 to 49 years old,5.2,2.8,9.2,E
 32,Argentina,ARG,-65.1456298828125,-35.1944618225098,Latin America and the Caribbean,2018,F,15 to 49 years old,4.5,2.4,8.3,E
-51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,2018,F,15 to 49 years old,4.6,2.3,8.9,E
 36,Australia,AUS,134.349945068359,-25.5771713256836,Australia and New Zealand,2018,F,15 to 49 years old,2.9,1.8,4.6,E
 40,Austria,AUT,14.1417245864868,47.5870475769043,Europe and Northern America,2018,F,15 to 49 years old,3.6,1.7,7.4,E
-31,Azerbaijan,AZE,50.0106468200684,40.3922958374023,Northern Africa and Western Asia,2018,F,15 to 49 years old,5.2,2.8,9.2,E
 50,Bangladesh,BGD,89.1766052246094,22.8696155548096,Central and Southern Asia,2018,F,15 to 49 years old,23.2,14.8,33.7,E
-112,Belarus,BLR,28.0494022369385,53.5419311523438,Europe and Northern America,2018,F,15 to 49 years old,6.3,3.2,11.9,E
+51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,2018,F,15 to 49 years old,4.6,2.3,8.9,E
 56,Belgium,BEL,4.66097640991211,50.6410484313965,Europe and Northern America,2018,F,15 to 49 years old,4.8,2.6,8.6,E
-84,Belize,BLZ,-88.7019958496094,17.1996593475342,Latin America and the Caribbean,2018,F,15 to 49 years old,7.8,3.3,17.5,E
-204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,2018,F,15 to 49 years old,14.6,8.3,24.3,E
 64,Bhutan,BTN,90.4509811401367,27.3959865570068,Central and Southern Asia,2018,F,15 to 49 years old,8.6,5.2,13.8,E
 68,Bolivia (Plurinational State of),BOL,-64.662239074707,-16.7127342224121,Latin America and the Caribbean,2018,F,15 to 49 years old,18.3,11.3,28.3,E
 70,Bosnia and Herzegovina,BIH,17.7858428955078,44.16845703125,Europe and Northern America,2018,F,15 to 49 years old,3.4,1.9,6.1,E
 72,Botswana,BWA,23.8138027191162,-22.1881008148193,Sub-Saharan Africa,2018,F,15 to 49 years old,17.1,9.7,28.3,E
 76,Brazil,BRA,-53.0843276977539,-10.7766857147217,Latin America and the Caribbean,2018,F,15 to 49 years old,6.5,4.0,10.2,E
+84,Belize,BLZ,-88.7019958496094,17.1996593475342,Latin America and the Caribbean,2018,F,15 to 49 years old,7.8,3.3,17.5,E
+90,Solomon Islands,SLB,160.158416748047,-9.62239170074463,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,28.1,15.4,45.8,E
 100,Bulgaria,BGR,25.2376308441162,42.7573127746582,Europe and Northern America,2018,F,15 to 49 years old,5.9,2.9,11.7,E
-854,Burkina Faso,BFA,-1.74284386634827,12.2749109268188,Sub-Saharan Africa,2018,F,15 to 49 years old,11.2,6.0,20.2,E
+104,Myanmar,MMR,96.5175247192383,21.1933288574219,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,10.7,5.9,18.6,E
 108,Burundi,BDI,29.8908100128174,-3.36638736724854,Sub-Saharan Africa,2018,F,15 to 49 years old,22.1,13.1,35.1,E
-132,Cabo Verde,CPV,-23.635440826416,15.0779180526733,Sub-Saharan Africa,2018,F,15 to 49 years old,10.9,6.4,17.9,E
+112,Belarus,BLR,28.0494022369385,53.5419311523438,Europe and Northern America,2018,F,15 to 49 years old,6.3,3.2,11.9,E
 116,Cambodia,KHM,104.922836303711,12.7116374969482,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,9.1,6.0,14.0,E
 120,Cameroon,CMR,12.741982460022,5.69238710403442,Sub-Saharan Africa,2018,F,15 to 49 years old,22.0,14.6,31.8,E
 124,Canada,CAN,-101.657508850098,57.7236022949219,Europe and Northern America,2018,F,15 to 49 years old,2.6,1.6,4.3,E
+132,Cabo Verde,CPV,-23.635440826416,15.0779180526733,Sub-Saharan Africa,2018,F,15 to 49 years old,10.9,6.4,17.9,E
 140,Central African Republic,CAF,20.9355945587158,7.00372076034546,Sub-Saharan Africa,2018,F,15 to 49 years old,20.9,11.6,34.6,E
+144,Sri Lanka,LKA,80.7048950195313,7.61469316482544,Central and Southern Asia,2018,F,15 to 49 years old,4.1,1.7,9.0,E
 148,Chad,TCD,18.6661834716797,15.36279296875,Sub-Saharan Africa,2018,F,15 to 49 years old,16.2,9.2,27.0,E
 152,Chile,CHL,-71.2302932739258,-35.2652893066406,Latin America and the Caribbean,2018,F,15 to 49 years old,5.8,3.4,9.8,E
 156,China,CHN,104.140335083008,32.3095512390137,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,7.6,3.0,17.7,E
-344,"China, Hong Kong SAR",HKG,114.026641845703,22.4174995422363,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,2.5,1.2,5.4,E
 170,Colombia,COL,-73.0744705200195,3.88820910453796,Latin America and the Caribbean,2018,F,15 to 49 years old,11.9,6.3,21.1,E
 174,Comoros,COM,43.3423461914063,-11.6612176895142,Sub-Saharan Africa,2018,F,15 to 49 years old,8.2,4.0,15.7,E
+180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,2018,F,15 to 49 years old,35.6,23.3,49.7,E
 184,Cook Islands,COK,-159.771133422852,-21.2269649505615,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,13.7,6.9,25.4,E
 188,Costa Rica,CRI,-84.1971282958984,9.97099876403809,Latin America and the Caribbean,2018,F,15 to 49 years old,7.2,3.6,13.9,E
-384,Côte d'Ivoire,CIV,-5.55269002914429,7.62211608886719,Sub-Saharan Africa,2018,F,15 to 49 years old,16.4,9.1,27.7,E
 191,Croatia,HRV,17.9587459564209,45.4517211914063,Europe and Northern America,2018,F,15 to 49 years old,4.0,1.9,8.3,E
 192,Cuba,CUB,-79.5446014404297,22.1003036499023,Latin America and the Caribbean,2018,F,15 to 49 years old,4.6,2.3,9.1,E
 196,Cyprus,CYP,33.2228584289551,35.0565948486328,Northern Africa and Western Asia,2018,F,15 to 49 years old,3.1,1.5,6.4,E
 203,Czechia,CZE,15.3315134048462,49.7391395568848,Europe and Northern America,2018,F,15 to 49 years old,4.1,2.4,6.8,E
-180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,2018,F,15 to 49 years old,35.6,23.3,49.7,E
+204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,2018,F,15 to 49 years old,14.6,8.3,24.3,E
 208,Denmark,DNK,9.32657146453857,56.0382957458496,Europe and Northern America,2018,F,15 to 49 years old,3.3,2.0,5.4,E
 214,Dominican Republic,DOM,-70.4984741210938,18.8983211517334,Latin America and the Caribbean,2018,F,15 to 49 years old,9.6,6.0,15.0,E
 218,Ecuador,ECU,-78.3700561523438,-1.4477858543396,Latin America and the Caribbean,2018,F,15 to 49 years old,8.1,4.7,13.8,E
-818,Egypt,EGY,29.7746849060059,26.5743827819824,Northern Africa and Western Asia,2018,F,15 to 49 years old,15.1,9.9,22.6,E
 222,El Salvador,SLV,-88.8686294555664,13.7360353469849,Latin America and the Caribbean,2018,F,15 to 49 years old,5.7,3.6,8.8,E
 226,Equatorial Guinea,GNQ,10.4653587341309,1.56579232215881,Sub-Saharan Africa,2018,F,15 to 49 years old,28.7,16.1,45.5,E
-233,Estonia,EST,25.840934753418,58.684871673584,Europe and Northern America,2018,F,15 to 49 years old,4.2,1.9,8.9,E
-748,Eswatini,SWZ,31.5014934539795,-26.5647106170654,Sub-Saharan Africa,2018,F,15 to 49 years old,17.7,9.8,29.7,E
 231,Ethiopia,ETH,39.6350517272949,8.63122272491455,Sub-Saharan Africa,2018,F,15 to 49 years old,26.5,17.1,38.4,E
+233,Estonia,EST,25.840934753418,58.684871673584,Europe and Northern America,2018,F,15 to 49 years old,4.2,1.9,8.9,E
 242,Fiji,FJI,177.966094970703,-17.8330154418945,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,23.2,12.9,38.5,E
 246,Finland,FIN,23.3084468841553,61.9158668518066,Europe and Northern America,2018,F,15 to 49 years old,8.1,5.8,11.3,E
 250,France,FRA,2.45728802680969,46.6266098022461,Europe and Northern America,2018,F,15 to 49 years old,5.0,2.5,10.0,E
 266,Gabon,GAB,11.7872772216797,-0.606876194477081,Sub-Saharan Africa,2018,F,15 to 49 years old,22.0,12.2,36.3,E
-428,Latvia,LVA,26.4246196746826,56.6419677734375,Europe and Northern America,2018,F,15 to 49 years old,6.3,3.0,12.5,E
-426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,2018,F,15 to 49 years old,16.5,8.3,29.9,E
-430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,2018,F,15 to 49 years old,26.9,16.8,40.1,E
-440,Lithuania,LTU,23.9051780700684,55.3368034362793,Europe and Northern America,2018,F,15 to 49 years old,5.2,2.5,10.6,E
-442,Luxembourg,LUX,6.09265661239624,49.7767944335938,Europe and Northern America,2018,F,15 to 49 years old,3.5,1.6,7.4,E
-454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,2018,F,15 to 49 years old,16.6,11.1,24.0,E
-462,Maldives,MDV,73.0967254638672,-0.614385008811951,Central and Southern Asia,2018,F,15 to 49 years old,6.1,3.5,10.5,E
-466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,2018,F,15 to 49 years old,18.4,12.4,26.5,E
-470,Malta,MLT,14.4461755752563,35.8919410705566,Europe and Northern America,2018,F,15 to 49 years old,4.0,1.9,8.1,E
-584,Marshall Islands,MHL,171.083908081055,7.11021327972412,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,19.3,11.2,31.6,E
-484,Mexico,MEX,-102.51481628418,23.933780670166,Latin America and the Caribbean,2018,F,15 to 49 years old,9.9,6.3,15.3,E
-583,Micronesia (Federated States of),FSM,158.225219726563,6.88067007064819,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,21.1,11.5,35.8,E
-496,Mongolia,MNG,103.072807312012,46.8389205932617,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,11.5,6.4,20.1,E
-499,Montenegro,MNE,19.252140045166,42.7871704101563,Europe and Northern America,2018,F,15 to 49 years old,4.4,2.3,8.1,E
-504,Morocco,MAR,-6.28194284439087,31.8440132141113,Northern Africa and Western Asia,2018,F,15 to 49 years old,10.5,5.8,18.5,E
-508,Mozambique,MOZ,38.1847991943359,-14.2796392440796,Sub-Saharan Africa,2018,F,15 to 49 years old,16.4,10.9,23.9,E
-104,Myanmar,MMR,96.5175247192383,21.1933288574219,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,10.7,5.9,18.6,E
-516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,2018,F,15 to 49 years old,15.9,9.6,25.1,E
-520,Nauru,NRU,166.923126220703,-0.528742611408234,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,20.0,10.3,35.2,E
-524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,2018,F,15 to 49 years old,11.4,6.7,18.7,E
-528,Netherlands,NLD,5.33148050308228,51.8672904968262,Europe and Northern America,2018,F,15 to 49 years old,5.1,2.6,10.0,E
-554,New Zealand,NZL,170.475570678711,-43.9872169494629,Australia and New Zealand,2018,F,15 to 49 years old,4.2,1.6,10.9,E
-558,Nicaragua,NIC,-85.0306015014648,12.8421087265015,Latin America and the Caribbean,2018,F,15 to 49 years old,6.4,3.7,10.9,E
-562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,2018,F,15 to 49 years old,12.9,7.8,20.7,E
-566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,2018,F,15 to 49 years old,13.2,8.8,19.5,E
-807,North Macedonia,MKD,21.7007904052734,41.6004791259766,Europe and Northern America,2018,F,15 to 49 years old,4.2,2.0,8.4,E
-578,Norway,NOR,11.4784641265869,61.3431129455566,Europe and Northern America,2018,F,15 to 49 years old,4.4,2.2,8.5,E
-275,State of Palestine,PSE,35.2569427490234,31.9434795379639,Northern Africa and Western Asia,2018,F,15 to 49 years old,19.1,10.4,32.7,E
-729,Sudan,SDN,29.9565010070801,16.0264301300049,Northern Africa and Western Asia,2018,F,15 to 49 years old,16.7,8.5,29.9,E
-740,Suriname,SUR,-55.9062652587891,4.13260316848755,Latin America and the Caribbean,2018,F,15 to 49 years old,7.7,4.0,14.0,E
-752,Sweden,SWE,14.3775339126587,60.6010322570801,Europe and Northern America,2018,F,15 to 49 years old,6.3,3.4,11.4,E
-756,Switzerland,CHE,8.22315788269043,46.9661712646484,Europe and Northern America,2018,F,15 to 49 years old,1.7,0.8,3.7,E
-762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,2018,F,15 to 49 years old,14.0,8.6,22.0,E
-764,Thailand,THA,101.020294189453,15.1308927536011,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,9.3,3.9,20.4,E
-626,Timor-Leste,TLS,125.945106506348,-8.7974967956543,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,28.2,19.1,39.7,E
-768,Togo,TGO,0.978357672691345,8.53209590911865,Sub-Saharan Africa,2018,F,15 to 49 years old,12.7,7.0,22.1,E
-776,Tonga,TON,-175.195999145508,-21.1951141357422,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,16.9,8.6,30.6,E
-780,Trinidad and Tobago,TTO,-61.2938957214355,10.4187726974487,Latin America and the Caribbean,2018,F,15 to 49 years old,7.5,3.8,14.0,E
-788,Tunisia,TUN,9.57273769378662,34.1143989562988,Northern Africa and Western Asia,2018,F,15 to 49 years old,10.1,4.9,19.5,E
-792,Türkiye,TUR,35.4289016723633,38.9899673461914,Northern Africa and Western Asia,2018,F,15 to 49 years old,12.1,7.6,19.1,E
-798,Tuvalu,TUV,178.667953491211,-7.46004819869995,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,19.8,10.2,35.2,E
-800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,2018,F,15 to 49 years old,26.1,17.9,36.4,E
-804,Ukraine,UKR,31.4027080535889,49.0073585510254,Europe and Northern America,2018,F,15 to 49 years old,8.7,5.4,13.4,E
-826,United Kingdom,GBR,-2.23830533027649,53.2769165039063,Europe and Northern America,2018,F,15 to 49 years old,4.2,2.1,8.4,E
-834,United Republic of Tanzania,TZA,34.8052101135254,-6.26533269882202,Sub-Saharan Africa,2018,F,15 to 49 years old,24.3,16.1,34.8,E
-840,United States of America,USA,-99.1383056640625,39.5277862548828,Europe and Northern America,2018,F,15 to 49 years old,6.0,3.8,9.4,E
-858,Uruguay,URY,-56.0138702392578,-32.8002853393555,Latin America and the Caribbean,2018,F,15 to 49 years old,4.3,2.0,9.2,E
-548,Vanuatu,VUT,167.067977905273,-15.3444557189941,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,29.4,16.2,47.6,E
-862,Venezuela,VEN,-66.1564178466797,7.12132453918457,Latin America and the Caribbean,2018,F,15 to 49 years old,8.5,4.4,15.8,E
-704,Viet Nam,VNM,105.80249786377,10.0964307785034,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,9.5,5.1,17.4,E
-894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,2018,F,15 to 49 years old,27.8,18.7,39.0,E
-716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,2018,F,15 to 49 years old,18.2,12.0,26.4,E
-586,Pakistan,PAK,68.8047943115234,29.3649158477783,Central and Southern Asia,2018,F,15 to 49 years old,16.2,10.0,25.1,E
-585,Palau,PLW,134.573394775391,7.50230741500854,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,13.8,7.0,25.5,E
-591,Panama,PAN,-81.2661666870117,8.45096588134766,Latin America and the Caribbean,2018,F,15 to 49 years old,7.8,4.5,13.2,E
-598,Papua New Guinea,PNG,145.858779907227,-6.75605726242065,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,30.6,18.9,45.2,E
-600,Paraguay,PRY,-60.5485420227051,-21.7021617889404,Latin America and the Caribbean,2018,F,15 to 49 years old,5.5,3.1,9.5,E
-604,Peru,PER,-71.820930480957,-13.5893974304199,Latin America and the Caribbean,2018,F,15 to 49 years old,11.1,8.0,15.0,E
-608,Philippines,PHL,120.860145568848,14.1659173965454,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,5.9,3.8,9.2,E
-616,Poland,POL,19.4066009521484,52.122673034668,Europe and Northern America,2018,F,15 to 49 years old,3.1,1.7,5.8,E
-620,Portugal,PRT,-7.96159982681274,39.6850929260254,Europe and Northern America,2018,F,15 to 49 years old,4.4,2.2,8.7,E
-410,Republic of Korea,KOR,127.861022949219,36.4520111083984,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,8.0,4.6,13.6,E
-498,Republic of Moldova,MDA,28.4650630950928,47.2023696899414,Europe and Northern America,2018,F,15 to 49 years old,9.1,5.2,15.2,E
-642,Romania,ROU,24.9848098754883,45.8389358520508,Europe and Northern America,2018,F,15 to 49 years old,6.9,3.9,11.9,E
-646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,2018,F,15 to 49 years old,23.5,15.5,33.5,E
-882,Samoa,WSM,-172.443069458008,-13.6154146194458,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,17.8,9.3,31.8,E
-678,Sao Tome and Principe,STP,6.60977220535278,0.241554871201515,Sub-Saharan Africa,2018,F,15 to 49 years old,18.1,10.0,30.7,E
-686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,2018,F,15 to 49 years old,12.4,6.9,21.2,E
-688,Serbia,SRB,20.8058757781982,44.0314559936523,Europe and Northern America,2018,F,15 to 49 years old,3.9,2.0,7.4,E
-694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,2018,F,15 to 49 years old,19.8,11.4,32.4,E
-702,Singapore,SGP,103.810791015625,1.36100912094116,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,2.4,1.0,5.7,E
-703,Slovakia,SVK,19.484956741333,48.7074127197266,Europe and Northern America,2018,F,15 to 49 years old,5.9,2.9,11.5,E
-705,Slovenia,SVN,14.8220949172974,46.1195793151855,Europe and Northern America,2018,F,15 to 49 years old,3.4,1.7,6.5,E
-90,Solomon Islands,SLB,160.158416748047,-9.62239170074463,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,28.1,15.4,45.8,E
-710,South Africa,ZAF,24.6718444824219,-29.9995746612549,Sub-Saharan Africa,2018,F,15 to 49 years old,13.1,7.1,22.6,E
-728,South Sudan,SSD,30.3261871337891,7.29083919525146,Sub-Saharan Africa,2018,F,15 to 49 years old,26.7,12.7,47.7,E
-724,Spain,ESP,-3.5540783405304,40.3921165466309,Europe and Northern America,2018,F,15 to 49 years old,2.9,1.8,4.7,E
-144,Sri Lanka,LKA,80.7048950195313,7.61469316482544,Central and Southern Asia,2018,F,15 to 49 years old,4.1,1.7,9.0,E
-270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,2018,F,15 to 49 years old,10.0,5.3,18.3,E
 268,Georgia,GEO,43.3713607788086,42.0481300354004,Northern Africa and Western Asia,2018,F,15 to 49 years old,2.9,1.3,6.3,E
+270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,2018,F,15 to 49 years old,10.0,5.3,18.3,E
+275,State of Palestine,PSE,35.2569427490234,31.9434795379639,Northern Africa and Western Asia,2018,F,15 to 49 years old,19.1,10.4,32.7,E
 288,Ghana,GHA,-1.2056235074997,7.96482515335083,Sub-Saharan Africa,2018,F,15 to 49 years old,10.2,5.8,17.3,E
+296,Kiribati,KIR,-157.564300537109,1.76883769035339,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,25.2,13.6,42.5,E
 300,Greece,GRC,22.5830783843994,39.4730186462402,Europe and Northern America,2018,F,15 to 49 years old,5.1,2.5,10.0,E
 308,Grenada,GRD,-61.682487487793,12.1123838424683,Latin America and the Caribbean,2018,F,15 to 49 years old,7.8,4.0,14.5,E
 320,Guatemala,GTM,-91.2312774658203,15.0027370452881,Latin America and the Caribbean,2018,F,15 to 49 years old,7.3,4.3,12.1,E
@@ -140,6 +62,7 @@ Geogrpahic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Yea
 328,Guyana,GUY,-58.9732208251953,4.78801298141479,Latin America and the Caribbean,2018,F,15 to 49 years old,10.5,5.7,18.5,E
 332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,2018,F,15 to 49 years old,12.2,8.0,17.9,E
 340,Honduras,HND,-86.5997467041016,14.822431564331,Latin America and the Caribbean,2018,F,15 to 49 years old,7.2,4.4,11.7,E
+344,"China, Hong Kong SAR",HKG,114.026641845703,22.4174995422363,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,2.5,1.2,5.4,E
 348,Hungary,HUN,19.4122142791748,47.1651458740234,Europe and Northern America,2018,F,15 to 49 years old,5.7,2.8,11.3,E
 352,Iceland,ISL,-19.0211696624756,64.7913513183594,Europe and Northern America,2018,F,15 to 49 years old,2.8,1.8,4.3,E
 356,India,IND,79.3608474731445,22.3464202880859,Central and Southern Asia,2018,F,15 to 49 years old,18.4,11.3,28.4,E
@@ -148,11 +71,88 @@ Geogrpahic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Yea
 372,Ireland,IRL,-7.12142515182495,53.2527389526367,Europe and Northern America,2018,F,15 to 49 years old,3.3,1.8,6.1,E
 376,Israel,ISR,34.6227798461914,31.0616455078125,Northern Africa and Western Asia,2018,F,15 to 49 years old,5.6,3.0,10.4,E
 380,Italy,ITA,12.5702238082886,42.7991714477539,Europe and Northern America,2018,F,15 to 49 years old,3.5,2.2,5.8,E
+384,Côte d'Ivoire,CIV,-5.55269002914429,7.62211608886719,Sub-Saharan Africa,2018,F,15 to 49 years old,16.4,9.1,27.7,E
 388,Jamaica,JAM,-77.3106842041016,18.1561679840088,Latin America and the Caribbean,2018,F,15 to 49 years old,7.3,4.3,12.1,E
 392,Japan,JPN,139.271606445313,36.6554527282715,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,3.9,1.4,10.3,E
-400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,2018,F,15 to 49 years old,13.5,8.7,20.3,E
 398,Kazakhstan,KAZ,66.6535949707031,48.0196342468262,Central and Southern Asia,2018,F,15 to 49 years old,6.0,3.0,11.4,E
+400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,2018,F,15 to 49 years old,13.5,8.7,20.3,E
 404,Kenya,KEN,37.860969543457,0.534797251224518,Sub-Saharan Africa,2018,F,15 to 49 years old,22.8,15.1,32.8,E
-296,Kiribati,KIR,-157.564300537109,1.76883769035339,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,25.2,13.6,42.5,E
+410,Republic of Korea,KOR,127.861022949219,36.4520111083984,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,8.0,4.6,13.6,E
 417,Kyrgyzstan,KGZ,74.5232467651367,41.462043762207,Central and Southern Asia,2018,F,15 to 49 years old,13.3,7.0,23.8,E
 418,Lao People's Dem. Rep.,LAO,101.990196228027,20.2748279571533,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,8.0,4.2,15.1,E
+426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,2018,F,15 to 49 years old,16.5,8.3,29.9,E
+428,Latvia,LVA,26.4246196746826,56.6419677734375,Europe and Northern America,2018,F,15 to 49 years old,6.3,3.0,12.5,E
+430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,2018,F,15 to 49 years old,26.9,16.8,40.1,E
+440,Lithuania,LTU,23.9051780700684,55.3368034362793,Europe and Northern America,2018,F,15 to 49 years old,5.2,2.5,10.6,E
+442,Luxembourg,LUX,6.09265661239624,49.7767944335938,Europe and Northern America,2018,F,15 to 49 years old,3.5,1.6,7.4,E
+454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,2018,F,15 to 49 years old,16.6,11.1,24.0,E
+462,Maldives,MDV,73.0967254638672,-0.614385008811951,Central and Southern Asia,2018,F,15 to 49 years old,6.1,3.5,10.5,E
+466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,2018,F,15 to 49 years old,18.4,12.4,26.5,E
+470,Malta,MLT,14.4461755752563,35.8919410705566,Europe and Northern America,2018,F,15 to 49 years old,4.0,1.9,8.1,E
+484,Mexico,MEX,-102.51481628418,23.933780670166,Latin America and the Caribbean,2018,F,15 to 49 years old,9.9,6.3,15.3,E
+496,Mongolia,MNG,103.072807312012,46.8389205932617,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,11.5,6.4,20.1,E
+498,Republic of Moldova,MDA,28.4650630950928,47.2023696899414,Europe and Northern America,2018,F,15 to 49 years old,9.1,5.2,15.2,E
+499,Montenegro,MNE,19.252140045166,42.7871704101563,Europe and Northern America,2018,F,15 to 49 years old,4.4,2.3,8.1,E
+504,Morocco,MAR,-6.28194284439087,31.8440132141113,Northern Africa and Western Asia,2018,F,15 to 49 years old,10.5,5.8,18.5,E
+508,Mozambique,MOZ,38.1847991943359,-14.2796392440796,Sub-Saharan Africa,2018,F,15 to 49 years old,16.4,10.9,23.9,E
+516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,2018,F,15 to 49 years old,15.9,9.6,25.1,E
+520,Nauru,NRU,166.923126220703,-0.528742611408234,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,20.0,10.3,35.2,E
+524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,2018,F,15 to 49 years old,11.4,6.7,18.7,E
+528,Netherlands,NLD,5.33148050308228,51.8672904968262,Europe and Northern America,2018,F,15 to 49 years old,5.1,2.6,10.0,E
+548,Vanuatu,VUT,167.067977905273,-15.3444557189941,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,29.4,16.2,47.6,E
+554,New Zealand,NZL,170.475570678711,-43.9872169494629,Australia and New Zealand,2018,F,15 to 49 years old,4.2,1.6,10.9,E
+558,Nicaragua,NIC,-85.0306015014648,12.8421087265015,Latin America and the Caribbean,2018,F,15 to 49 years old,6.4,3.7,10.9,E
+562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,2018,F,15 to 49 years old,12.9,7.8,20.7,E
+566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,2018,F,15 to 49 years old,13.2,8.8,19.5,E
+578,Norway,NOR,11.4784641265869,61.3431129455566,Europe and Northern America,2018,F,15 to 49 years old,4.4,2.2,8.5,E
+583,Micronesia (Federated States of),FSM,158.225219726563,6.88067007064819,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,21.1,11.5,35.8,E
+584,Marshall Islands,MHL,171.083908081055,7.11021327972412,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,19.3,11.2,31.6,E
+585,Palau,PLW,134.573394775391,7.50230741500854,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,13.8,7.0,25.5,E
+586,Pakistan,PAK,68.8047943115234,29.3649158477783,Central and Southern Asia,2018,F,15 to 49 years old,16.2,10.0,25.1,E
+591,Panama,PAN,-81.2661666870117,8.45096588134766,Latin America and the Caribbean,2018,F,15 to 49 years old,7.8,4.5,13.2,E
+598,Papua New Guinea,PNG,145.858779907227,-6.75605726242065,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,30.6,18.9,45.2,E
+600,Paraguay,PRY,-60.5485420227051,-21.7021617889404,Latin America and the Caribbean,2018,F,15 to 49 years old,5.5,3.1,9.5,E
+604,Peru,PER,-71.820930480957,-13.5893974304199,Latin America and the Caribbean,2018,F,15 to 49 years old,11.1,8.0,15.0,E
+608,Philippines,PHL,120.860145568848,14.1659173965454,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,5.9,3.8,9.2,E
+616,Poland,POL,19.4066009521484,52.122673034668,Europe and Northern America,2018,F,15 to 49 years old,3.1,1.7,5.8,E
+620,Portugal,PRT,-7.96159982681274,39.6850929260254,Europe and Northern America,2018,F,15 to 49 years old,4.4,2.2,8.7,E
+626,Timor-Leste,TLS,125.945106506348,-8.7974967956543,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,28.2,19.1,39.7,E
+642,Romania,ROU,24.9848098754883,45.8389358520508,Europe and Northern America,2018,F,15 to 49 years old,6.9,3.9,11.9,E
+646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,2018,F,15 to 49 years old,23.5,15.5,33.5,E
+678,Sao Tome and Principe,STP,6.60977220535278,0.241554871201515,Sub-Saharan Africa,2018,F,15 to 49 years old,18.1,10.0,30.7,E
+686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,2018,F,15 to 49 years old,12.4,6.9,21.2,E
+688,Serbia,SRB,20.8058757781982,44.0314559936523,Europe and Northern America,2018,F,15 to 49 years old,3.9,2.0,7.4,E
+694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,2018,F,15 to 49 years old,19.8,11.4,32.4,E
+702,Singapore,SGP,103.810791015625,1.36100912094116,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,2.4,1.0,5.7,E
+703,Slovakia,SVK,19.484956741333,48.7074127197266,Europe and Northern America,2018,F,15 to 49 years old,5.9,2.9,11.5,E
+704,Viet Nam,VNM,105.80249786377,10.0964307785034,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,9.5,5.1,17.4,E
+705,Slovenia,SVN,14.8220949172974,46.1195793151855,Europe and Northern America,2018,F,15 to 49 years old,3.4,1.7,6.5,E
+710,South Africa,ZAF,24.6718444824219,-29.9995746612549,Sub-Saharan Africa,2018,F,15 to 49 years old,13.1,7.1,22.6,E
+716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,2018,F,15 to 49 years old,18.2,12.0,26.4,E
+724,Spain,ESP,-3.5540783405304,40.3921165466309,Europe and Northern America,2018,F,15 to 49 years old,2.9,1.8,4.7,E
+728,South Sudan,SSD,30.3261871337891,7.29083919525146,Sub-Saharan Africa,2018,F,15 to 49 years old,26.7,12.7,47.7,E
+729,Sudan,SDN,29.9565010070801,16.0264301300049,Northern Africa and Western Asia,2018,F,15 to 49 years old,16.7,8.5,29.9,E
+740,Suriname,SUR,-55.9062652587891,4.13260316848755,Latin America and the Caribbean,2018,F,15 to 49 years old,7.7,4.0,14.0,E
+748,Eswatini,SWZ,31.5014934539795,-26.5647106170654,Sub-Saharan Africa,2018,F,15 to 49 years old,17.7,9.8,29.7,E
+752,Sweden,SWE,14.3775339126587,60.6010322570801,Europe and Northern America,2018,F,15 to 49 years old,6.3,3.4,11.4,E
+756,Switzerland,CHE,8.22315788269043,46.9661712646484,Europe and Northern America,2018,F,15 to 49 years old,1.7,0.8,3.7,E
+762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,2018,F,15 to 49 years old,14.0,8.6,22.0,E
+764,Thailand,THA,101.020294189453,15.1308927536011,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,9.3,3.9,20.4,E
+768,Togo,TGO,0.978357672691345,8.53209590911865,Sub-Saharan Africa,2018,F,15 to 49 years old,12.7,7.0,22.1,E
+776,Tonga,TON,-175.195999145508,-21.1951141357422,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,16.9,8.6,30.6,E
+780,Trinidad and Tobago,TTO,-61.2938957214355,10.4187726974487,Latin America and the Caribbean,2018,F,15 to 49 years old,7.5,3.8,14.0,E
+788,Tunisia,TUN,9.57273769378662,34.1143989562988,Northern Africa and Western Asia,2018,F,15 to 49 years old,10.1,4.9,19.5,E
+792,Türkiye,TUR,35.4289016723633,38.9899673461914,Northern Africa and Western Asia,2018,F,15 to 49 years old,12.1,7.6,19.1,E
+798,Tuvalu,TUV,178.667953491211,-7.46004819869995,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,19.8,10.2,35.2,E
+800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,2018,F,15 to 49 years old,26.1,17.9,36.4,E
+804,Ukraine,UKR,31.4027080535889,49.0073585510254,Europe and Northern America,2018,F,15 to 49 years old,8.7,5.4,13.4,E
+807,North Macedonia,MKD,21.7007904052734,41.6004791259766,Europe and Northern America,2018,F,15 to 49 years old,4.2,2.0,8.4,E
+818,Egypt,EGY,29.7746849060059,26.5743827819824,Northern Africa and Western Asia,2018,F,15 to 49 years old,15.1,9.9,22.6,E
+826,United Kingdom,GBR,-2.23830533027649,53.2769165039063,Europe and Northern America,2018,F,15 to 49 years old,4.2,2.1,8.4,E
+834,United Republic of Tanzania,TZA,34.8052101135254,-6.26533269882202,Sub-Saharan Africa,2018,F,15 to 49 years old,24.3,16.1,34.8,E
+840,United States of America,USA,-99.1383056640625,39.5277862548828,Europe and Northern America,2018,F,15 to 49 years old,6.0,3.8,9.4,E
+854,Burkina Faso,BFA,-1.74284386634827,12.2749109268188,Sub-Saharan Africa,2018,F,15 to 49 years old,11.2,6.0,20.2,E
+858,Uruguay,URY,-56.0138702392578,-32.8002853393555,Latin America and the Caribbean,2018,F,15 to 49 years old,4.3,2.0,9.2,E
+862,Venezuela,VEN,-66.1564178466797,7.12132453918457,Latin America and the Caribbean,2018,F,15 to 49 years old,8.5,4.4,15.8,E
+882,Samoa,WSM,-172.443069458008,-13.6154146194458,"Oceania, exc. Australia and New Zealand",2018,F,15 to 49 years old,17.8,9.3,31.8,E
+894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,2018,F,15 to 49 years old,27.8,18.7,39.0,E
