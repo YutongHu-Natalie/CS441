@@ -1,0 +1,158 @@
+,Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Regeion,Sex Code,Age,Year,"Value(per 1,000 population)",Nature of the Data Code
+4,410,Republic of Korea,KOR,127.861022949219,36.4520111083984,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,0.74,E
+6,344,"China, Hong Kong SAR",HKG,114.026641845703,22.4174995422363,Eastern and South-Eastern Asia,F,15 to 19 years old,2021,1.29,CA
+7,756,Switzerland,CHE,8.22315788269043,46.9661712646484,Europe and Northern America,F,15 to 19 years old,2021,1.31,E
+8,208,Denmark,DNK,9.32657146453857,56.0382957458496,Europe and Northern America,F,15 to 19 years old,2021,1.32,E
+10,578,Norway,NOR,11.4784641265869,61.3431129455566,Europe and Northern America,F,15 to 19 years old,2020,1.66,E
+12,528,Netherlands,NLD,5.33148050308228,51.8672904968262,Europe and Northern America,F,15 to 19 years old,2020,2.35,C
+13,702,Singapore,SGP,103.810791015625,1.36100912094116,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,2.37,CA
+14,752,Sweden,SWE,14.3775339126587,60.6010322570801,Europe and Northern America,F,15 to 19 years old,2021,2.43,E
+15,392,Japan,JPN,139.271606445313,36.6554527282715,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,2.52,E
+16,380,Italy,ITA,12.5702238082886,42.7991714477539,Europe and Northern America,F,15 to 19 years old,2020,3.27,C
+17,352,Iceland,ISL,-19.0211696624756,64.7913513183594,Europe and Northern America,F,15 to 19 years old,2021,3.28,CA
+18,246,Finland,FIN,23.3084468841553,61.9158668518066,Europe and Northern America,F,15 to 19 years old,2021,3.69,E
+19,442,Luxembourg,LUX,6.09265661239624,49.7767944335938,Europe and Northern America,F,15 to 19 years old,2020,3.94,C
+20,788,Tunisia,TUN,9.57273769378662,34.1143989562988,Northern Africa and Western Asia,F,15 to 19 years old,2021,4.04,CA
+22,705,Slovenia,SVN,14.8220949172974,46.1195793151855,Europe and Northern America,F,15 to 19 years old,2020,4.23,C
+24,56,Belgium,BEL,4.66097640991211,50.6410484313965,Europe and Northern America,F,15 to 19 years old,2020,4.91,E
+25,372,Ireland,IRL,-7.12142515182495,53.2527389526367,Europe and Northern America,F,15 to 19 years old,2020,4.91,C
+26,40,Austria,AUT,14.1417245864868,47.5870475769043,Europe and Northern America,F,15 to 19 years old,2020,5.02,C
+27,462,Maldives,MDV,73.0967254638672,-0.614385008811951,Central and Southern Asia,F,15 to 19 years old,2019,5.12,CA
+31,724,Spain,ESP,-3.5540783405304,40.3921165466309,Europe and Northern America,F,15 to 19 years old,2020,5.33,E
+32,124,Canada,CAN,-101.657508850098,57.7236022949219,Europe and Northern America,F,15 to 19 years old,2020,5.58,CA
+33,250,France,FRA,2.45728802680969,46.6266098022461,Europe and Northern America,F,15 to 19 years old,2020,5.7,E
+34,620,Portugal,PRT,-7.96159982681274,39.6850929260254,Europe and Northern America,F,15 to 19 years old,2021,5.72,E
+35,156,China,CHN,104.140335083008,32.3095512390137,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,6.07,C
+39,376,Israel,ISR,34.6227798461914,31.0616455078125,Northern Africa and Western Asia,F,15 to 19 years old,2020,7.12,CA
+40,191,Croatia,HRV,17.9587459564209,45.4517211914063,Europe and Northern America,F,15 to 19 years old,2020,7.58,E
+42,196,Cyprus,CYP,33.2228584289551,35.0565948486328,Northern Africa and Western Asia,F,15 to 19 years old,2020,7.67,C
+43,36,Australia,AUS,134.349945068359,-25.5771713256836,Australia and New Zealand,F,15 to 19 years old,2020,7.76,CA
+45,233,Estonia,EST,25.840934753418,58.684871673584,Europe and Northern America,F,15 to 19 years old,2020,7.89,C
+47,64,Bhutan,BTN,90.4509811401367,27.3959865570068,Central and Southern Asia,F,15 to 19 years old,2020,8.08,CA
+48,616,Poland,POL,19.4066009521484,52.122673034668,Europe and Northern America,F,15 to 19 years old,2020,8.15,C
+49,440,Lithuania,LTU,23.9051780700684,55.3368034362793,Europe and Northern America,F,15 to 19 years old,2020,8.18,E
+51,300,Greece,GRC,22.5830783843994,39.4730186462402,Europe and Northern America,F,15 to 19 years old,2020,8.52,C
+53,203,Czechia,CZE,15.3315134048462,49.7391395568848,Europe and Northern America,F,15 to 19 years old,2021,8.81,C
+54,499,Montenegro,MNE,19.252140045166,42.7871704101563,Europe and Northern America,F,15 to 19 years old,2021,9.46,CA
+55,70,Bosnia and Herzegovina,BIH,17.7858428955078,44.16845703125,Europe and Northern America,F,15 to 19 years old,2019,9.74,CA
+57,826,United Kingdom,GBR,-2.23830533027649,53.2769165039063,Europe and Northern America,F,15 to 19 years old,2020,9.95,E
+58,428,Latvia,LVA,26.4246196746826,56.6419677734375,Europe and Northern America,F,15 to 19 years old,2021,10.0,CA
+59,554,New Zealand,NZL,170.475570678711,-43.9872169494629,Australia and New Zealand,F,15 to 19 years old,2021,10.12,CA
+61,356,India,IND,79.3608474731445,22.3464202880859,Central and Southern Asia,F,15 to 19 years old,2019,10.6,C
+63,470,Malta,MLT,14.4461755752563,35.8919410705566,Europe and Northern America,F,15 to 19 years old,2020,10.95,C
+64,112,Belarus,BLR,28.0494022369385,53.5419311523438,Europe and Northern America,F,15 to 19 years old,2018,11.64,E
+67,8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,F,15 to 19 years old,2020,13.15,C
+69,688,Serbia,SRB,20.8058757781982,44.0314559936523,Europe and Northern America,F,15 to 19 years old,2020,13.6,C
+70,51,Armenia,ARM,44.9383926391602,40.2949981689453,Northern Africa and Western Asia,F,15 to 19 years old,2020,13.92,C
+72,804,Ukraine,UKR,31.4027080535889,49.0073585510254,Europe and Northern America,F,15 to 19 years old,2020,14.45,C
+74,840,United States of America,USA,-99.1383056640625,39.5277862548828,Europe and Northern America,F,15 to 19 years old,2020,15.09,E
+75,792,Türkiye,TUR,35.4289016723633,38.9899673461914,Northern Africa and Western Asia,F,15 to 19 years old,2020,15.15,C
+79,807,North Macedonia,MKD,21.7007904052734,41.6004791259766,Europe and Northern America,F,15 to 19 years old,2020,16.21,C
+80,144,Sri Lanka,LKA,80.7048950195313,7.61469316482544,Central and Southern Asia,F,15 to 19 years old,2015,16.52,CA
+86,152,Chile,CHL,-71.2302932739258,-35.2652893066406,Latin America and the Caribbean,F,15 to 19 years old,2019,18.9,CA
+87,776,Tonga,TON,-175.195999145508,-21.1951141357422,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2011,20.6,C
+92,348,Hungary,HUN,19.4122142791748,47.1651458740234,Europe and Northern America,F,15 to 19 years old,2020,21.39,E
+93,504,Morocco,MAR,-6.28194284439087,31.8440132141113,Northern Africa and Western Asia,F,15 to 19 years old,2018,21.67,CA
+94,398,Kazakhstan,KAZ,66.6535949707031,48.0196342468262,Central and Southern Asia,F,15 to 19 years old,2021,22.88,CA
+97,364,Iran (Islamic Republic of),IRN,54.1976623535156,32.743709564209,Central and Southern Asia,F,15 to 19 years old,2020,24.49,CA
+98,104,Myanmar,MMR,96.5175247192383,21.1933288574219,Eastern and South-Eastern Asia,F,15 to 19 years old,2019,24.52,CA
+99,498,Republic of Moldova,MDA,28.4650630950928,47.2023696899414,Europe and Northern America,F,15 to 19 years old,2021,24.73,CA
+103,188,Costa Rica,CRI,-84.1971282958984,9.97099876403809,Latin America and the Caribbean,F,15 to 19 years old,2021,26.86,CA
+104,496,Mongolia,MNG,103.072807312012,46.8389205932617,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,26.87,CA
+105,703,Slovakia,SVK,19.484956741333,48.7074127197266,Europe and Northern America,F,15 to 19 years old,2019,26.88,C
+106,400,Jordan,JOR,37.1302490234375,30.6536598205566,Northern Africa and Western Asia,F,15 to 19 years old,2016,26.95,CA
+107,268,Georgia,GEO,43.3713607788086,42.0481300354004,Northern Africa and Western Asia,F,15 to 19 years old,2020,27.2,C
+109,764,Thailand,THA,101.020294189453,15.1308927536011,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,27.41,CA
+112,704,Viet Nam,VNM,105.80249786377,10.0964307785034,Eastern and South-Eastern Asia,F,15 to 19 years old,2020,29.0,C
+113,858,Uruguay,URY,-56.0138702392578,-32.8002853393555,Latin America and the Caribbean,F,15 to 19 years old,2020,29.1,CA
+114,242,Fiji,FJI,177.966094970703,-17.8330154418945,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2019,31.05,CA
+115,646,Rwanda,RWA,29.9231014251709,-1.99984216690063,Sub-Saharan Africa,F,15 to 19 years old,2021,31.31,CA
+116,184,Cook Islands,COK,-159.771133422852,-21.2269649505615,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2017,32.51,CA
+118,417,Kyrgyzstan,KGZ,74.5232467651367,41.462043762207,Central and Southern Asia,F,15 to 19 years old,2020,32.56,CA
+119,583,Micronesia (Federated States of),FSM,158.225219726563,6.88067007064819,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2009,33.02,C
+120,604,Peru,PER,-71.820930480957,-13.5893974304199,Latin America and the Caribbean,F,15 to 19 years old,2021,33.68,CA
+123,585,Palau,PLW,134.573394775391,7.50230741500854,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2019,34.47,CA
+124,608,Philippines,PHL,120.860145568848,14.1659173965454,Eastern and South-Eastern Asia,F,15 to 19 years old,2019,34.79,CA
+125,642,Romania,ROU,24.9848098754883,45.8389358520508,Europe and Northern America,F,15 to 19 years old,2020,34.98,C
+126,388,Jamaica,JAM,-77.3106842041016,18.1561679840088,Latin America and the Caribbean,F,15 to 19 years old,2018,35.89,CA
+127,308,Grenada,GRD,-61.682487487793,12.1123838424683,Latin America and the Caribbean,F,15 to 19 years old,2014,35.93,CA
+128,780,Trinidad and Tobago,TTO,-61.2938957214355,10.4187726974487,Latin America and the Caribbean,F,15 to 19 years old,2009,35.97,CA
+130,360,Indonesia,IDN,113.91739654541,-0.994582176208496,Eastern and South-Eastern Asia,F,15 to 19 years old,2016,36.11,CA
+134,100,Bulgaria,BGR,25.2376308441162,42.7573127746582,Europe and Northern America,F,15 to 19 years old,2020,37.85,C
+135,174,Comoros,COM,43.3423461914063,-11.6612176895142,Sub-Saharan Africa,F,15 to 19 years old,2017,37.97,C
+136,132,Cabo Verde,CPV,-23.635440826416,15.0779180526733,Sub-Saharan Africa,F,15 to 19 years old,2020,39.96,CA
+137,798,Tuvalu,TUV,178.667953491211,-7.46004819869995,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2017,40.28,CA
+138,710,South Africa,ZAF,24.6718444824219,-29.9995746612549,Sub-Saharan Africa,F,15 to 19 years old,2020,40.66,CA
+139,31,Azerbaijan,AZE,50.0106468200684,40.3922958374023,Northern Africa and Western Asia,F,15 to 19 years old,2020,41.56,C
+140,762,Tajikistan,TJK,69.2949981689453,38.4306983947754,Central and Southern Asia,F,15 to 19 years old,2019,41.74,CA
+141,32,Argentina,ARG,-65.1456298828125,-35.1944618225098,Latin America and the Caribbean,F,15 to 19 years old,2019,41.84,CA
+142,626,Timor-Leste,TLS,125.945106506348,-8.7974967956543,Eastern and South-Eastern Asia,F,15 to 19 years old,2015,41.89,CA
+143,214,Dominican Republic,DOM,-70.4984741210938,18.8983211517334,Latin America and the Caribbean,F,15 to 19 years old,2021,42.36,CA
+144,275,State of Palestine,PSE,35.2569427490234,31.9434795379639,Northern Africa and Western Asia,F,15 to 19 years old,2018,42.84,CA
+145,76,Brazil,BRA,-53.0843276977539,-10.7766857147217,Latin America and the Caribbean,F,15 to 19 years old,2021,43.1,CA
+146,818,Egypt,EGY,29.7746849060059,26.5743827819824,Northern Africa and Western Asia,F,15 to 19 years old,2019,46.9,C
+147,192,Cuba,CUB,-79.5446014404297,22.1003036499023,Latin America and the Caribbean,F,15 to 19 years old,2021,47.58,CA
+149,740,Suriname,SUR,-55.9062652587891,4.13260316848755,Latin America and the Caribbean,F,15 to 19 years old,2020,49.08,CA
+151,222,El Salvador,SLV,-88.8686294555664,13.7360353469849,Latin America and the Caribbean,F,15 to 19 years old,2018,50.06,CA
+152,72,Botswana,BWA,23.8138027191162,-22.1881008148193,Sub-Saharan Africa,F,15 to 19 years old,2019,50.22,CA
+153,296,Kiribati,KIR,-157.564300537109,1.76883769035339,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2017,50.63,CA
+154,484,Mexico,MEX,-102.51481628418,23.933780670166,Latin America and the Caribbean,F,15 to 19 years old,2019,50.67,CA
+155,84,Belize,BLZ,-88.7019958496094,17.1996593475342,Latin America and the Caribbean,F,15 to 19 years old,2021,51.24,CA
+156,600,Paraguay,PRY,-60.5485420227051,-21.7021617889404,Latin America and the Caribbean,F,15 to 19 years old,2016,52.33,CA
+157,170,Colombia,COL,-73.0744705200195,3.88820910453796,Latin America and the Caribbean,F,15 to 19 years old,2021,52.78,CA
+159,586,Pakistan,PAK,68.8047943115234,29.3649158477783,Central and Southern Asia,F,15 to 19 years old,2018,53.99,C
+160,332,Haiti,HTI,-72.3364105224609,18.4042644500732,Latin America and the Caribbean,F,15 to 19 years old,2015,54.8,CA
+161,882,Samoa,WSM,-172.443069458008,-13.6154146194458,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2018,54.9,CA
+163,116,Cambodia,KHM,104.922836303711,12.7116374969482,Eastern and South-Eastern Asia,F,15 to 19 years old,2013,57.4,CA
+164,218,Ecuador,ECU,-78.3700561523438,-1.4477858543396,Latin America and the Caribbean,F,15 to 19 years old,2020,58.11,CA
+165,108,Burundi,BDI,29.8908100128174,-3.36638736724854,Sub-Saharan Africa,F,15 to 19 years old,2015,58.23,CA
+166,320,Guatemala,GTM,-91.2312774658203,15.0027370452881,Latin America and the Caribbean,F,15 to 19 years old,2021,58.78,CA
+168,591,Panama,PAN,-81.2661666870117,8.45096588134766,Latin America and the Caribbean,F,15 to 19 years old,2020,61.7,CA
+169,4,Afghanistan,AFG,66.0268783569336,33.831600189209,Central and Southern Asia,F,15 to 19 years old,2017,62.06,C
+170,524,Nepal,NPL,83.9467849731445,28.2586631774902,Central and Southern Asia,F,15 to 19 years old,2018,63.11,CA
+171,516,Namibia,NAM,17.2190780639648,-22.1381702423096,Sub-Saharan Africa,F,15 to 19 years old,2016,63.91,C
+173,270,Gambia,GMB,-15.3994474411011,13.452959060669,Sub-Saharan Africa,F,15 to 19 years old,2018,64.79,CA
+174,328,Guyana,GUY,-58.9732208251953,4.78801298141479,Latin America and the Caribbean,F,15 to 19 years old,2018,64.87,CA
+177,598,Papua New Guinea,PNG,145.858779907227,-6.75605726242065,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2016,67.76,CA
+179,68,Bolivia (Plurinational State of),BOL,-64.662239074707,-16.7127342224121,Latin America and the Caribbean,F,15 to 19 years old,2015,71.03,C
+180,686,Senegal,SEN,-14.4663696289063,14.359209060669,Sub-Saharan Africa,F,15 to 19 years old,2018,71.32,CA
+182,404,Kenya,KEN,37.860969543457,0.534797251224518,Sub-Saharan Africa,F,15 to 19 years old,2020,72.99,C
+183,231,Ethiopia,ETH,39.6350517272949,8.63122272491455,Sub-Saharan Africa,F,15 to 19 years old,2018,73.45,C
+184,50,Bangladesh,BGD,89.1766052246094,22.8696155548096,Central and Southern Asia,F,15 to 19 years old,2020,73.99,C
+185,566,Nigeria,NGA,8.09736347198486,9.58578872680664,Sub-Saharan Africa,F,15 to 19 years old,2020,74.64,CA
+187,90,Solomon Islands,SLB,160.158416748047,-9.62239170074463,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2013,77.93,C
+188,288,Ghana,GHA,-1.2056235074997,7.96482515335083,Sub-Saharan Africa,F,15 to 19 years old,2018,78.01,CA
+189,768,Togo,TGO,0.978357672691345,8.53209590911865,Sub-Saharan Africa,F,15 to 19 years old,2016,78.94,CA
+190,548,Vanuatu,VUT,167.067977905273,-15.3444557189941,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2012,80.99,C
+191,862,Venezuela,VEN,-66.1564178466797,7.12132453918457,Latin America and the Caribbean,F,15 to 19 years old,2017,81.05,CA
+192,584,Marshall Islands,MHL,171.083908081055,7.11021327972412,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2010,82.22,CA
+193,418,Lao People's Dem. Rep.,LAO,101.990196228027,20.2748279571533,Eastern and South-Eastern Asia,F,15 to 19 years old,2016,83.35,CA
+195,426,Lesotho,LSO,28.2536220550537,-29.5804176330566,Sub-Saharan Africa,F,15 to 19 years old,2016,84.53,CA
+196,678,Sao Tome and Principe,STP,6.60977220535278,0.241554871201515,Sub-Saharan Africa,F,15 to 19 years old,2018,86.06,CA
+197,729,Sudan,SDN,29.9565010070801,16.0264301300049,Northern Africa and Western Asia,F,15 to 19 years old,2013,86.77,CA
+198,748,Eswatini,SWZ,31.5014934539795,-26.5647106170654,Sub-Saharan Africa,F,15 to 19 years old,2013,87.06,CA
+200,520,Nauru,NRU,166.923126220703,-0.528742611408234,"Oceania, exc. Australia and New Zealand",F,15 to 19 years old,2015,94.0,C
+201,340,Honduras,HND,-86.5997467041016,14.822431564331,Latin America and the Caribbean,F,15 to 19 years old,2018,97.05,CA
+202,694,Sierra Leone,SLE,-11.7830657958984,8.56860446929932,Sub-Saharan Africa,F,15 to 19 years old,2018,101.94,CA
+203,558,Nicaragua,NIC,-85.0306015014648,12.8421087265015,Latin America and the Caribbean,F,15 to 19 years old,2009,104.32,CA
+204,716,Zimbabwe,ZWE,29.8690967559814,-19.0007553100586,Sub-Saharan Africa,F,15 to 19 years old,2017,107.92,CA
+205,204,Benin,BEN,2.33993363380432,9.65401649475098,Sub-Saharan Africa,F,15 to 19 years old,2016,108.43,CA
+206,180,Dem. Rep. of the Congo,COD,23.6549644470215,-2.87715482711792,Sub-Saharan Africa,F,15 to 19 years old,2016,108.98,CA
+207,266,Gabon,GAB,11.7872772216797,-0.606876194477081,Sub-Saharan Africa,F,15 to 19 years old,2010,113.67,CA
+209,384,Côte d'Ivoire,CIV,-5.55269002914429,7.62211608886719,Sub-Saharan Africa,F,15 to 19 years old,2017,118.82,C
+210,324,Guinea,GIN,-11.2817344665527,11.002103805542,Sub-Saharan Africa,F,15 to 19 years old,2016,119.55,CA
+211,120,Cameroon,CMR,12.741982460022,5.69238710403442,Sub-Saharan Africa,F,15 to 19 years old,2017,122.23,CA
+212,854,Burkina Faso,BFA,-1.74284386634827,12.2749109268188,Sub-Saharan Africa,F,15 to 19 years old,2018,127.26,C
+213,800,Uganda,UGA,32.3910026550293,1.27955734729767,Sub-Saharan Africa,F,15 to 19 years old,2018,127.9,C
+214,430,Liberia,LBR,-9.31187915802002,6.44838094711304,Sub-Saharan Africa,F,15 to 19 years old,2018,128.07,CA
+215,562,Niger,NER,9.40016746520996,17.4214305877686,Sub-Saharan Africa,F,15 to 19 years old,2020,132.0,C
+216,894,Zambia,ZMB,27.8503284454346,-14.5970106124878,Sub-Saharan Africa,F,15 to 19 years old,2017,134.57,CA
+217,454,Malawi,MWI,33.4884643554688,-13.4081983566284,Sub-Saharan Africa,F,15 to 19 years old,2018,135.63,CA
+218,148,Chad,TCD,18.6661834716797,15.36279296875,Sub-Saharan Africa,F,15 to 19 years old,2018,138.66,CA
+219,834,United Republic of Tanzania,TZA,34.8052101135254,-6.26533269882202,Sub-Saharan Africa,F,15 to 19 years old,2016,138.89,CA
+221,728,South Sudan,SSD,30.3261871337891,7.29083919525146,Sub-Saharan Africa,F,15 to 19 years old,2008,158.14,CA
+222,24,Angola,AGO,17.5781707763672,-12.3372478485107,Sub-Saharan Africa,F,15 to 19 years old,2014,162.66,CA
+223,466,Mali,MLI,-3.5220160484314,17.3531131744385,Sub-Saharan Africa,F,15 to 19 years old,2017,163.56,CA
+224,226,Equatorial Guinea,GNQ,10.4653587341309,1.56579232215881,Sub-Saharan Africa,F,15 to 19 years old,2010,176.03,C
+225,508,Mozambique,MOZ,38.1847991943359,-14.2796392440796,Sub-Saharan Africa,F,15 to 19 years old,2016,180.13,CA
+226,140,Central African Republic,CAF,20.9355945587158,7.00372076034546,Sub-Saharan Africa,F,15 to 19 years old,2018,184.35,CA
