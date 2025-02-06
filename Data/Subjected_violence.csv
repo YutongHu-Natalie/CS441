@@ -1,4 +1,4 @@
-Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Regeion,Year,Sex Code,Age,Value(%),Value Lower Bound(%),Value Upper Bound(%),Nature of the Data Code
+Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Year,Sex Code,Age,Value(%),Value Lower Bound(%),Value Upper Bound(%),Nature of the Data Code
 756,Switzerland,CHE,8.22315788269043,46.9661712646484,Europe and Northern America,2018,F,15 to 49 years old,1.7,0.8,3.7,E
 702,Singapore,SGP,103.810791015625,1.36100912094116,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,2.4,1.0,5.7,E
 344,"China, Hong Kong SAR",HKG,114.026641845703,22.4174995422363,Eastern and South-Eastern Asia,2018,F,15 to 49 years old,2.5,1.2,5.4,E

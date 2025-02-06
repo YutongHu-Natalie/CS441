@@ -1,4 +1,4 @@
-,Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Regeion,Year,Sex Code,Age,Value(%),Value Lower Bound(%),Value Upper Bound(%),Nature of the Data Code
+,Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Year,Sex Code,Age,Value(%),Value Lower Bound(%),Value Upper Bound(%),Nature of the Data Code
 6,268,Georgia,GEO,43.3713607788086,42.0481300354004,Northern Africa and Western Asia,2018,F,15 to 49 years old,2.9,1.3,6.3,E
 13,70,Bosnia and Herzegovina,BIH,17.7858428955078,44.16845703125,Europe and Northern America,2018,F,15 to 49 years old,3.4,1.9,6.1,E
 17,688,Serbia,SRB,20.8058757781982,44.0314559936523,Europe and Northern America,2018,F,15 to 49 years old,3.9,2.0,7.4,E

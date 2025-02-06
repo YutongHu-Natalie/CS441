@@ -1,4 +1,4 @@
-Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Regeion,Sex Code,Age,Year,"Value(per 1,000 population)",Nature of the Data Code
+Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Age,Year,"Value(per 1,000 population)",Nature of the Data Code
 666,Saint Pierre and Miquelon,SPM,-56.3368263244629,46.8581275939941,Europe and Northern America,F,15 to 19 years old,2018,0.0,CA
 20,Andorra,AND,1.5762574672699,42.5454864501953,Europe and Northern America,F,15 to 19 years old,2020,0.51,CA
 60,Bermuda,BMU,-64.7815475463867,32.2788200378418,Europe and Northern America,F,15 to 19 years old,2021,0.62,CA
