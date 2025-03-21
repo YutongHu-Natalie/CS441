@@ -141,6 +141,20 @@ let svg = d3.select("#svg");
 // TODO add event listeners to the buttons
 document.getElementById("forward-button").addEventListener("click", forwardClicked);
 document.getElementById("backward-button").addEventListener("click", backwardClicked);
+document.addEventListener("wheel", handleScroll);
+
+// Function to handle scroll wheel events
+function handleScroll(event) {
+    // Prevent default scroll behavior
+    event.preventDefault();
+    
+    // Determine direction of scroll
+    if (event.deltaY > 0) {
+        forwardClicked();
+    } else {
+        backwardClicked();
+    }
+}
 
 
 // TODO write an asynchronous loadData function
