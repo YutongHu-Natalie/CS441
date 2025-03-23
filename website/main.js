@@ -1,6 +1,3 @@
-// THIS CODE IS MY OWN WORK, IT WAS WRITTEN WITHOUT CONSULTING
-// A TUTOR OR CODE WRITTEN BY OTHER STUDENTS - Jiya Shah
-
 let keyframeIndex = 0;
 // TODO add svgUpdate fields to keyframes
 let keyframes = [
