@@ -1,4 +1,7 @@
-// Set up the map dimensions
+/*
+NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP
+*/
+
 let mapsvg = d3.select("#dvmap");
 
 let mapwidth = 960;
@@ -106,8 +109,6 @@ function drawMap(world) {
       .attr("transform", `translate(0,50)`);
 
 
-
-
     //LEGEND:
     legendWidth = 50;
     legendHeight = 150;
@@ -171,3 +172,203 @@ function drawMap(world) {
 }
 
 initializeMapSVG();
+
+
+/*
+NEXT LINES ARE ALL FOR THE COMPARISON SCATTER PLOT
+*/
+
+let compsvg = d3.select("#compplot");
+let famPlanData;
+let adolBirthData;
+
+let compWind = 850;
+
+let compWidth = 800;
+let compHeight = 800;
+
+async function loadCompDatas(){
+    // Because d3.json() uses promises we have to use the keyword await to make sure each line completes before moving on to the next line
+    await d3.csv("../../Data/final_family_planning.csv").then(data => {
+        // Inside the promise we set the global variable equal to the data being loaded from the file
+        famPlanData = data;
+        console.log("loaded 1");
+    });
+    await d3.csv("../../Data/Adolescent_birth_rate.csv").then(data => {
+        // Inside the promise we set the global variable equal to the data being loaded from the file
+        adolBirthData = data;
+        console.log("loaded2");
+    });
+
+}
+
+async function initializeCompSvg() {
+    await loadCompDatas();
+    drawCompPlot();
+}
+
+initializeCompSvg();
+
+
+function drawCompPlot(){
+    famPlanData.forEach(d => {
+        // Make sure 'Value(%)' is a valid number
+        d['Value(%)'] = parseFloat(d['Value(%)']);  // Convert to number (ignores non-numeric values)
+        if (isNaN(d['Value(%)'])) {
+            console.error(`Invalid Value(%) found in data: ${d['Value(%)']}`);
+        }
+    });
+    adolBirthData.forEach(d => {
+        // Make sure 'Value(%)' is a valid number
+        d['Value(per 1,000 population)'] = parseFloat(d['Value(per 1,000 population)']);  // Convert to number (ignores non-numeric values)
+        if (isNaN(d['Value(per 1,000 population)'])) {
+            console.error(`Invalid Value(%) found in data: ${d['Value(per 1,000 population)']}`);
+        }
+    });
+
+    compsvg.attr("width", compWind);
+    compsvg.attr("height", compWind);
+
+
+    const margin = { top: 30, right: 30, bottom: 50, left: 50 };
+    chartWidth = compWidth - margin.left - margin.right;
+    chartHeight = compHeight - margin.top - margin.bottom;
+
+    chart = compsvg.append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    //filter fam plan by countries in abr
+    let countries1 = adolBirthData.map(d => d['ISO3']);  
+    let countries2 = famPlanData.map(d => d['ISO3']);  
+
+    let commonCountries = countries1.filter(country => countries2.includes(country));
+    let filteredFPData = famPlanData.filter(d => commonCountries.includes(d['ISO3']));
+
+    console.log(commonCountries);
+    console.log(filteredFPData);
+
+    xScale = d3.scaleLinear()
+    .domain([
+        Math.min(0, d3.min(filteredFPData, d => parseFloat(d['Value(%)']))),  // Ensure the domain starts from 0 or min value
+        d3.max(filteredFPData, d => parseFloat(d['Value(%)'])),  // Max value from data
+    ])
+    .range([0, chartWidth]);
+    console.log(d3.extent(filteredFPData, d => parseFloat(d['Value(%)'])));
+
+
+    // yscale based on adol birth data
+    yScale = d3.scaleLinear()
+    .domain(d3.extent(adolBirthData, d => parseFloat(d['Value(per 1,000 population)']))) // Use the data points for per 1,000 population
+    .nice()
+    .range([chartHeight, 0]);
+
+    // x-axis
+    chart.append("g")
+    .attr("class", "x-axis")
+    .attr("transform", `translate(${margin.left},${chartHeight})`)
+    .call(d3.axisBottom(xScale)
+    .ticks(10)  // Set the number of ticks (you can change this number)
+    .tickFormat(d3.format(".0f")))
+    .selectAll("text");
+
+    // x-axis label
+    compsvg.append("text")
+    .attr("transform", `translate(${compWidth / 2 + margin.left/2}, ${compHeight - margin.bottom + 40})`) 
+    .style("text-anchor", "middle")
+    .style("font-size", "1rem")
+    .style("fill", "white")
+    .text("% of Women With Access to Family Planning");
+
+
+    // y-axis
+    chart.append("g")
+        .attr("class", "y-axis")
+        .attr("transform", `translate(${margin.left},0)`)
+        .call(d3.axisLeft(yScale)
+        .ticks(10)  // Set the number of ticks (you can change this number)
+        .tickFormat(d3.format(".0f")))  // Format tick labels if needed (e.g., as integers))
+        .selectAll("text");
+
+    // y-axis label
+    compsvg.append("text")
+    .attr("transform", `translate(${margin.left/2}, ${compHeight/2})rotate(-90)`) 
+    .style("text-anchor", "middle")
+    .style("font-size", "1rem")
+    .style("fill", "white")
+    .text("Adolescent Births per Thousand");
+    
+
+    //  title
+    compsvg.append("text")
+        .attr("id", "chart-title")
+        .attr("x", compWidth / 2 + margin.left)
+        .attr("y", 15)
+        .attr("text-anchor", "middle")
+        .style("font-size", "1.20rem")
+        .style("fill", "white")
+        .text("Adolescent Birth Per Thousand Compared to Family Planning Access by Country");
+
+    let sdgRegions = [...new Set(famPlanData.map(d => d['SDG Region']))]
+    
+
+    // color by sdg region
+    let colorScale = d3.scaleOrdinal() 
+    .domain(sdgRegions)
+    .range(d3.schemeCategory10); 
+
+    //plot points
+    compsvg.selectAll("circle")
+    .data(filteredFPData)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d){
+        return xScale(parseFloat(d['Value(%)'])) + margin.left*2;
+    })
+    .attr("cy", function(d){
+        let row = adolBirthData.find(abr=>abr['ISO3'] === d['ISO3'])
+        return yScale(parseFloat(row['Value(per 1,000 population)']));
+    })
+    .attr("r", 5)
+    .attr("fill", function(d){ //TODO set the fill of the rectangles
+        let color = colorScale(d['SDG Region']);
+        return color;
+    });
+
+    //regression line
+
+    //combine data
+    let combinedData = filteredFPData.map(d => [
+        d['Value(%)'],
+        adolBirthData.find(abr => abr['ISO3'] === d['ISO3'])['Value(per 1,000 population)']
+    ]);
+    console.log(combinedData)
+
+    //simple statistics library to generate lbf
+    let regression = ss.linearRegression(combinedData);
+    let m = regression.m; 
+    let b = regression.b;  
+    
+    let bestFitLine = d3.line()
+        .x(d => xScale(d[0]) + margin.left*2) 
+        .y(d => yScale(m * d[0] + b)); 
+
+    // Draw the line of best fit
+    compsvg.append("path")
+        .data([combinedData])  // Use the regression data to plot the line
+        .attr("class", "best-fit-line")
+        .attr("d", bestFitLine)
+        .attr("fill", "none")
+        .attr("stroke", "red")  // Color of the line
+        .attr("stroke-width", 2);
+
+    //statistical measures
+    
+    //sum of squared differences -- higher the better
+    let r2 = ss.rSquared(combinedData, ss.linearRegressionLine(regression));
+    console.log(r2)
+};
+
+
+
+
+

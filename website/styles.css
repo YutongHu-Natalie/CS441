@@ -146,3 +146,10 @@ path {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   padding: 20px;
 }
+
+/* comp scatter plot stylings */
+
+#compplot {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  padding: 20px;
+}
