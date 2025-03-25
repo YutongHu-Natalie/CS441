@@ -1,4 +1,4 @@
-Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Age,Year,Percentage of women of reproductive age (aged 15-49 years) who have their need for family planning satisfied with modern methods,Nature of the Data Code,Reporting Type Code
+Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Age,Year,Value(%),Nature of the Data Code,Reporting Type Code
 4,Afghanistan,AFG,66.0268783569336,33.831600189209,Central and Southern Asia,F,15 to 49 years old,2015,42.1,CA,G
 24,Angola,AGO,17.5781707763672,-12.3372478485107,Sub-Saharan Africa,F,15 to 49 years old,2015,29.8,CA,G
 8,Albania,ALB,20.0666084289551,41.1389694213867,Europe and Northern America,F,15 to 49 years old,2017,6.3,CA,G

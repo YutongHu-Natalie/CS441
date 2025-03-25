@@ -90,7 +90,7 @@ footer {
   color:  rgb(137, 80, 51);
 }
 
-svg {
+#svg {
   background-color: #444;
 }
 
@@ -115,21 +115,33 @@ svg {
   cursor: pointer;
 }
 
-/* TODO add css class to make red-text text red */
+
 .red-text {
   transition: 1;
   color: red;
 }
 
-/* TODO illustrate how to use css classes to interact with d3 elements */
+
 .bar:hover{
   opacity: 0.8
 }
 
+/* dv map stylings */
+path {
+  stroke: #000;
+}
+.graticule {
+  fill: none;
+  stroke: #76148e;
+  stroke-width: .5px;
+}
+.foreground {
+  fill: none;
+  stroke: #333;
+  stroke-width: 1.5px;
+}
 
-/* TODO update the stylings so the web page is more aesthetically pleasing.
-As a bare minimum change the backgroud colours of the left and right panel 
-
--- updated coloring of header, footer, both panels, and the font*/
-
-
+#dvmap {
+  font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  padding: 20px;
+}

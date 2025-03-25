@@ -1,4 +1,4 @@
-Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Year,"Youth literacy rate in percent of persons aged 15-24 years, by sex",Nature of the Data Code,Reporting Type Code
+Geographic Area Code,Geographic Area Name,ISO3,Longitude,Latitude,SDG Region,Sex Code,Year,Value(%),Nature of the Data Code,Reporting Type Code
 533,Aruba,ABW,-69.9705047607422,12.5087871551514,Latin America and the Caribbean,F,2020,99.41,E,G
 533,Aruba,ABW,-69.9705047607422,12.5087871551514,Latin America and the Caribbean,M,2020,99.63,E,G
 533,Aruba,ABW,-69.9705047607422,12.5087871551514,Latin America and the Caribbean,_T,2020,99.52,E,G

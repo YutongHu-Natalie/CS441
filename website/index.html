@@ -4,6 +4,8 @@
     <title>Scrollytelling Poems</title>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+
   </head>
   <body>
     <header>
@@ -70,13 +72,17 @@
         </div>
       </div>
       <div class="right-column">
-        <svg id="svg"></svg>
+        <br>
+        <div>
+          <svg id="dvmap"></svg>
+        </div>
       </div>
     </main>
     <footer>
       <button class="arrow-button" id="backward-button">◄</button>
       <button class="arrow-button" id="forward-button">►</button>
     </footer>
-    <script src="main.js"></script>
+    <!-- <script src="main.js"></script> -->
+    <script src="jiyacode.js"></script>
   </body>
 </html>
