@@ -366,6 +366,9 @@ function drawCompPlot(){
     //sum of squared differences -- higher the better
     let r2 = ss.rSquared(combinedData, ss.linearRegressionLine(regression));
     console.log(r2)
+
+    //TODO: MAKE LEGEND FOR DOT COLORS!!
+
 };
 
 
