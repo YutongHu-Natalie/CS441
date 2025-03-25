@@ -60,6 +60,7 @@ header {
   background-color: #C599B6;
   color: white;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
