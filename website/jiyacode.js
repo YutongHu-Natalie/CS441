@@ -2,6 +2,12 @@
 NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP
 */
 
+const basePath = window.location.hostname === "localhost" || 
+                window.location.hostname === "127.0.0.1" 
+                ? "" 
+                : "/CS441";
+
+
 let mapsvg = d3.select("#dvmap");
 
 let mapwidth = 960;
@@ -15,7 +21,7 @@ let dvMapData;
 
 async function loadDVMapData(){
     // Because d3.json() uses promises we have to use the keyword await to make sure each line completes before moving on to the next line
-    await d3.csv("/Data/Subjected_violence.csv").then(data => {
+    await d3.csv(`${basePath}/Data/Subjected_violence.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         dvMapData = data;
     });
@@ -182,22 +188,20 @@ let compsvg = d3.select("#compplot");
 let famPlanData;
 let adolBirthData;
 
-let compWind = 850;
+let compWind = 900;
 
 let compWidth = 800;
 let compHeight = 800;
 
 async function loadCompDatas(){
     // Because d3.json() uses promises we have to use the keyword await to make sure each line completes before moving on to the next line
-    await d3.csv("/Data/final_family_planning.csv").then(data => {
+    await d3.csv(`${basePath}//Data/final_family_planning.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         famPlanData = data;
-        console.log("loaded 1");
     });
-    await d3.csv("/Data/Adolescent_birth_rate.csv").then(data => {
+    await d3.csv(`${basePath}//Data/Adolescent_birth_rate.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         adolBirthData = data;
-        console.log("loaded2");
     });
 
 }
@@ -212,21 +216,19 @@ initializeCompSvg();
 
 function drawCompPlot(){
     famPlanData.forEach(d => {
-        // Make sure 'Value(%)' is a valid number
-        d['Value(%)'] = parseFloat(d['Value(%)']);  // Convert to number (ignores non-numeric values)
+        d['Value(%)'] = parseFloat(d['Value(%)']);  // convert to number
         if (isNaN(d['Value(%)'])) {
             console.error(`Invalid Value(%) found in data: ${d['Value(%)']}`);
         }
     });
     adolBirthData.forEach(d => {
-        // Make sure 'Value(%)' is a valid number
-        d['Value(per 1,000 population)'] = parseFloat(d['Value(per 1,000 population)']);  // Convert to number (ignores non-numeric values)
+        d['Value(per 1,000 population)'] = parseFloat(d['Value(per 1,000 population)']);  // convert to number 
         if (isNaN(d['Value(per 1,000 population)'])) {
             console.error(`Invalid Value(%) found in data: ${d['Value(per 1,000 population)']}`);
         }
     });
 
-    compsvg.attr("width", compWind);
+    compsvg.attr("width", compWind+100);
     compsvg.attr("height", compWind);
 
 
@@ -235,7 +237,7 @@ function drawCompPlot(){
     chartHeight = compHeight - margin.top - margin.bottom;
 
     chart = compsvg.append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", `translate(${margin.left}, ${margin.top+30})`);
 
     //filter fam plan by countries in abr
     let countries1 = adolBirthData.map(d => d['ISO3']);  
@@ -244,21 +246,18 @@ function drawCompPlot(){
     let commonCountries = countries1.filter(country => countries2.includes(country));
     let filteredFPData = famPlanData.filter(d => commonCountries.includes(d['ISO3']));
 
-    console.log(commonCountries);
-    console.log(filteredFPData);
+
 
     xScale = d3.scaleLinear()
     .domain([
-        Math.min(0, d3.min(filteredFPData, d => parseFloat(d['Value(%)']))),  // Ensure the domain starts from 0 or min value
-        d3.max(filteredFPData, d => parseFloat(d['Value(%)'])),  // Max value from data
+        Math.min(0, d3.min(filteredFPData, d => parseFloat(d['Value(%)']))),  
+        d3.max(filteredFPData, d => parseFloat(d['Value(%)'])), 
     ])
     .range([0, chartWidth]);
-    console.log(d3.extent(filteredFPData, d => parseFloat(d['Value(%)'])));
-
 
     // yscale based on adol birth data
     yScale = d3.scaleLinear()
-    .domain(d3.extent(adolBirthData, d => parseFloat(d['Value(per 1,000 population)']))) // Use the data points for per 1,000 population
+    .domain(d3.extent(adolBirthData, d => parseFloat(d['Value(per 1,000 population)']))) 
     .nice()
     .range([chartHeight, 0]);
 
@@ -267,17 +266,22 @@ function drawCompPlot(){
     .attr("class", "x-axis")
     .attr("transform", `translate(${margin.left},${chartHeight})`)
     .call(d3.axisBottom(xScale)
-    .ticks(10)  // Set the number of ticks (you can change this number)
-    .tickFormat(d3.format(".0f")))
-    .selectAll("text");
+    .ticks(10)  
+    .tickFormat(d3.format(".0f")
+    ))
+    .selectAll("text")
+    .style("fill", "black")
+    .style("font-size", "0.75rem")
+    .selectAll(".tick")  // Target both the path and line elements
+    .style("color", "black");  // Style for the tick lines (both paths and lines)
 
     // x-axis label
     compsvg.append("text")
-    .attr("transform", `translate(${compWidth / 2 + margin.left/2}, ${compHeight - margin.bottom + 40})`) 
+    .attr("transform", `translate(${compWidth / 2 + margin.left/2}, ${compHeight  + 40})`) 
     .style("text-anchor", "middle")
     .style("font-size", "1rem")
-    .style("fill", "white")
-    .text("% of Women With Access to Family Planning");
+    .style("fill", "black")
+    .text("% of Women With Adequate Access to Family Planning");
 
 
     // y-axis
@@ -285,16 +289,18 @@ function drawCompPlot(){
         .attr("class", "y-axis")
         .attr("transform", `translate(${margin.left},0)`)
         .call(d3.axisLeft(yScale)
-        .ticks(10)  // Set the number of ticks (you can change this number)
-        .tickFormat(d3.format(".0f")))  // Format tick labels if needed (e.g., as integers))
-        .selectAll("text");
+        .ticks(10)  
+        .tickFormat(d3.format(".0f")))  
+        .selectAll("text")
+        .style("fill", "black")
+        .style("font-size", "0.75rem");
 
     // y-axis label
     compsvg.append("text")
     .attr("transform", `translate(${margin.left/2}, ${compHeight/2})rotate(-90)`) 
     .style("text-anchor", "middle")
     .style("font-size", "1rem")
-    .style("fill", "white")
+    .style("fill", "black")
     .text("Adolescent Births per Thousand");
     
 
@@ -302,10 +308,10 @@ function drawCompPlot(){
     compsvg.append("text")
         .attr("id", "chart-title")
         .attr("x", compWidth / 2 + margin.left)
-        .attr("y", 15)
+        .attr("y", 20)
         .attr("text-anchor", "middle")
         .style("font-size", "1.20rem")
-        .style("fill", "white")
+        .style("fill", "black")
         .text("Adolescent Birth Per Thousand Compared to Family Planning Access by Country");
 
     let sdgRegions = [...new Set(famPlanData.map(d => d['SDG Region']))]
@@ -314,7 +320,7 @@ function drawCompPlot(){
     // color by sdg region
     let colorScale = d3.scaleOrdinal() 
     .domain(sdgRegions)
-    .range(d3.schemeCategory10); 
+    .range(["#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]); 
 
     //plot points
     compsvg.selectAll("circle")
@@ -341,7 +347,6 @@ function drawCompPlot(){
         d['Value(%)'],
         adolBirthData.find(abr => abr['ISO3'] === d['ISO3'])['Value(per 1,000 population)']
     ]);
-    console.log(combinedData)
 
     //simple statistics library to generate lbf
     let regression = ss.linearRegression(combinedData);
@@ -352,7 +357,7 @@ function drawCompPlot(){
         .x(d => xScale(d[0]) + margin.left*2) 
         .y(d => yScale(m * d[0] + b)); 
 
-    // Draw the line of best fit
+    // draw the line of best fit
     compsvg.append("path")
         .data([combinedData])  // Use the regression data to plot the line
         .attr("class", "best-fit-line")
@@ -365,13 +370,38 @@ function drawCompPlot(){
     
     //sum of squared differences -- higher the better
     let r2 = ss.rSquared(combinedData, ss.linearRegressionLine(regression));
-    console.log(r2)
 
     //TODO: MAKE LEGEND FOR DOT COLORS!!
+    // Add one dot in the legend for each name.
 
+    let legend = compsvg.append("g");
+
+    legend.append("rect")
+    .attr("x", 90+compWidth/1.80)
+    .attr("y", 0+25)
+    .attr("width", 350)  // Adjust width as needed for your legend size
+    .attr("height", 180)  // Adjust height as needed for your legend size
+    .style("fill", "#000")  // Set the background color
+    .style("opacity", 0.25);  // Set the opacity
+
+    legend.selectAll("mydots")
+    .data(sdgRegions)
+    .enter()
+    .append("circle")
+    .attr("cx", 110+compWidth/1.80)
+    .attr("cy", function(d,i){ return 40+ i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+    .attr("r", 7)
+    .style("fill", function(d){ return colorScale(d)})
+
+    // Add one name in the legend for each dot
+    legend.selectAll("mylabels")
+    .data(sdgRegions)
+    .enter()
+    .append("text")
+    .attr("x", 120+compWidth/1.80)
+    .attr("y", function(d,i){ return  43+i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+    .style("fill", function(d){ return colorScale(d)})
+    .text(function(d){ return d})
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
 };
-
-
-
-
-
