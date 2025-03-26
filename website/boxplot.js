@@ -3,7 +3,7 @@
     const basePath = window.location.hostname === "localhost" || 
                 window.location.hostname === "127.0.0.1" 
                 ? "" 
-                : "/Final_Project";
+                : "/CS441";
 
     // Define chart dimensions
     const margin = { top: 50, right: 40, bottom: 70, left: 200 };
