@@ -85,7 +85,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
 
     //title
     mapsvg.append("text")
-    .attr("x", mapwidth/8) // Positioning the text to the right of the legend
+    .attr("x", mapwidth/8+ 180 - 2.8*titleMap.length) // Positioning the text to the right of the legend
     .attr("y", 50) // Position it near the top of the legend
     .attr("dy", "-0.5em")
     .style("text-anchor", "start")
@@ -268,8 +268,6 @@ function drawCompPlot(){
 
     let commonCountries = countries1.filter(country => countries2.includes(country));
     let filteredFPData = famPlanData.filter(d => commonCountries.includes(d['ISO3']));
-
-
 
     xScale = d3.scaleLinear()
     .domain([
