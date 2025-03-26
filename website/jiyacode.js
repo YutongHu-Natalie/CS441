@@ -195,11 +195,11 @@ let compHeight = 800;
 
 async function loadCompDatas(){
     // Because d3.json() uses promises we have to use the keyword await to make sure each line completes before moving on to the next line
-    await d3.csv(`${basePath}//Data/final_family_planning.csv`).then(data => {
+    await d3.csv(`${basePath}/Data/final_family_planning.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         famPlanData = data;
     });
-    await d3.csv(`${basePath}//Data/Adolescent_birth_rate.csv`).then(data => {
+    await d3.csv(`${basePath}/Data/Adolescent_birth_rate.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         adolBirthData = data;
     });

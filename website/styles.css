@@ -1,10 +1,15 @@
 /* Resetting some defaults so we can define things manually */
 body,
 h1,
+h2,
 p {
   margin: 0;
   padding: 0;
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
+h1{
+  color:  rgb(137, 80, 51);
 }
 
 /* Styling our header */
@@ -12,7 +17,7 @@ header {
   background-color: #FAD0C4;
   text-align: center;
   color: rgb(137, 80, 51);
-  height: 100px;
+  height: 150px;
 }
 
 .title {
@@ -156,7 +161,7 @@ path {
 /* Bar chart SVG elements */
 #ylcbarchart, #abrbarchart {
   width: 100%;       /* Fill the width of the parent div */
-  height: 3000px;     /* Taller height */
+  height: 500px;     /* Taller height */
   max-width: 800px;  /* But don't exceed 800px */
   display: flex;
   justify-content: center;
@@ -170,3 +175,4 @@ path {
   padding: 2px;    /* Add some padding */
   box-sizing: border-box; /* Include padding in width calculation */
 }
+
