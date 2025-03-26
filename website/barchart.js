@@ -9,7 +9,7 @@ function initialiseSVG(containerId) {
         .attr("height", height)
         .attr("viewBox", `0 0 ${width} ${height}`)
         .attr("preserveAspectRatio", "xMidYMid meet");
-    let margin_left= containerId == "#abrbarchart"? margin.left+ 100: margin.left
+    let margin_left = containerId == "#abrbarchart" ? margin.left + 100 : margin.left
     const chart = svg.append("g")
         .attr("transform", `translate(${margin_left}, ${margin.top})`);
 
@@ -88,11 +88,15 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
     chart.select(".x-axis")
         .attr("transform", `translate(0,${chartHeight})`)
         .transition().duration(500)
-        .call(isHorizontal ? d3.axisBottom(xScale) : d3.axisBottom(xScale));
+        .call(isHorizontal ? d3.axisBottom(xScale) : d3.axisBottom(xScale))
+        .selectAll("text")
+        .style("fill", "black");
 
     chart.select(".y-axis")
         .transition().duration(500)
-        .call(isHorizontal ? d3.axisLeft(yScale) : d3.axisLeft(yScale));
+        .call(isHorizontal ? d3.axisLeft(yScale) : d3.axisLeft(yScale))
+        .selectAll("text")
+        .style("fill", "black");
 
     const bars = chart.selectAll(".bar").data(data, d => d.country);
 
@@ -105,7 +109,7 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         .attr("y", d => isHorizontal ? yScale(d.country) : yScale(d[valueKey]))
         .attr("width", d => isHorizontal ? xScale(d[valueKey]) : xScale.bandwidth())
         .attr("height", d => isHorizontal ? yScale.bandwidth() : chartHeight - yScale(d[valueKey]))
-        .style("fill", "steelblue");
+        .style("fill", "rgb(220, 120, 140)");
 
     bars.exit().remove();
 
@@ -114,17 +118,25 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         .attr("y", 20)
         .attr("text-anchor", "middle")
         .style("font-size", "18px")
-        .style("fill", "white")
+        .style("fill", "black")
         .text(title);
-
+    let x_lable_width= isHorizontal? width/2+50: width/2;
     // Add x-axis label
     svg.append("text")
-        .attr("x", width/2)
-        .attr("y", height-30)
+        .attr("x", x_lable_width)
+        .attr("y", height - 30)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .style("fill", "black")
-        .text(isHorizontal ? "Value" : "Country");
+        .text(isHorizontal ? "Value(%)" : "Country");
+    // Add x-axis label
+    svg.append("text")
+        .attr("x",width/3)
+        .attr("y", height - 10)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("fill", "gray")
+        .text("Only the top 5 countries in the descending order will be presented initially by default");
 
     // Add y-axis label
     svg.append("text")
