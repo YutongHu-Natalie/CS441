@@ -1,5 +1,9 @@
 let margin = { top: 50, right: 40, bottom: 70, left: 50 };
 const width = 650, height = 400;
+const basePath = window.location.hostname === "localhost" || 
+                window.location.hostname === "127.0.0.1" 
+                ? "" 
+                : "/CS441";
 function initialiseSVG(containerId) {
     d3.select(containerId).selectAll("*").remove();
     console.log('initialize SVG for', containerId)
@@ -151,8 +155,8 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
 
 // Load datasets and render charts
 Promise.all([
-    d3.csv("../Data/Adolescent_birth_rate.csv"),
-    d3.csv("../Data/final_youth_literacy.csv")
+    d3.csv("${basePath}/Data/Adolescent_birth_rate.csv"),
+    d3.csv("${basePath}/Data/final_youth_literacy.csv")
 ]).then(([birthData, literacyData]) => {
     const processedBirthData = selectTopOrRandom(processBirthRateData(birthData), "value");
     console.log(processedBirthData);
