@@ -155,8 +155,8 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
 
 // Load datasets and render charts
 Promise.all([
-    d3.csv("${basePath}/Data/Adolescent_birth_rate.csv"),
-    d3.csv("${basePath}/Data/final_youth_literacy.csv")
+    d3.csv(`${basePath}/Data/Adolescent_birth_rate.csv`),
+    d3.csv(`${basePath}/Data/final_youth_literacy.csv`)
 ]).then(([birthData, literacyData]) => {
     const processedBirthData = selectTopOrRandom(processBirthRateData(birthData), "value");
     console.log(processedBirthData);

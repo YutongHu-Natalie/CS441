@@ -266,7 +266,7 @@
     
     async function initialize() {
         try {
-            const data = await d3.csv("${basePath}/Data/final_family_planning.csv");
+            const data = await d3.csv(`${basePath}/Data/final_family_planning.csv`);
             const processedData = processData(data);
             renderChart(processedData, "Female Access to Family Planning by SDG Region", true);
         } catch (error) {
