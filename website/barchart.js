@@ -1,10 +1,10 @@
 
 let margin = { top: 50, right: 40, bottom: 70, left: 50 };
 const width = 650, height = 400;
-const basePath = window.location.hostname === "localhost" || 
-                window.location.hostname === "127.0.0.1" 
-                ? "" 
-                : "/CS441";
+const basePath = window.location.hostname === "localhost" ||
+    window.location.hostname === "127.0.0.1"
+    ? ""
+    : "/CS441";
 function initialiseSVG(containerId) {
     d3.select(containerId).selectAll("*").remove();
     console.log('initialize SVG for', containerId)
@@ -125,23 +125,16 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         .style("font-size", "18px")
         .style("fill", "black")
         .text(title);
-    let x_lable_width= isHorizontal? width/2+50: width/2;
+    let x_label_width = isHorizontal ? width / 2 + 50 : width / 2;
     // Add x-axis label
     svg.append("text")
-        .attr("x", x_lable_width)
+        .attr("x", x_label_width)
         .attr("y", height - 30)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .style("fill", "black")
-        .text(isHorizontal ? "Value(%)" : "Country");
-    // Add x-axis label
-    svg.append("text")
-        .attr("x",width/3)
-        .attr("y", height - 10)
-        .attr("text-anchor", "middle")
-        .style("font-size", "14px")
-        .style("fill", "gray")
-        .text("Only the top 5 countries in the descending order will be presented initially by default");
+        .text(isHorizontal ? "Value(per 1,000 population)" : "Country");
+
 
     // Add y-axis label
     svg.append("text")
@@ -152,6 +145,14 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         .style("font-size", "14px")
         .style("fill", "black")
         .text(isHorizontal ? "Country" : valueKey === "disparity" ? "Gender Disparity (%)" : "Value");
+
+    svg.append("text")
+        .attr("x", width / 3)
+        .attr("y", height - 10)
+        .attr("text-anchor", "middle")
+        .style("font-size", "14px")
+        .style("fill", "gray")
+        .text("Only the top 5 countries in the descending order will be presented initially by default");
 }
 
 // Load datasets and render charts
