@@ -147,7 +147,7 @@ path {
   stroke-width: 1.5px;
 }
 
-#dvmap {
+.map{
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   padding: 20px;
 }

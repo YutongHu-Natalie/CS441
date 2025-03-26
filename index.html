@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>a girl's dream</title>
-    <link rel="stylesheet" type="text/css" href="/website/styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
     <script src='https://unpkg.com/simple-statistics@7.8.8/dist/simple-statistics.min.js'>
@@ -11,6 +11,7 @@
   <body>
     <header>
       <h1 class="title">a girl's dream</h1>
+      <h2>by jiya shah and yutong hu</h2>
     </header>
     <main class="wrapper">
       <div class="left-column">
@@ -78,11 +79,11 @@
           <!-- family planning box and whisker by region -->
           <div><svg id="fampboxw"></svg></div>
           <!-- family planning map -->
-          <div><svg id="famplanmap"></svg></div>
+          <div><svg class="map" id="famplanmap"></svg></div>
           <!-- adolescent birth rate bar chart -->
           <div><svg id="abrbarchart"></svg></div>
           <!-- subjected violence map-->
-          <div><svg id="dvmap"></svg></div>
+          <div><svg class="map" id="dvmap"></svg></div>
           <!-- comparison scatterplot-->
           <div><svg id="compplot"></svg></div>
            <!-- comparison radar chart-->
@@ -95,8 +96,9 @@
       <button class="arrow-button" id="backward-button">◄</button>
       <button class="arrow-button" id="forward-button">►</button>
     </footer>
-    
-    <script src="/website/jiyacode.js"></script>
+    <script src="barchart.js"></script>
+    <script src="boxplot.js"></script>
+    <script src="jiyacode.js"></script>
     <!-- <script src="main.js"></script> -->
     
   </body>

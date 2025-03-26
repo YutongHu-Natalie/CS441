@@ -1,14 +1,13 @@
 /*
-NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP
+NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP AND FAM PLANNING MAP
 */
-
 const basePath = window.location.hostname === "localhost" || 
                 window.location.hostname === "127.0.0.1" 
                 ? "" 
                 : "/CS441";
 
 
-let mapsvg = d3.select("#dvmap");
+let mapsvg;
 
 let mapwidth = 960;
 let mapheight = 500;
@@ -18,35 +17,68 @@ const path = d3.geoPath().projection(myProjection);
 const graticule = d3.geoGraticule();
 
 let dvMapData;
+let famPlanData;
+let currDat;
+
+let dvMapSvg = d3.select("#dvmap");
+let fpMapSVG = d3.select("#famplanmap");
+
+let dvMapTrue = false;
 
 async function loadDVMapData(){
-    // Because d3.json() uses promises we have to use the keyword await to make sure each line completes before moving on to the next line
     await d3.csv(`${basePath}/Data/Subjected_violence.csv`).then(data => {
-        // Inside the promise we set the global variable equal to the data being loaded from the file
         dvMapData = data;
     });
-
+    await d3.csv(`${basePath}/Data/final_family_planning.csv`).then(data => {
+        famPlanData = data;
+    });
 }
 
 async function initializeMapSVG() {
     await loadDVMapData();
-    mapsvg.attr("width", mapwidth);
-    mapsvg.attr("height", mapheight+100);
+    
+    fpMapSVG.attr("width", mapwidth);
+    fpMapSVG.attr("height", mapheight+100);
+    fpColorScale = d3.scaleSequential(d3.interpolateRgb("white", "#AA336A"))
+        .domain([0, d3.max(famPlanData, d => parseFloat(d['Value(%)']))]);
 
-    // Load the world map data and draw it
-    d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(drawMap)
+    // world map for family planning
+    await d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(world=> drawMap(world, fpMapSVG, famPlanData, fpColorScale))
     .catch((err) => console.error("Error loading map data:", err));
+
+    dvMapTrue = true;
+    dvMapSvg.attr("width", mapwidth);
+    dvMapSvg.attr("height", mapheight+100);
+    dvColorScale = d3.scaleSequential(d3.interpolatePurples)
+        .domain([0, d3.max(dvMapData, d => parseFloat(d['Value(%)']))]);
+
+
+    // world map for subjected violence
+    await d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(world=> drawMap(world, dvMapSvg, dvMapData, dvColorScale))
+    .catch((err) => console.error("Error loading map data:", err));
+
+    
 }
 
-function drawMap(world) {
-    // Check if the 'Value(%)' field exists and can be converted to numbers
-    dvMapData.forEach(d => {
-        // Make sure 'Value(%)' is a valid number
-        d['Value(%)'] = parseFloat(d['Value(%)']);  // Convert to number (ignores non-numeric values)
+
+function drawMap(world, mapsvg, mapdata, mapcolorscale) {
+    mapdata.forEach(d => {
+        d['Value(%)'] = parseFloat(d['Value(%)']); 
         if (isNaN(d['Value(%)'])) {
             console.error(`Invalid Value(%) found in data: ${d['Value(%)']}`);
         }
     });
+
+
+    let titleMap;
+    if( dvMapTrue){
+        titleMap = "% of Women That Have Been Subjected to Intimate Partner Violence";
+        
+    }  
+    else{
+        mapsvg = d3.select("#famplanmap");
+        titleMap = "% of Women with Access to Adequate Family Planning";
+    } 
 
     //defs (for definition) element to your SVG
     var defs = mapsvg.append("defs");
@@ -58,11 +90,7 @@ function drawMap(world) {
     .attr("dy", "-0.5em")
     .style("text-anchor", "start")
     .style("font-size", "1.5rem")
-    .text("% of Women That Have Been Subjected to Intimate Partner Violence"); 
-
-    //make colorScale based on value for level of dv experiences
-    let dvColorScale = d3.scaleSequential(d3.interpolatePurples)
-        .domain([0, d3.max(dvMapData, d => d['Value(%)'])]);
+    .text(titleMap); 
     
     // graticules
     //for the lat/long lines
@@ -103,9 +131,9 @@ function drawMap(world) {
       .enter().append("path")
       .attr("d", path)
       .attr("fill", function(d){ //fill not working why?
-        let countryData = dvMapData.find(item=>parseInt(item['Geographic Area Code']) === parseInt(d.id));
+        let countryData = mapdata.find(item=>parseInt(item['Geographic Area Code']) === parseInt(d.id));
         if (countryData ){
-            return dvColorScale(countryData['Value(%)']);
+            return mapcolorscale(countryData['Value(%)']);
         } else {
             return "url(#diagonal-stripes)"; //default
         }
@@ -120,7 +148,7 @@ function drawMap(world) {
     legendHeight = 150;
     //linearGradient element to the defs and give it a unique id
     var linearGradient = defs.append("linearGradient")
-        .attr("id", "linear-gradient");
+        .attr("id", `linear-gradient-${dvMapTrue ? 'dvmap' : 'fpmap'}`);
 
     linearGradient
     .attr("x1", "0%")
@@ -130,9 +158,9 @@ function drawMap(world) {
 
 
     linearGradient.selectAll("stop")
-    .data( dvColorScale.range() )
+    .data( mapcolorscale.range() )
     .enter().append("stop")
-    .attr("offset", function(d,i) { return i/(dvColorScale.range().length-1); })
+    .attr("offset", function(d,i) { return i/(mapcolorscale.range().length-1); })
     .attr("stop-color", function(d) { return d; });
     //append gradient
 
@@ -146,7 +174,7 @@ function drawMap(world) {
     mapsvg.append("rect")
     .attr("width", legendWidth)
     .attr("height", legendHeight)
-    .style("fill", "url(#linear-gradient)")
+    .style("fill", `url(#linear-gradient-${dvMapTrue ? 'dvmap' : 'fpmap'})`)
     .attr("transform", `translate(${100}, 300)`);
 
     //legend title
@@ -157,8 +185,8 @@ function drawMap(world) {
     .style("text-anchor", "start")
     .text("legend"); 
 
-    let minValue = d3.min(dvMapData, d => d['Value(%)']);
-    let maxValue = d3.max(dvMapData, d => d['Value(%)']);
+    let minValue = d3.min(mapdata, d => d['Value(%)']);
+    let maxValue = d3.max(mapdata, d => d['Value(%)']);
     
     //min value
     mapsvg.append("text")
@@ -175,7 +203,7 @@ function drawMap(world) {
     .attr("dy", "1em")
     .style("text-anchor", "start")
     .text(maxValue + "%"); 
-}
+    }
 
 initializeMapSVG();
 
@@ -185,7 +213,6 @@ NEXT LINES ARE ALL FOR THE COMPARISON SCATTER PLOT
 */
 
 let compsvg = d3.select("#compplot");
-let famPlanData;
 let adolBirthData;
 
 let compWind = 900;
@@ -194,14 +221,12 @@ let compWidth = 800;
 let compHeight = 800;
 
 async function loadCompDatas(){
-    // Because d3.json() uses promises we have to use the keyword await to make sure each line completes before moving on to the next line
+    await d3.csv(`${basePath}/Data/Adolescent_birth_rate.csv`).then(data => {
+        adolBirthData = data;
+    });
     await d3.csv(`${basePath}/Data/final_family_planning.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         famPlanData = data;
-    });
-    await d3.csv(`${basePath}/Data/Adolescent_birth_rate.csv`).then(data => {
-        // Inside the promise we set the global variable equal to the data being loaded from the file
-        adolBirthData = data;
     });
 
 }
@@ -212,8 +237,6 @@ async function initializeCompSvg() {
 }
 
 initializeCompSvg();
-
-
 function drawCompPlot(){
     famPlanData.forEach(d => {
         d['Value(%)'] = parseFloat(d['Value(%)']);  // convert to number
