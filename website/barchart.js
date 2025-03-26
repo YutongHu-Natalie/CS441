@@ -144,7 +144,7 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
         .style("fill", "black")
-        .text(isHorizontal ? "Country" : valueKey === "disparity" ? "Gender Disparity (%)" : "Value");
+        .text(isHorizontal ? "Country" : valueKey === "disparity" ? "Gender Disparity (%)" : "Value(per 1,000 population)");
 
     svg.append("text")
         .attr("x", width / 3)
