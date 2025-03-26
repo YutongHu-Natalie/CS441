@@ -1,9 +1,5 @@
 let margin = { top: 50, right: 40, bottom: 70, left: 50 };
 const width = 650, height = 400;
-const basePath = window.location.hostname === "localhost" || 
-                window.location.hostname === "127.0.0.1" 
-                ? "" 
-                : "/CS441";
 function initialiseSVG(containerId) {
     d3.select(containerId).selectAll("*").remove();
     console.log('initialize SVG for', containerId)
