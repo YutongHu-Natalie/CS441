@@ -1,10 +1,9 @@
 // Encapsulate everything in an IIFE to avoid global namespace pollution
 (function() {
-    const basePath2 = window.location.hostname === "localhost" || 
-                window.location.hostname === "127.0.0.1" 
-                ? "" 
-                : "/Final_Project";
-
+    const basePath = window.location.hostname === "localhost" || 
+                    window.location.hostname === "127.0.0.1" 
+                    ? "" 
+                    : "/CS441";
     // Define chart dimensions
     const margin = { top: 50, right: 40, bottom: 70, left: 200 };
     const width = 700, height = 400;
@@ -267,7 +266,7 @@
     
     async function initialize() {
         try {
-            const data = await d3.csv(`${basePath2}/Data/final_family_planning.csv`);
+            const data = await d3.csv(`${basePath}/Data/final_family_planning.csv`);
             const processedData = processData(data);
             renderChart(processedData, "Female Access to Family Planning by SDG Region", true);
         } catch (error) {
