@@ -1,7 +1,7 @@
 /*
 NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP AND FAM PLANNING MAP
 */
-const basePath = window.location.hostname === "localhost" || 
+const basePath1 = window.location.hostname === "localhost" || 
                 window.location.hostname === "127.0.0.1" 
                 ? "" 
                 : "/CS441";
@@ -26,10 +26,10 @@ let fpMapSVG = d3.select("#famplanmap");
 let dvMapTrue = false;
 
 async function loadDVMapData(){
-    await d3.csv(`${basePath}/Data/Subjected_violence.csv`).then(data => {
+    await d3.csv(`${basePath1}/Data/Subjected_violence.csv`).then(data => {
         dvMapData = data;
     });
-    await d3.csv(`${basePath}/Data/final_family_planning.csv`).then(data => {
+    await d3.csv(`${basePath1}/Data/final_family_planning.csv`).then(data => {
         famPlanData = data;
     });
 }
@@ -221,10 +221,10 @@ let compWidth = 800;
 let compHeight = 800;
 
 async function loadCompDatas(){
-    await d3.csv(`${basePath}/Data/Adolescent_birth_rate.csv`).then(data => {
+    await d3.csv(`${basePath1}/Data/Adolescent_birth_rate.csv`).then(data => {
         adolBirthData = data;
     });
-    await d3.csv(`${basePath}/Data/final_family_planning.csv`).then(data => {
+    await d3.csv(`${basePath1}/Data/final_family_planning.csv`).then(data => {
         // Inside the promise we set the global variable equal to the data being loaded from the file
         famPlanData = data;
     });
