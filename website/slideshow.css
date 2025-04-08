@@ -98,7 +98,6 @@ html {
     background-color: #C599B6;
     display: flex;
     flex-direction: column;
-
 }
 
 #visualization-wrapper {
@@ -123,9 +122,51 @@ html {
     opacity: 1;
 }
 
+/* Combined visualization styles */
+.boxplot-map-combined #fampboxw,
+.boxplot-map-combined #famplanmap {
+    position: relative !important; /* Override absolute positioning */
+    opacity: 1;
+}
+
+.boxplot-map-combined #fampboxw {
+    height: 40% !important;
+}
+
+.boxplot-map-combined #famplanmap {
+    height: 60% !important;
+}
+
+/* Highlight styles for boxplot interaction */
+.boxplot-group:hover .boxplot-box {
+    cursor: pointer;
+    stroke: #000;
+    stroke-width: 2px;
+}
+
+.boxplot-selected .boxplot-box {
+    stroke: #000;
+    stroke-width: 2px;
+    opacity: 1 !important;
+}
+
+.map-region-highlighted {
+    opacity: 1 !important;
+    stroke: #000 !important;
+    stroke-width: 1.5px !important;
+}
+
+.map-region-faded {
+    opacity: 0.2 !important;
+}
+
 /* Map styling */
 .map {
     height: 100%;
+}
+
+.map path {
+    transition: opacity 0.3s, stroke-width 0.3s;
 }
 
 /* Navigation controls */
@@ -214,4 +255,26 @@ html {
     }
 }
 
-
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .slide-content {
+        flex-direction: column;
+    }
+    
+    .verse-container, 
+    .visualization-container {
+        flex: none;
+    }
+    
+    .verse-container {
+        height: 40%;
+    }
+    
+    .visualization-container {
+        height: 60%;
+    }
+    
+    .verse-text {
+        font-size: 1.2rem;
+    }
+}

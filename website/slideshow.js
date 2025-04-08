@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Slide data
+    // Slide data with updated slide for box plot and map combined
     const slides = [
         {
           verse: 0,
           text: `a girl's dream\nby jiya shah and yutong hu`,
-                  visualization: 'none',
-                  title: ''
+          visualization: 'none',
+          title: ''
         },
         {
             verse: 1,
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   to plan out my life, when i'll have my kids?
   not go through
   what women before me did?`,
-        visualization: 'famplanmap',
+        visualization: 'boxplot-map-combined', // New combined visualization
         title: 'Family Planning Access by Region'
       },
       {
@@ -114,7 +114,6 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateSlide(index) {
       const slide = slides[index];
       
-      
       // Clear previous verse text
       verseText.innerHTML = '';
       
@@ -133,13 +132,58 @@ document.addEventListener('DOMContentLoaded', function() {
       // Hide all visualizations first
       document.querySelectorAll('.viz-svg').forEach(svg => {
         svg.classList.remove('active');
+        svg.style.display = 'none'; // Completely hide them
       });
       
       // Show the current visualization
-      if (slide.visualization !== 'none') {
+      if (slide.visualization === 'boxplot-map-combined') {
+        // Special case for combined visualization
+        const boxplotElement = document.getElementById('fampboxw');
+        const mapElement = document.getElementById('famplanmap');
+        
+        if (boxplotElement && mapElement) {
+          // Configure container for combined view
+          const vizContainer = document.getElementById('visualization-wrapper');
+          vizContainer.style.flexDirection = 'column';
+          
+          // Show and position both elements
+          boxplotElement.classList.add('active');
+          mapElement.classList.add('active');
+          
+          boxplotElement.style.display = 'block';
+          mapElement.style.display = 'block';
+          
+          // Set specific heights for the combined view
+          boxplotElement.style.position = 'relative';
+          mapElement.style.position = 'relative';
+          
+          boxplotElement.style.height = '40%';
+          mapElement.style.height = '60%';
+          
+          // Clear any previous visualization styles
+          boxplotElement.style.opacity = '1';
+          mapElement.style.opacity = '1';
+          
+          // If our custom script isn't loaded yet, load it
+          if (!window.boxplotMapInteraction) {
+            loadBoxplotMapInteraction();
+          } else {
+            // Reset any previous highlighting
+            window.boxplotMapInteraction.resetHighlighting();
+          }
+        }
+      } else if (slide.visualization !== 'none') {
+        // Standard single visualization display
         const vizElement = document.getElementById(slide.visualization);
         if (vizElement) {
           vizElement.classList.add('active');
+          vizElement.style.display = 'block';
+          vizElement.style.position = 'absolute';
+          vizElement.style.height = '100%';
+          
+          // Reset container to default
+          const vizContainer = document.getElementById('visualization-wrapper');
+          vizContainer.style.flexDirection = 'row';
         }
       }
       
@@ -159,6 +203,27 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Update current index
       currentSlideIndex = index;
+    }
+    
+    // Load the custom boxplot-map interaction script
+    function loadBoxplotMapInteraction() {
+      // Remove any existing script first to prevent duplicates
+      const existingScript = document.getElementById('boxplot-map-script');
+      if (existingScript) {
+        existingScript.remove();
+      }
+      
+      // Create script element
+      const script = document.createElement('script');
+      script.id = 'boxplot-map-script';
+      script.src = 'boxplot-map-interaction.js';
+      script.onload = function() {
+        console.log("Boxplot-map interaction script loaded successfully");
+      };
+      script.onerror = function(e) {
+        console.error("Error loading boxplot-map script:", e);
+      };
+      document.body.appendChild(script);
     }
   
     // Navigation functions
@@ -231,4 +296,4 @@ document.addEventListener('DOMContentLoaded', function() {
   
     // Initialize the visualizations and first slide
     updateSlide(0);
-  });
+});
