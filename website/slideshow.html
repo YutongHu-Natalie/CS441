@@ -5,6 +5,7 @@
   <link rel="stylesheet" type="text/css" href="slideshow.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+  <script src='https://unpkg.com/simple-statistics@7.8.8/dist/simple-statistics.min.js'></script>
 </head>
 <body>
   <div class="slideshow-container">
@@ -16,7 +17,6 @@
     <div class="slide">
       <div class="slide-content">
         <div class="verse-container">
-          <h3>Verse <span id="verse-number">1</span></h3>
           <div id="verse-text" class="verse-text">
             <!-- Verse content will be inserted by JavaScript -->
           </div>
@@ -24,8 +24,15 @@
         
         <div class="visualization-container">
           <h3 id="viz-title">Youth Literacy Disparity</h3>
-          <div id="visualization" class="visualization-placeholder">
-            <!-- Visualization will be inserted by JavaScript -->
+          <div id="visualization-wrapper">
+            <!-- SVG containers for visualizations -->
+            <svg id="ylcbarchart" class="viz-svg"></svg>
+            <svg id="fampboxw" class="viz-svg"></svg>
+            <svg id="famplanmap" class="viz-svg map"></svg>
+            <svg id="abrbarchart" class="viz-svg"></svg>
+            <svg id="dvmap" class="viz-svg map"></svg>
+            <svg id="compplot" class="viz-svg"></svg>
+            <svg id="compradar" class="viz-svg"></svg>
           </div>
         </div>
       </div>
@@ -38,6 +45,10 @@
     </div>
   </div>
 
+  <!-- Load visualization scripts -->
+  <script src="boxplot.js"></script>
+  <script src="barchart.js"></script>
+  <script src="jiyacode.js"></script>
   <script src="slideshow.js"></script>
 </body>
 </html>
