@@ -3,16 +3,17 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  body, html {
+}
+
+body,
+html {
     height: 100%;
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     overflow: hidden;
-  }
-  
-  /* Main container */
-  .slideshow-container {
+}
+
+/* Main container */
+.slideshow-container {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -20,151 +21,158 @@
     max-width: 1200px;
     margin: 0 auto;
     background-color: #FAD0C4;
-    touch-action: pan-y; /* Enable vertical scrolling but capture horizontal swipes */
-  }
-  
-  /* Header styles */
-  .slideshow-header {
+    touch-action: pan-y;
+    /* Enable vertical scrolling but capture horizontal swipes */
+}
+
+/* Header styles */
+.slideshow-header {
     background-color: #FAD0C4;
     text-align: center;
     color: rgb(137, 80, 51);
     padding: 20px 0;
-  }
-  
-  .title {
+}
+
+.title {
     color: rgb(137, 80, 51);
     margin: 0;
     padding: 0;
-  }
-  
-  /* Slide styles */
-  .slide {
+}
+
+/* Slide styles */
+.slide {
     flex: 1;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     background-color: #fff;
-  }
-  
-  .slide-content {
+}
+
+.slide-content {
     display: flex;
     height: 100%;
-  }
-  
-  .slide-content.text-only .verse-container {
+}
+
+.slide-content.text-only .verse-container {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-  }
-  
-  .slide-content.text-only .visualization-container {
+}
+
+.slide-content.text-only .visualization-container {
     display: none;
-  }
-  
-  .slide-content.text-only .verse-text {
+}
+
+.slide-content.text-only .verse-text {
     font-size: 2.5rem;
     text-align: center;
-  }
-  
-  /* Verse container styles */
-  .verse-container {
+}
+
+/* Verse container styles */
+.verse-container {
     flex: 1;
-    padding: 30px;
+    padding: 20px;
     background-color: #E6B2BA;
     color: rgb(137, 80, 51);
     display: flex;
     flex-direction: column;
     justify-content: center;
     overflow-y: auto;
-  }
-  
-  .verse-text {
+}
+
+.verse-text {
     font-size: 1.5rem;
     line-height: 1.5;
-  }
-  
-  .verse-line {
+}
+
+.verse-line {
     margin: 10px 0;
-  }
-  
-  /* Visualization container styles */
-  .visualization-container {
-    flex: 2;
+}
+
+/* Visualization container styles */
+.visualization-container {
+    flex: 3;
     padding: 30px;
     background-color: #C599B6;
     display: flex;
     flex-direction: column;
-  }
-  
-  #visualization-wrapper {
+
+}
+
+#visualization-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
-  /* SVG styling */
-  .viz-svg {
+}
+
+/* SVG styling */
+.viz-svg {
     position: absolute;
     width: 100%;
     height: 100%;
     opacity: 0;
     transition: opacity 0.5s ease;
-  }
-  
-  .viz-svg.active {
+}
+
+.viz-svg.active {
     opacity: 1;
-  }
-  
-  /* Map styling */
-  .map {
+}
+
+/* Map styling */
+.map {
     height: 100%;
-  }
-  
-  /* Navigation controls */
-  .slideshow-controls {
+}
+
+/* Navigation controls */
+.slideshow-controls {
     padding: 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #FAD0C4;
-  }
-  
-  .nav-button {
+}
+
+.nav-button {
     padding: 8px 16px;
     background-color: #C599B6;
     color: white;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  .nav-button:disabled {
+}
+
+.nav-button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
-  }
-  
-  .slide-indicator {
+}
+
+.slide-indicator {
     font-size: 1rem;
     color: rgb(137, 80, 51);
-  }
-  
-  /* Animation */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .verse-line {
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.verse-line {
     animation: fadeIn 0.8s ease-in-out;
-  }
-  
-  /* Touch indicator for swipe */
-  .swipe-indicator {
+}
+
+/* Touch indicator for swipe */
+.swipe-indicator {
     position: absolute;
     top: 50%;
     width: 50px;
@@ -179,34 +187,31 @@
     pointer-events: none;
     opacity: 0;
     transition: opacity 0.3s;
-  }
-  
-  .swipe-indicator.left {
+}
+
+.swipe-indicator.left {
     left: 20px;
-  }
-  
-  .swipe-indicator.right {
+}
+
+.swipe-indicator.right {
     right: 20px;
-  }
-  
-  @keyframes pulse {
+}
+
+@keyframes pulse {
     0% {
-      transform: translate(0, -50%) scale(1);
-      opacity: 0.7;
+        transform: translate(0, -50%) scale(1);
+        opacity: 0.7;
     }
+
     50% {
-      transform: translate(0, -50%) scale(1.1);
-      opacity: 0.5;
+        transform: translate(0, -50%) scale(1.1);
+        opacity: 0.5;
     }
+
     100% {
-      transform: translate(0, -50%) scale(1);
-      opacity: 0.7;
+        transform: translate(0, -50%) scale(1);
+        opacity: 0.7;
     }
-  }
-  
-  /* Ensure existing chart elements work in the slideshow */
-  #ylcbarchart, #abrbarchart, #fampboxw, #famplanmap, #dvmap, #compplot, #compradar {
-    width: 100%;
-    height: 100%;
-    max-height: none;
-  }
+}
+
+
