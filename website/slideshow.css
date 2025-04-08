@@ -14,15 +14,20 @@ html {
 
 /* Main container */
 .slideshow-container {
+    position: relative;
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    max-width: 1200px;
+    height: 100%;
+    max-width: 100%;
     margin: 0 auto;
     background-color: #FAD0C4;
     touch-action: pan-y;
-    /* Enable vertical scrolling but capture horizontal swipes */
+}
+
+/* Hide original controls */
+.slideshow-controls {
+    display: none;
 }
 
 /* Header styles */
@@ -46,6 +51,7 @@ html {
     flex-direction: column;
     overflow: hidden;
     background-color: #fff;
+    transition: opacity 0.5s ease;
 }
 
 .slide-content {
@@ -89,6 +95,7 @@ html {
 
 .verse-line {
     margin: 10px 0;
+    animation: fadeIn 0.8s ease-in-out;
 }
 
 /* Visualization container styles */
@@ -122,112 +129,41 @@ html {
     opacity: 1;
 }
 
-/* Combined visualization styles */
-.boxplot-map-combined #fampboxw,
-.boxplot-map-combined #famplanmap {
-    position: relative !important; /* Override absolute positioning */
-    opacity: 1;
-}
-
-.boxplot-map-combined #fampboxw {
-    height: 40% !important;
-}
-
-.boxplot-map-combined #famplanmap {
-    height: 60% !important;
-}
-
-/* Highlight styles for boxplot interaction */
-.boxplot-group:hover .boxplot-box {
-    cursor: pointer;
-    stroke: #000;
-    stroke-width: 2px;
-}
-
-.boxplot-selected .boxplot-box {
-    stroke: #000;
-    stroke-width: 2px;
-    opacity: 1 !important;
-}
-
-.map-region-highlighted {
-    opacity: 1 !important;
-    stroke: #000 !important;
-    stroke-width: 1.5px !important;
-}
-
-.map-region-faded {
-    opacity: 0.2 !important;
-}
-
 /* Map styling */
 .map {
     height: 100%;
 }
 
-.map path {
-    transition: opacity 0.3s, stroke-width 0.3s;
-}
-
-/* Navigation controls */
-.slideshow-controls {
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #FAD0C4;
-}
-
-.nav-button {
-    padding: 8px 16px;
-    background-color: #C599B6;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.nav-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-.slide-indicator {
-    font-size: 1rem;
-    color: rgb(137, 80, 51);
-}
-
-/* Animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
-.verse-line {
-    animation: fadeIn 0.8s ease-in-out;
-}
-
-/* Touch indicator for swipe */
+/* Swipe indicators styling - FIXED VERSION */
 .swipe-indicator {
     position: absolute;
     top: 50%;
     width: 50px;
     height: 50px;
+    transform: translateY(-50%);
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(197, 153, 182, 0.8);
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    animation: pulse 2s infinite;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.3s;
+    z-index: 100;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    caret-color: transparent;
+}
+
+.swipe-indicator:hover {
+    background-color: rgba(197, 153, 182, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.swipe-indicator.disabled {
+    background-color: rgba(204, 204, 204, 0.8);
+    cursor: not-allowed;
+    opacity: 0.5;
 }
 
 .swipe-indicator.left {
@@ -238,43 +174,62 @@ html {
     right: 20px;
 }
 
-@keyframes pulse {
-    0% {
-        transform: translate(0, -50%) scale(1);
-        opacity: 0.7;
-    }
+/* Swipe area for better touch detection */
+.swipe-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+}
 
-    50% {
-        transform: translate(0, -50%) scale(1.1);
-        opacity: 0.5;
-    }
+/* Slide indicator */
+.slide-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(250, 208, 196, 0.8);
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 1rem;
+    color: rgb(137, 80, 51);
+    z-index: 95;
+    caret-color: transparent;
+}
 
-    100% {
-        transform: translate(0, -50%) scale(1);
-        opacity: 0.7;
+/* Animation for fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .slide-content {
-        flex-direction: column;
+    .swipe-indicator {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
     }
     
-    .verse-container, 
-    .visualization-container {
-        flex: none;
+    .swipe-indicator.left {
+        left: 10px;
     }
     
-    .verse-container {
-        height: 40%;
-    }
-    
-    .visualization-container {
-        height: 60%;
+    .swipe-indicator.right {
+        right: 10px;
     }
     
     .verse-text {
         font-size: 1.2rem;
+    }
+    
+    .slide-content.text-only .verse-text {
+        font-size: 2rem;
     }
 }

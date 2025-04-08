@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Slide data with updated slide for box plot and map combined
+    // Slide data
     const slides = [
-        {
-          verse: 0,
-          text: `a girl's dream\nby jiya shah and yutong hu`,
-          visualization: 'none',
-          title: ''
-        },
-        {
-            verse: 1,
-            text: `since i was small, i have always dreamed big
-      "a doctor—no lawyer!—no…
-      scientist!"`,
-            visualization: 'none',
-            title: ''
-          },
+      {
+        verse: 0,
+        text: `a girl's dream\nby jiya shah and yutong hu`,
+        visualization: 'none',
+        title: ''
+      },
+      {
+        verse: 1,
+        text: `since i was small, i have always dreamed big
+  "a doctor—no lawyer!—no…
+  scientist!"`,
+        visualization: 'none',
+        title: ''
+      },
       {
         verse: 2,
         text: `yet when the time came, the boys ran ahead
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
   to plan out my life, when i'll have my kids?
   not go through
   what women before me did?`,
-        visualization: 'boxplot-map-combined', // New combined visualization
+        visualization: 'famplanmap',
         title: 'Family Planning Access by Region'
       },
       {
@@ -89,26 +89,46 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentSlideIndex = 0;
     let touchStartX = null;
     let touchEndX = null;
+    let touchStartY = null;
+    let touchEndY = null;
+    let touchStartTime = null;
   
     // DOM elements
     const verseText = document.getElementById('verse-text');
     const vizTitle = document.getElementById('viz-title');
-    const slideIndicator = document.getElementById('slide-indicator');
-    const prevButton = document.getElementById('prev-button');
-    const nextButton = document.getElementById('next-button');
     const slideContainer = document.querySelector('.slide-content');
+    const slideShowContainer = document.querySelector('.slideshow-container');
     
-    // Add swipe indicators
+    // Remove existing control elements from the DOM
+    const existingControls = document.querySelector('.slideshow-controls');
+    if (existingControls) {
+      existingControls.parentNode.removeChild(existingControls);
+    }
+    
+    // Create new slide indicator
+    const slideIndicator = document.createElement('div');
+    slideIndicator.className = 'slide-indicator';
+    slideIndicator.id = 'slide-indicator';
+  
+    
+    
+    // Add interactive swipe indicators that will act as navigation buttons
     const leftIndicator = document.createElement('div');
     leftIndicator.className = 'swipe-indicator left';
     leftIndicator.innerHTML = '◄';
+    leftIndicator.setAttribute('aria-label', 'Previous slide');
+    leftIndicator.id = 'prev-indicator';
     
     const rightIndicator = document.createElement('div');
     rightIndicator.className = 'swipe-indicator right';
     rightIndicator.innerHTML = '►';
+    rightIndicator.setAttribute('aria-label', 'Next slide');
+    rightIndicator.id = 'next-indicator';
     
-    slideContainer.appendChild(leftIndicator);
-    slideContainer.appendChild(rightIndicator);
+    // Add new elements to container
+    slideShowContainer.appendChild(slideIndicator);
+    slideShowContainer.appendChild(leftIndicator);
+    slideShowContainer.appendChild(rightIndicator);
   
     // Update slide content
     function updateSlide(index) {
@@ -132,58 +152,13 @@ document.addEventListener('DOMContentLoaded', function() {
       // Hide all visualizations first
       document.querySelectorAll('.viz-svg').forEach(svg => {
         svg.classList.remove('active');
-        svg.style.display = 'none'; // Completely hide them
       });
       
       // Show the current visualization
-      if (slide.visualization === 'boxplot-map-combined') {
-        // Special case for combined visualization
-        const boxplotElement = document.getElementById('fampboxw');
-        const mapElement = document.getElementById('famplanmap');
-        
-        if (boxplotElement && mapElement) {
-          // Configure container for combined view
-          const vizContainer = document.getElementById('visualization-wrapper');
-          vizContainer.style.flexDirection = 'column';
-          
-          // Show and position both elements
-          boxplotElement.classList.add('active');
-          mapElement.classList.add('active');
-          
-          boxplotElement.style.display = 'block';
-          mapElement.style.display = 'block';
-          
-          // Set specific heights for the combined view
-          boxplotElement.style.position = 'relative';
-          mapElement.style.position = 'relative';
-          
-          boxplotElement.style.height = '40%';
-          mapElement.style.height = '60%';
-          
-          // Clear any previous visualization styles
-          boxplotElement.style.opacity = '1';
-          mapElement.style.opacity = '1';
-          
-          // If our custom script isn't loaded yet, load it
-          if (!window.boxplotMapInteraction) {
-            loadBoxplotMapInteraction();
-          } else {
-            // Reset any previous highlighting
-            window.boxplotMapInteraction.resetHighlighting();
-          }
-        }
-      } else if (slide.visualization !== 'none') {
-        // Standard single visualization display
+      if (slide.visualization !== 'none') {
         const vizElement = document.getElementById(slide.visualization);
         if (vizElement) {
           vizElement.classList.add('active');
-          vizElement.style.display = 'block';
-          vizElement.style.position = 'absolute';
-          vizElement.style.height = '100%';
-          
-          // Reset container to default
-          const vizContainer = document.getElementById('visualization-wrapper');
-          vizContainer.style.flexDirection = 'row';
         }
       }
       
@@ -197,103 +172,64 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update slide indicator
       slideIndicator.textContent = `${index + 1} / ${slides.length}`;
       
-      // Update button states
-      prevButton.disabled = index === 0;
-      nextButton.disabled = index === slides.length - 1;
+     
+      // Update swipe indicator states
+      if (index === 0) {
+        leftIndicator.classList.add('disabled');
+      } else {
+        leftIndicator.classList.remove('disabled');
+      }
+      
+      if (index === slides.length - 1) {
+        rightIndicator.classList.add('disabled');
+      } else {
+        rightIndicator.classList.remove('disabled');
+      }
+   
+      
       
       // Update current index
       currentSlideIndex = index;
-    }
-    
-    // Load the custom boxplot-map interaction script
-    function loadBoxplotMapInteraction() {
-      // Remove any existing script first to prevent duplicates
-      const existingScript = document.getElementById('boxplot-map-script');
-      if (existingScript) {
-        existingScript.remove();
-      }
-      
-      // Create script element
-      const script = document.createElement('script');
-      script.id = 'boxplot-map-script';
-      script.src = 'boxplot-map-interaction.js';
-      script.onload = function() {
-        console.log("Boxplot-map interaction script loaded successfully");
-      };
-      script.onerror = function(e) {
-        console.error("Error loading boxplot-map script:", e);
-      };
-      document.body.appendChild(script);
     }
   
     // Navigation functions
     function goToPrevSlide() {
       if (currentSlideIndex > 0) {
-        showSwipeIndicator('right');
         updateSlide(currentSlideIndex - 1);
       }
     }
   
     function goToNextSlide() {
       if (currentSlideIndex < slides.length - 1) {
-        showSwipeIndicator('left');
         updateSlide(currentSlideIndex + 1);
       }
     }
-    
-    // Function to show swipe indicator
-    function showSwipeIndicator(direction) {
-      const indicator = direction === 'left' ? leftIndicator : rightIndicator;
-      indicator.style.opacity = '1';
-      setTimeout(() => {
-        indicator.style.opacity = '0';
-      }, 500);
-    }
   
-    // Event listeners for buttons
-    prevButton.addEventListener('click', goToPrevSlide);
-    nextButton.addEventListener('click', goToNextSlide);
+    // *** FIX: Clear event listeners and add them properly ***
+    // Event listeners for swipe indicators that now act as buttons
+    leftIndicator.onclick = function() {
+      console.log("Left indicator clicked");
+      goToPrevSlide();
+    };
+    
+    rightIndicator.onclick = function() {
+      console.log("Right indicator clicked");
+      goToNextSlide();
+    };
   
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
         goToNextSlide();
+        e.preventDefault(); // Prevent default scroll behavior
       } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
         goToPrevSlide();
+        e.preventDefault(); // Prevent default scroll behavior
       }
     });
   
-    // Touch events for swipe
-    document.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
+    
   
-    document.addEventListener('touchend', function(e) {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-  
-    function handleSwipe() {
-      if (!touchStartX || !touchEndX) return;
-      
-      const swipeDistance = touchEndX - touchStartX;
-      const minSwipeDistance = 50; // Minimum distance to register as a swipe
-      
-      if (Math.abs(swipeDistance) >= minSwipeDistance) {
-        if (swipeDistance > 0) {
-          // Swipe right (previous)
-          goToPrevSlide();
-        } else {
-          // Swipe left (next)
-          goToNextSlide();
-        }
-      }
-      
-      // Reset touch values
-      touchStartX = null;
-      touchEndX = null;
-    }
-  
-    // Initialize the visualizations and first slide
+    // Initialize the first slide
     updateSlide(0);
-});
+  });
