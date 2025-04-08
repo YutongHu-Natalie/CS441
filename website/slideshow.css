@@ -1,0 +1,290 @@
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body, html {
+    height: 100%;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  }
+  
+  /* Main container */
+  .slideshow-container {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #FAD0C4;
+  }
+  
+  /* Header styles */
+  .slideshow-header {
+    background-color: #FAD0C4;
+    text-align: center;
+    color: rgb(137, 80, 51);
+    padding: 20px 0;
+  }
+  
+  .title {
+    color: rgb(137, 80, 51);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Slide styles */
+  .slide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #fff;
+  }
+  
+  .slide-content {
+    display: flex;
+    height: 100%;
+  }
+  
+  .slide-content.text-only .verse-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .slide-content.text-only .visualization-container {
+    display: none;
+  }
+  
+  .slide-content.text-only .verse-text {
+    font-size: 2.5rem;
+    text-align: center;
+  }
+  
+  /* Verse container styles */
+  .verse-container {
+    flex: 1;
+    padding: 30px;
+    background-color: #E6B2BA;
+    color: rgb(137, 80, 51);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .verse-text {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+  
+  .verse-line {
+    margin: 10px 0;
+  }
+  
+  /* Visualization container styles */
+  .visualization-container {
+    flex: 2;
+    padding: 30px;
+    background-color: #C599B6;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .visualization-placeholder {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+  }
+  
+  /* Navigation controls */
+  .slideshow-controls {
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #FAD0C4;
+  }
+  
+  .nav-button {
+    padding: 8px 16px;
+    background-color: #C599B6;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .nav-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .slide-indicator {
+    font-size: 1rem;
+    color: rgb(137, 80, 51);
+  }
+  
+  /* Chart styles */
+  .bar-chart {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    border-bottom: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    padding: 20px;
+  }
+  
+  .bar {
+    width: 40px;
+    background-color: rgb(220, 120, 140);
+    margin: 0 10px;
+    transition: height 0.5s ease;
+  }
+  
+  .horizontal-bars {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 80%;
+    justify-content: space-around;
+  }
+  
+  .h-bar {
+    height: 30px;
+    background-color: rgb(220, 120, 140);
+    margin: 5px 0;
+    transition: width 0.5s ease;
+  }
+  
+  .map-placeholder {
+    width: 100%;
+    height: 80%;
+    background-color: rgba(220, 120, 140, 0.2);
+    border-radius: 8px;
+  }
+  
+  .map-placeholder.purple {
+    background-color: rgba(128, 0, 128, 0.2);
+  }
+  
+  .scatter-placeholder {
+    width: 100%;
+    height: 80%;
+    position: relative;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  .dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(220, 120, 140, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .regression-line {
+    position: absolute;
+    width: 60%;
+    height: 2px;
+    background-color: red;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+  }
+  
+  .radar-placeholder {
+    width: 80%;
+    height: 80%;
+    background-color: #f9f9f9;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .boxplot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  .boxplot-box {
+    width: 60%;
+    height: 40px;
+    background-color: rgba(220, 120, 140, 0.7);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .boxplot-median {
+    width: 5px;
+    height: 40px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .boxplot-whiskers {
+    width: 80%;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  /* Box plot styles */
+  .box-plot {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .boxplot-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+  }
+  
+  .region-label {
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+  
+  .boxplot-container {
+    position: relative;
+    width: 70%;
+    height: 20px;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .verse-line {
+    animation: fadeIn 0.8s ease-in-out;
+  }

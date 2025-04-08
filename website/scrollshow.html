@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>a girl's dream</title>
+  <link rel="stylesheet" type="text/css" href="scroll-styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+</head>
+<body>
+  <div class="main-container">
+    <header>
+      <h1 class="title">a girl's dream</h1>
+      <h2>by jiya shah and yutong hu</h2>
+    </header>
+    
+    <main class="wrapper">
+      <div class="left-column">
+        <div class="left-column-content" id="left-column-content">
+          <div class="filler-verse"></div>
+          
+          <ul class="verse" id="verse1">
+            <li class="line" id="line1">since i was small, i have always dreamed big</li>
+            <li class="line" id="line2">"a doctor—no lawyer!—no…</li>
+            <li class="line" id="line3">scientist!"</li>
+            <li class="line" id="line4">yet when the time came, the boys ran ahead</li>
+            <li class="line" id="line5">reading and writing and learning while i—</li>
+          </ul>
+
+          <ul class="verse" id="verse2">
+            <li class="line" id="line1">i stayed home instead.</li>
+          </ul>
+
+          <ul class="verse" id="verse3">
+            <li class="line" id="line1">maybe i could…i could have a new dream?</li>
+            <li class="line" id="line2">to plan out my life, when i'll have my kids?</li>
+            <li class="line" id="line3">not go through</li>
+            <li class="line" id="line4">what women before me did?</li>
+            <li class="line" id="line5">it's a joke, of course.</li>
+          </ul>
+
+          <ul class="verse" id="verse4">
+            <li class="line" id="line1">like everything is.</li>
+          </ul>
+
+          <ul class="verse" id="verse5">
+            <li class="line" id="line1">too young to drive, i rock my baby slow</li>
+            <li class="line" id="line2">my childhood dolls still scattered on the floor</li>
+            <li class="line" id="line3">old dreams in dust, baby cries forevermore...</li>
+            <li class="line" id="line4">what could i be—? hush, my love, don't you cry</li>
+            <li class="line" id="line5">all for her now, i'll be here 'till i die</li>
+          </ul>
+
+          <ul class="verse" id="verse6">
+            <li class="line" id="line1">withering away.</li>
+          </ul>
+
+          <ul class="verse" id="verse7">
+            <li class="line" id="line1">dreamed of love notes, gentle hands and a home</li>
+            <li class="line" id="line2">from fist to fist, all i could do was roam</li>
+            <li class="line" id="line3">"he'll change." i say, but purple blots still bloom</li>
+            <li class="line" id="line4">no warmth and no home, what more could i lose?</li>
+          </ul>
+
+          <ul class="verse" id="verse8">
+            <li class="line" id="line1">please don't forget me, i'm not a shadow,</li>
+            <li class="line" id="line2">not a number, just</li>
+            <li class="line" id="line3">a girl with a</li>
+          </ul>
+
+          <ul class="verse" id="verse9">
+            <li class="line" id="line1">dream</li>
+          </ul>
+          
+          <div class="filler-verse"></div>
+        </div>
+      </div>
+      
+      <div class="right-column">
+        <div class="visualization-container" id="visualization-container">
+          <!-- Visualizations will be inserted dynamically by JavaScript -->
+        </div>
+      </div>
+    </main>
+    
+    <footer>
+      <button class="arrow-button" id="backward-button">◄</button>
+      <button class="arrow-button" id="forward-button">►</button>
+    </footer>
+  </div>
+
+  <script src="scroll-script.js"></script>
+</body>
+</html>

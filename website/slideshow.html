@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>a girl's dream</title>
+  <link rel="stylesheet" type="text/css" href="slideshow.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
+</head>
+<body>
+  <div class="slideshow-container">
+    <header class="slideshow-header">
+      <h1 class="title">a girl's dream</h1>
+      <h2>by jiya shah and yutong hu</h2>
+    </header>
+    
+    <div class="slide">
+      <div class="slide-content">
+        <div class="verse-container">
+          <h3>Verse <span id="verse-number">1</span></h3>
+          <div id="verse-text" class="verse-text">
+            <!-- Verse content will be inserted by JavaScript -->
+          </div>
+        </div>
+        
+        <div class="visualization-container">
+          <h3 id="viz-title">Youth Literacy Disparity</h3>
+          <div id="visualization" class="visualization-placeholder">
+            <!-- Visualization will be inserted by JavaScript -->
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="slideshow-controls">
+      <button id="prev-button" class="nav-button">◄ Previous</button>
+      <div id="slide-indicator" class="slide-indicator">1 / 9</div>
+      <button id="next-button" class="nav-button">Next ►</button>
+    </div>
+  </div>
+
+  <script src="slideshow.js"></script>
+</body>
+</html>

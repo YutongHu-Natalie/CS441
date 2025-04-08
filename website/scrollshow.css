@@ -1,0 +1,346 @@
+/* Base reset */
+body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+  }
+  
+  body, html {
+    height: 100%;
+  }
+  
+  /* Main container */
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #FAD0C4;
+    text-align: center;
+    color: rgb(137, 80, 51);
+    padding: 20px 0;
+  }
+  
+  .title {
+    margin: 0;
+    padding: 0;
+    color: rgb(137, 80, 51);
+  }
+  
+  /* Main wrapper */
+  .wrapper {
+    display: flex;
+    flex-grow: 1;
+    height: calc(100vh - 150px);
+  }
+  
+  /* Left column styles */
+  .left-column {
+    flex: 1;
+    background-color: #E6B2BA;
+    color: rgb(137, 80, 51);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .left-column-content {
+    max-height: calc(100vh - 150px);
+    overflow: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+  }
+  
+  .left-column-content::-webkit-scrollbar {
+    width: 0; /* Chrome, Safari, Opera */
+    height: 0;
+  }
+  
+  /* Right column styles */
+  .right-column {
+    flex: 2;
+    background-color: #C599B6;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  /* Filler verse */
+  .filler-verse {
+    height: 30vh;
+  }
+  
+  /* Verse and line styles */
+  .verse {
+    font-size: 2em;
+    list-style-type: none;
+    padding: 0;
+    margin: 30px 0;
+    font-weight: 100;
+    color: rgb(137, 80, 51);
+    transition: color 0.3s ease;
+  }
+  
+  .active-verse {
+    color: #a45784;
+  }
+  
+  .line {
+    margin: 10px 0;
+    transition: font-weight 0.3s ease, color 0.3s ease;
+  }
+  
+  .active-line {
+    font-weight: 1000;
+    color: #84466a;
+  }
+  
+  /* Footer styles */
+  footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #FAD0C4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+  }
+  
+  .arrow-button {
+    font-size: 10px;
+    padding: 2px 10px;
+    margin: 0 10px;
+    height: 25px;
+    cursor: pointer;
+    border: none;
+    background-color: #C599B6;
+    color: white;
+    border-radius: 3px;
+  }
+  
+  .arrow-button:hover {
+    background-color: #a45784;
+  }
+  
+  /* Visualization container */
+  .visualization-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .visualization {
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Visualization title */
+  .viz-title {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #84466a;
+  }
+  
+  /* Bar chart styles */
+  .bar-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 70%;
+    border-bottom: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    padding: 10px;
+  }
+  
+  .bar {
+    width: 40px;
+    background-color: rgb(220, 120, 140);
+    margin: 0 10px;
+    transition: height 0.5s ease;
+  }
+  
+  /* Box plot styles */
+  .box-plot {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .boxplot-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    margin: 10px 0;
+  }
+  
+  .region-label {
+    width: 120px;
+    text-align: right;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+  
+  .boxplot-container {
+    position: relative;
+    width: 70%;
+    height: 20px;
+  }
+  
+  .boxplot-min {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: black;
+  }
+  
+  .boxplot-box {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40%;
+    height: 20px;
+    background-color: rgba(220, 120, 140, 0.7);
+  }
+  
+  .boxplot-median {
+    position: absolute;
+    left: 30%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 20px;
+    background-color: white;
+    z-index: 1;
+  }
+  
+  .boxplot-max {
+    position: absolute;
+    left: 60%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 2px;
+    height: 20px;
+    background-color: black;
+  }
+  
+  /* Map styles */
+  .map-placeholder {
+    width: 100%;
+    height: 70%;
+    background-color: rgba(220, 120, 140, 0.2);
+    border-radius: 8px;
+    border: 1px solid #ddd;
+  }
+  
+  .violence-map {
+    background-color: rgba(128, 0, 128, 0.2);
+  }
+  
+  /* Horizontal bar chart styles */
+  .horizontal-bar-chart {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  
+  .h-bar-row {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 30px;
+    margin: 5px 0;
+  }
+  
+  .country-label {
+    width: 100px;
+    text-align: right;
+    padding-right: 20px;
+    font-weight: bold;
+  }
+  
+  .h-bar {
+    height: 20px;
+    background-color: rgb(220, 120, 140);
+    margin-right: 10px;
+    transition: width 0.5s ease;
+  }
+  
+  .value-label {
+    width: 30px;
+  }
+  
+  /* Scatter plot styles */
+  .scatter-plot {
+    width: 100%;
+    height: 70%;
+    border-bottom: 2px solid #ddd;
+    border-left: 2px solid #ddd;
+    position: relative;
+  }
+  
+  .scatter-point {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(220, 120, 140);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .trend-line {
+    position: absolute;
+    width: 65%;
+    height: 2px;
+    background-color: #84466a;
+    top: 45%;
+    left: 45%;
+    transform: translate(-50%, -50%) rotate(-30deg);
+  }
+  
+  /* Radar chart styles */
+  .radar-chart {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(220, 120, 140, 0.1);
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .visualization {
+    animation: fadeIn 0.5s ease-in-out;
+  }
