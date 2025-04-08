@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Slide data
     const slides = [
         {
+          verse: 0,
+          text: `a girl's dream\nby jiya shah and yutong hu`,
+                  visualization: 'none',
+                  title: ''
+        },
+        {
             verse: 1,
             text: `since i was small, i have always dreamed big
       "a doctor—no lawyer!—no…
@@ -74,7 +80,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       {
         verse: 9,
-        text: 'Dream',
+        text: 'dream',
         visualization: 'none', // Text only slide
         title: ''
       }
