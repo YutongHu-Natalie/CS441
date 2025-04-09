@@ -573,10 +573,10 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .on("mouseover", function(event, d) {
             if(compsvg.classed("active")){
                 d3.select(this).style("cursor", "pointer");
-                if (selectedRegion === null || selectedRegion === d) {
+                if (selectedRegion === null) {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === d ? 1 : 0.2;  
+                            return pointData['SDG Region'] === d ? 1 : 0.1;  
                         });
                     regressionLine(d);
                 }
@@ -591,9 +591,10 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 } else {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.2;
+                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
                         });
                 }
+                regressionLine();
             }
         });
 
@@ -624,10 +625,10 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .on("mouseover", function(event, d) {
             if(compsvg.classed("active")){
                 d3.select(this).style("cursor", "pointer");
-                if (selectedRegion === null || selectedRegion === d) {
+                if (selectedRegion === null) {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === d ? 1 : 0.2;  // opacity lower
+                            return pointData['SDG Region'] === d ? 1 : 0.1;  // opacity lower
                         })
                         .transition()
                         .duration(1000);
@@ -641,10 +642,11 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
                         .style("opacity", 1);  // reset opacity
+                    regressionLine();
                 } else {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.2;
+                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
                         });
                 }
             }
