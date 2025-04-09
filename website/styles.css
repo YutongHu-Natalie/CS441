@@ -159,10 +159,7 @@ path {
 .tooltip{
   z-index: 9999;
 }
-circle {
-  pointer-events: all;
-  cursor:pointer;
-}
+
 
 
 /* Bar chart SVG elements */

@@ -9,6 +9,23 @@ const basePath1 = window.location.hostname === "localhost" ||
 
 let mapsvg;
 
+    // tooltip
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background-color", "rgba(0, 0, 0, 0.7)")
+        .style("color", "white")
+        .style("padding", "8px")
+        .style("border-radius", "5px")
+        .style("font-size", "0.8rem")
+        .style("pointer-events", "none")
+        .style("z-index", "9999");;
+        d3.select("body").on("mousemove", function(event) { //move it to where the mouse is
+            tooltip.style("left", (event.pageX + 10) + "px") 
+                   .style("top", (event.pageY + 10) + "px"); 
+        });
+
 // CHANGE 1: Reduced map dimensions for better display
 let mapwidth = 1000;
 let mapheight = 500;
@@ -139,6 +156,10 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         .attr("stroke", "#000") 
         .attr("stroke-width", 0.5); 
 
+    let selectedCountries = []
+    let countriesWithValueOverTwenty = dvMapData.filter(country => {
+        return parseFloat(country['Value(%)']) > 20;
+      });
     // countries topo-json
     mapGroup.append("g")
       .selectAll("path")
@@ -154,7 +175,64 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         }
       })
       .attr("stroke", "#fff")
-      .attr("stroke-width", 0.5);
+      .attr("stroke-width", 0.5)
+      .on("click", function(event, d) {
+        let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
+        if(dvMapSvg.classed("active")){
+            if (countryData) {
+                // Show the tooltip and update its content
+                tooltip.style("visibility", "visible")
+                    .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
+        
+                // Toggle highlight (if already highlighted, remove the highlight)
+                if (d3.select(this).classed("highlighted")) {
+                    d3.select(this)
+                        .classed("highlighted", false)
+                        .classed("unhighlighted", true)
+                        .attr("stroke", "#fff") // revert to original stroke color
+                        .attr("stroke-width", 0.5); // revert to original stroke width
+                        selectedCountries = selectedCountries.filter(country => country !== countryData['Geographic Area Name']);
+                } else {
+                    d3.select(this)
+                        .classed("unhighlighted", false)
+                        .classed("highlighted", true) 
+                        .attr("stroke", "red") 
+                        .attr("stroke-width", 2); 
+                        selectedCountries.push(countryData['Geographic Area Name']);
+                }
+            }
+            console.log(selectedCountries)
+            console.log(countriesWithValueOverTwenty)
+
+        }
+    })
+    .on("mouseover", function(event, d) {
+        if (!d3.select(this).classed("highlighted")) {
+            // Only show hover highlight if not clicked (not already highlighted)
+            let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
+            if (countryData) {
+                // Show the tooltip and update its content
+                tooltip.style("visibility", "visible")
+                    .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
+    
+                // Highlight on hover (if not already clicked)
+                d3.select(this)
+                    .attr("stroke", "#000") // change to black for hover effect
+                    .attr("stroke-width", 2); // increase stroke width
+            }
+        }
+    })
+    .on("mouseout", function(event, d) {
+        // Hide the tooltip when mouse leaves
+        tooltip.style("visibility", "hidden");
+    
+        // Remove highlight on the country (if not clicked)
+        if (!d3.select(this).classed("highlighted")) {
+            d3.select(this)
+                .attr("stroke", "#fff") // revert to original stroke color
+                .attr("stroke-width", 0.5); // revert to original stroke width
+        }
+    });
 
     // CHANGE 7: Adjusted legend positioning and size
     legendWidth = 30;
@@ -243,9 +321,43 @@ async function loadCompDatas(){
 async function initializeCompSvg() {
     await loadCompDatas();
     drawCompPlot();
+        // Adding HTML elements (Select dropdowns) dynamically using D3
+        d3.select("body").append("label")
+        .attr("for", "x-axis")
+        .text("Select X Axis:");
+
+        d3.select("body").append("select")
+        .attr("id", "x-axis")
+        .selectAll("option")
+        .data([
+            {value: "Value(%)", text: "% of Women With Adequate Access to Family Planning"},
+            {value: "SomeOtherColumn1", text: "Some Other Variable 1"},
+            {value: "SomeOtherColumn2", text: "Some Other Variable 2"}
+        ])
+        .enter()
+        .append("option")
+        .attr("value", d => d.value)
+        .text(d => d.text);
+
+        d3.select("body").append("label")
+        .attr("for", "y-axis")
+        .text("Select Y Axis:");
+
+        d3.select("body").append("select")
+        .attr("id", "y-axis")
+        .selectAll("option")
+        .data([
+            {value: "Value(per 1,000 population)", text: "Adolescent Births per Thousand"},
+            {value: "SomeOtherColumn3", text: "Some Other Variable 3"},
+            {value: "SomeOtherColumn4", text: "Some Other Variable 4"}
+        ])
+        .enter()
+        .append("option")
+        .attr("value", d => d.value)
+        .text(d => d.text);
 }
 
-function drawCompPlot(){
+function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     famPlanData.forEach(d => {
         d['Value(%)'] = parseFloat(d['Value(%)']);
         if (isNaN(d['Value(%)'])) {
@@ -263,10 +375,7 @@ function drawCompPlot(){
     compsvg.attr("width", "100%")
         .attr("height", compHeight)
         .attr("viewBox", `0 0 ${compWidth} ${compHeight}`)
-        .attr("preserveAspectRatio", "xMidYMid meet")
-        .on("mouseover", function(event) {
-            console.log("Mouseover triggered on div");
-        });;
+        .attr("preserveAspectRatio", "xMidYMid meet");
 
     // Clear any existing elements
     compsvg.selectAll("*").remove();
@@ -280,11 +389,11 @@ function drawCompPlot(){
         .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
     //filter fam plan by countries in abr
-    let countries1 = adolBirthData.map(d => d['ISO3']);  
-    let countries2 = famPlanData.map(d => d['ISO3']);  
+    let countries1 = xData.map(d => d['ISO3']);  
+    let countries2 = yData.map(d => d['ISO3']);  
 
     let commonCountries = countries1.filter(country => countries2.includes(country));
-    let filteredFPData = famPlanData.filter(d => commonCountries.includes(d['ISO3']));
+    let filteredFPData = xData.filter(d => commonCountries.includes(d['ISO3']));
 
     xScale = d3.scaleLinear()
     .domain([
@@ -354,23 +463,8 @@ function drawCompPlot(){
     .range(["#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]); 
 
 
-    // tooltip
-    const tooltip = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("position", "absolute")
-        .style("visibility", "hidden")
-        .style("background-color", "rgba(0, 0, 0, 0.7)")
-        .style("color", "white")
-        .style("padding", "8px")
-        .style("border-radius", "5px")
-        .style("font-size", "0.8rem")
-        .style("pointer-events", "none")
-        .style("z-index", "9999");;
-        d3.select("body").on("mousemove", function(event) { //move it to where the mouse is
-            tooltip.style("left", (event.pageX + 10) + "px") 
-                   .style("top", (event.pageY + 10) + "px"); 
-        });
-        
+    
+        const selectxaxis = d3.select("body").append("div");
 
     //plot points
     chart.selectAll("circle")
@@ -390,17 +484,17 @@ function drawCompPlot(){
         return color;
     })
     .on("mouseover", function(event, d) {
-        // Log to check if event is triggered
-        console.log("Mouseover event triggered!", event, d);
-
-        let row = adolBirthData.find(abr => abr['ISO3'] === d['ISO3']);
-        tooltip.style("visibility", "visible")
-            .html(`
-                <strong>Country:</strong> ${d['Geographic Area Name']}<br>
-                <strong>SDG Region:</strong> ${d['SDG Region']}<br>
-                <strong>Family Planning Access:</strong> ${d['Value(%)']}%<br>
-                <strong>Adolescent Birth Rate:</strong> ${row ? row['Value(per 1,000 population)'] : "N/A"} per 1,000
+        if(compsvg.classed('active')){ //if the svg is active
+            let row = adolBirthData.find(abr => abr['ISO3'] === d['ISO3']);
+            tooltip.style("visibility", "visible")
+                .html(`
+                    <strong>Country:</strong> ${d['Geographic Area Name']}<br>
+                    <strong>SDG Region:</strong> ${d['SDG Region']}<br>
+                    <strong>Family Planning Access:</strong> ${d['Value(%)']}%<br>
+                    <strong>Adolescent Birth Rate:</strong> ${row ? row['Value(per 1,000 population)'] : "N/A"} per 1,000
             `);
+        }
+        
     })
     .on("mousemove", function(event) {
         const [x, y] = d3.pointer(event); // Using d3.pointer to get mouse position

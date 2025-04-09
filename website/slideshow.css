@@ -236,3 +236,63 @@ html {
 #dvmap {
     background-color: transparent; /* Make background transparent */
   }
+  /* dv map stylings */
+
+  path {
+    stroke: #000;
+  }
+  path.highlighted {
+    stroke: purple;
+  }
+  .graticule {
+    fill: none;
+    stroke: #76148e;
+    stroke-width: .5px;
+  }
+  .foreground {
+    fill: none;
+    stroke: #333;
+    stroke-width: 1.5px;
+  }
+  #dvmap {
+    background-color: transparent; /* Make background transparent */
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    padding: 20px;
+  }
+  /* comp scatter plot stylings */
+  
+  #compplot {
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    padding: 20px;
+  }
+  .tooltip{
+    z-index: 9999;
+  }
+  
+  
+  
+  /* Bar chart SVG elements */
+  #ylcbarchart, #abrbarchart {
+    width: 100%;       /* Fill the width of the parent div */
+    height: 500px;     /* Taller height */
+    max-width: 800px;  /* But don't exceed 800px */
+    display: flex;
+    justify-content: center;
+    padding-left: 30px;
+  }
+  
+  /* Container divs for the bar charts */
+  .right-column div:has(#ylcbarchart), 
+  .right-column div:has(#abrbarchart) {
+    width: 100%;      /* Take full width of right column */
+    padding: 2px;    /* Add some padding */
+    box-sizing: border-box; /* Include padding in width calculation */
+  }
+  #fampboxw {
+    width: 100%;       /* Fill the width of the parent div */
+    height: 500px;     /* Taller height */
+    max-width: 800px;  /* But don't exceed 800px */
+    display: flex;
+    justify-content: center;
+    padding-left: 30px;
+  }
