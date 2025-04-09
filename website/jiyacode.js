@@ -97,6 +97,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     //title
     // CHANGE 5: Adjusted title positioning
     mapsvg.append("text")
+    .style("background-color", "transparent")
     .attr("x", mapwidth/2)
     .attr("y", 30)
     .attr("text-anchor", "middle")
@@ -262,7 +263,10 @@ function drawCompPlot(){
     compsvg.attr("width", "100%")
         .attr("height", compHeight)
         .attr("viewBox", `0 0 ${compWidth} ${compHeight}`)
-        .attr("preserveAspectRatio", "xMidYMid meet");
+        .attr("preserveAspectRatio", "xMidYMid meet")
+        .on("mouseover", function(event) {
+            console.log("Mouseover triggered on div");
+        });;
 
     // Clear any existing elements
     compsvg.selectAll("*").remove();
@@ -349,6 +353,25 @@ function drawCompPlot(){
     .domain(sdgRegions)
     .range(["#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]); 
 
+
+    // tooltip
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background-color", "rgba(0, 0, 0, 0.7)")
+        .style("color", "white")
+        .style("padding", "8px")
+        .style("border-radius", "5px")
+        .style("font-size", "0.8rem")
+        .style("pointer-events", "none")
+        .style("z-index", "9999");;
+        d3.select("body").on("mousemove", function(event) { //move it to where the mouse is
+            tooltip.style("left", (event.pageX + 10) + "px") 
+                   .style("top", (event.pageY + 10) + "px"); 
+        });
+        
+
     //plot points
     chart.selectAll("circle")
     .data(filteredFPData)
@@ -365,7 +388,30 @@ function drawCompPlot(){
     .attr("fill", function(d){
         let color = colorScale(d['SDG Region']);
         return color;
-    });
+    })
+    .on("mouseover", function(event, d) {
+        // Log to check if event is triggered
+        console.log("Mouseover event triggered!", event, d);
+
+        let row = adolBirthData.find(abr => abr['ISO3'] === d['ISO3']);
+        tooltip.style("visibility", "visible")
+            .html(`
+                <strong>Country:</strong> ${d['Geographic Area Name']}<br>
+                <strong>SDG Region:</strong> ${d['SDG Region']}<br>
+                <strong>Family Planning Access:</strong> ${d['Value(%)']}%<br>
+                <strong>Adolescent Birth Rate:</strong> ${row ? row['Value(per 1,000 population)'] : "N/A"} per 1,000
+            `);
+    })
+    .on("mousemove", function(event) {
+        const [x, y] = d3.pointer(event); // Using d3.pointer to get mouse position
+        tooltip.style("top", (y + 10) + "px")
+            .style("left", (x + 10) + "px");
+    })
+    .on("mouseout", function() {
+        tooltip.style("visibility", "hidden");
+    })
+    .style("pointer-events", "all");
+
 
     //regression line
     //combine data

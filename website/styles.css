@@ -96,10 +96,6 @@ footer {
   color:  rgb(137, 80, 51);
 }
 
-#svg {
-  background-color: #444;
-}
-
 /* TODO add css classes for active-verse and active-line */
 .active-line{
   font-weight: 1000;
@@ -151,13 +147,24 @@ path {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   padding: 20px;
 }
-
+#dvmap {
+  background-color: transparent; /* Make background transparent */
+}
 /* comp scatter plot stylings */
 
 #compplot {
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   padding: 20px;
 }
+.tooltip{
+  z-index: 9999;
+}
+circle {
+  pointer-events: all;
+  cursor:pointer;
+}
+
+
 /* Bar chart SVG elements */
 #ylcbarchart, #abrbarchart {
   width: 100%;       /* Fill the width of the parent div */

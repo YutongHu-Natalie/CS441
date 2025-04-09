@@ -233,3 +233,6 @@ html {
         font-size: 2rem;
     }
 }
+#dvmap {
+    background-color: transparent; /* Make background transparent */
+  }

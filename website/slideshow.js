@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const vizElement = document.getElementById(slide.visualization);
         if (vizElement) {
           vizElement.classList.add('active');
+          vizElement.style.zIndex = 100;  // Set a high z-index for the active visualization
         }
       }
       
