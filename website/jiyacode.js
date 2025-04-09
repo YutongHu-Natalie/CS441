@@ -468,7 +468,7 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     // color by sdg region
     let colorScale = d3.scaleOrdinal() 
     .domain(sdgRegions)
-    .range(["#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]); 
+    .range(["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#a65b85"]); 
 
 
     
@@ -517,70 +517,174 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
 
     //regression line
     //combine data
-    let combinedData = filteredFPData.map(d => [
-        d['Value(%)'],
-        adolBirthData.find(abr => abr['ISO3'] === d['ISO3'])['Value(per 1,000 population)']
-    ]);
+    function regressionLine(sdgRegion = null){
+        console.log('hi')
+        let filteredData = filteredFPData;
+        if (sdgRegion) {
+            filteredData = filteredFPData.filter(d => d['SDG Region'] === sdgRegion);
+        }
 
-    //simple statistics library to generate lbf
-    let regression = ss.linearRegression(combinedData);
-    let m = regression.m; 
-    let b = regression.b;  
+        let combinedData = filteredData.map(d => [
+            d['Value(%)'],
+            adolBirthData.find(abr => abr['ISO3'] === d['ISO3'])['Value(per 1,000 population)']
+        ]);
     
-    let bestFitLine = d3.line()
-        .x(d => xScale(d[0])) 
-        .y(d => yScale(m * d[0] + b)); 
+        //simple statistics library to generate lbf
+        let regression = ss.linearRegression(combinedData);
+        let m = regression.m; 
+        let b = regression.b;  
+        
+        let bestFitLine = d3.line()
+            .x(d => xScale(d[0])) 
+            .y(d => yScale(m * d[0] + b)); 
+        
+        //remove if exists
+        chart.selectAll(".best-fit-line").remove();
+        // draw the line of best fit
+        chart.append("path")
+            .data([combinedData])
+            .attr("class", "best-fit-line")
+            .attr("d", bestFitLine)
+            .attr("fill", "none")
+            .attr("stroke", "red")
+            .attr("stroke-width", 2);
+    
+        //statistical measures
+        let r2 = ss.rSquared(combinedData, ss.linearRegressionLine(regression));
+    }
+    regressionLine(); 
+   
 
-    // draw the line of best fit
-    chart.append("path")
-        .data([combinedData])
-        .attr("class", "best-fit-line")
-        .attr("d", bestFitLine)
-        .attr("fill", "none")
-        .attr("stroke", "red")
-        .attr("stroke-width", 2);
-
-    //statistical measures
-    let r2 = ss.rSquared(combinedData, ss.linearRegressionLine(regression));
-
+    let selectedRegion = null;
     // CHANGE 10: Repositioned and resized legend to account for larger plot
+    const scaleFactor = 0.8;  // Set this to whatever scale you need (e.g., 0.5 for 50%)
+
     let legend = compsvg.append("g")
         .attr("transform", `translate(${compWidth - 170}, 70)`);
 
     legend.append("rect")
-    .attr("width", 160)
-    .attr("height", 25 + sdgRegions.length * 25)
-    .style("fill", "#000")
-    .style("opacity", 0.15);
+        .attr("width", 300 * scaleFactor)  // Scale the width
+        .attr("height", (25 + sdgRegions.length * 25) * scaleFactor)  // Scale the height
+        .style("fill", "#000")
+        .style("opacity", 0.15);
 
     legend.append("text")
-    .attr("x", 12)
-    .attr("y", 18)
-    .style("font-size", "0.9rem")
-    .style("fill", "black")
-    .text("SDG Regions");
+        .attr("x", 12 * scaleFactor)  // Scale the text position
+        .attr("y", 18 * scaleFactor)  // Scale the text position
+        .style("font-size", `${0.7 * scaleFactor}rem`)  // Scale the font size
+        .style("fill", "black")
+        .text("SDG Regions");
+
+    function updatePlotOpacity() {
+        chart.selectAll("circle")
+            .transition()  // Apply a smooth transition when changing opacity
+            .style("opacity", function(d) {
+                return selectedRegion && d['SDG Region'] !== selectedRegion ? 0.1 : 1;
+            });
+    }
 
     legend.selectAll("mydots")
-    .data(sdgRegions)
-    .enter()
-    .append("circle")
-    .attr("cx", 18)
-    .attr("cy", function(d,i){ return 38 + i*25})
-    .attr("r", 6)
-    .style("fill", function(d){ return colorScale(d)});
+        .data(sdgRegions)
+        .enter()
+        .append("circle")
+        .attr("cx", 18 * scaleFactor) 
+        .attr("cy", function(d, i) { 
+            return (38 + i * 25) * scaleFactor; 
+        })
+        .attr("r", 6 * scaleFactor)  
+        .style("fill", function(d) { return colorScale(d); })
+        .on("click", function(event, d) {
+            if(compsvg.classed("active")){
+                if (selectedRegion === d) {
+                    selectedRegion = null;  
+                    regressionLine();
+                } else {
+                    selectedRegion = d;  
+                    regressionLine(selectedRegion);
+                }
+                updatePlotOpacity();
+            }
+        })
+        .on("mouseover", function(event, d) {
+            if(compsvg.classed("active")){
+                d3.select(this).style("cursor", "pointer");
+                if (selectedRegion === null || selectedRegion === d) {
+                    chart.selectAll("circle")
+                        .style("opacity", function(pointData) {
+                            return pointData['SDG Region'] === d ? 1 : 0.2;  // Lower opacity for non-matching points
+                        });
+                    // Optionally update the regression line on hover based on region
+                    regressionLine(d);  // This will update the regression line for the hovered SDG region
+                }
+            }
+        })
+        .on("mouseout", function(event, d) {
+            if(compsvg.classed("active")){
+                d3.select(this).style("cursor", "default");
+                if (selectedRegion === null) {
+                    chart.selectAll("circle")
+                        .style("opacity", 1);  // Reset to default opacity
+                } else {
+                    chart.selectAll("circle")
+                        .style("opacity", function(pointData) {
+                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.2;
+                        });
+                }
+            }
+        });
 
     legend.selectAll("mylabels")
-    .data(sdgRegions)
-    .enter()
-    .append("text")
-    .attr("x", 30)
-    .attr("y", function(d,i){ return 42 + i*25})
-    .style("font-size", "0.8rem")
-    .style("fill", "black")
-    .text(function(d){ return d})
-    .attr("text-anchor", "left");
+        .data(sdgRegions)
+        .enter()
+        .append("text")
+        .attr("x", 30 * scaleFactor)  
+        .attr("y", function(d, i) { 
+            return (42 + i * 25) * scaleFactor; 
+        })
+        .style("font-size", `${0.8 * scaleFactor}rem`) 
+        .style("fill", "black")
+        .text(function(d) { return d; })
+        .attr("text-anchor", "left")
+        .on("click", function(event, d) {
+            if(compsvg.classed("active")){
+                if (selectedRegion === d) {
+                    selectedRegion = null;  
+                    regressionLine();
+                } else {
+                    selectedRegion = d;  
+                    regressionLine(selectedRegion);
+                }
+                updatePlotOpacity();
+            }
+        })
+        .on("mouseover", function(event, d) {
+            if(compsvg.classed("active")){
+                d3.select(this).style("cursor", "pointer");
+                if (selectedRegion === null || selectedRegion === d) {
+                    chart.selectAll("circle")
+                        .style("opacity", function(pointData) {
+                            return pointData['SDG Region'] === d ? 1 : 0.2;  // Lower opacity for non-matching points
+                        });
+                    // Optionally update the regression line on hover based on region
+                    regressionLine(d);  // This will update the regression line for the hovered SDG region
+                }
+            }
+        })
+        .on("mouseout", function(event, d) {
+            if(compsvg.classed("active")){
+                d3.select(this).style("cursor", "default");
+                if (selectedRegion === null) {
+                    chart.selectAll("circle")
+                        .style("opacity", 1);  // Reset to default opacity
+                } else {
+                    chart.selectAll("circle")
+                        .style("opacity", function(pointData) {
+                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.2;
+                        });
+                }
+            }
+        });
 };
 
-// Initialize maps and scatter plot
 initializeMapSVG();
 initializeCompSvg();
