@@ -105,7 +105,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         titleMap = "% of Women with Access to Adequate Family Planning";
     } 
 
-    // Clear previous content
+    // clear prev content
     mapsvg.selectAll("*").remove();
 
     //defs (for definition) element to your SVG
@@ -121,10 +121,10 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     .style("font-size", "1.2rem")
     .text(titleMap); 
     
-    // Create a map group to hold all map elements
-    // CHANGE 6: Create a group for the map content with proper positioning
-    const svgWidth = parseInt(mapsvg.style("width"));  // Get the actual width of the SVG container
-    const svgHeight = parseInt(mapsvg.style("height"));  // Get the actual height of the SVG container
+    // create map group to hold all map elements
+    // CHANGE 6: create a group for the map content with proper positioning
+    const svgWidth = parseInt(mapsvg.style("width"));  // actual width of the SVG container
+    const svgHeight = parseInt(mapsvg.style("height"));  // actual height of the SVG container
 
     // Translate the map group so it's centered in the SVG container
     const translateX = -(svgWidth - mapwidth) / 5;
@@ -187,11 +187,11 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
         if(dvMapSvg.classed("active")){
             if (countryData) {
-                // Show the tooltip and update its content
+                // show the tooltip and update its content
                 tooltip.style("visibility", "visible")
                     .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
         
-                // Toggle highlight (if already highlighted, remove the highlight)
+                // toggle highlight (if already highlighted, remove the highlight)
                 if (d3.select(this).classed("highlighted")) {
                     d3.select(this)
                         .classed("highlighted", false)
@@ -209,20 +209,19 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
                 }
             }
             console.log(selectedCountries)
-            console.log(count)
 
         }
     })
     .on("mouseover", function(event, d) {
         if (!d3.select(this).classed("highlighted")) {
-            // Only show hover highlight if not clicked (not already highlighted)
+            // only show hover highlight if not clicked (not already highlighted)
             let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
             if (countryData) {
-                // Show the tooltip and update its content
+                // show tooltip and update its content
                 tooltip.style("visibility", "visible")
                     .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
     
-                // Highlight on hover (if not already clicked)
+                // highlight on hover (if not already clicked)
                 d3.select(this)
                     .attr("stroke", "#000") // change to black for hover effect
                     .attr("stroke-width", 2); // increase stroke width
@@ -230,10 +229,10 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         }
     })
     .on("mouseout", function(event, d) {
-        // Hide the tooltip when mouse leaves
+        // hide the tooltip when mouse leaves
         tooltip.style("visibility", "hidden");
     
-        // Remove highlight on the country (if not clicked)
+        // remove highlight on the country (if not clicked)
         if (!d3.select(this).classed("highlighted")) {
             d3.select(this)
                 .attr("stroke", "#fff") // revert to original stroke color
@@ -329,40 +328,6 @@ async function loadCompDatas(){
 async function initializeCompSvg() {
     await loadCompDatas();
     drawCompPlot();
-        // Adding HTML elements (Select dropdowns) dynamically using D3
-        d3.select("body").append("label")
-        .attr("for", "x-axis")
-        .text("Select X Axis:");
-
-        d3.select("body").append("select")
-        .attr("id", "x-axis")
-        .selectAll("option")
-        .data([
-            {value: "Value(%)", text: "% of Women With Adequate Access to Family Planning"},
-            {value: "SomeOtherColumn1", text: "Some Other Variable 1"},
-            {value: "SomeOtherColumn2", text: "Some Other Variable 2"}
-        ])
-        .enter()
-        .append("option")
-        .attr("value", d => d.value)
-        .text(d => d.text);
-
-        d3.select("body").append("label")
-        .attr("for", "y-axis")
-        .text("Select Y Axis:");
-
-        d3.select("body").append("select")
-        .attr("id", "y-axis")
-        .selectAll("option")
-        .data([
-            {value: "Value(per 1,000 population)", text: "Adolescent Births per Thousand"},
-            {value: "SomeOtherColumn3", text: "Some Other Variable 3"},
-            {value: "SomeOtherColumn4", text: "Some Other Variable 4"}
-        ])
-        .enter()
-        .append("option")
-        .attr("value", d => d.value)
-        .text(d => d.text);
 }
 
 function drawCompPlot(xData=famPlanData, yData=adolBirthData){
@@ -385,7 +350,7 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .attr("viewBox", `0 0 ${compWidth} ${compHeight}`)
         .attr("preserveAspectRatio", "xMidYMid meet");
 
-    // Clear any existing elements
+    // clear any existing elements
     compsvg.selectAll("*").remove();
 
     // Increased margins proportionally for the larger plot
@@ -505,7 +470,7 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         
     })
     .on("mousemove", function(event) {
-        const [x, y] = d3.pointer(event); // Using d3.pointer to get mouse position
+        const [x, y] = d3.pointer(event); // mouse position
         tooltip.style("top", (y + 10) + "px")
             .style("left", (x + 10) + "px");
     })
@@ -557,27 +522,27 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
 
     let selectedRegion = null;
     // CHANGE 10: Repositioned and resized legend to account for larger plot
-    const scaleFactor = 0.8;  // Set this to whatever scale you need (e.g., 0.5 for 50%)
+    const scaleFactor = 0.8;  
 
     let legend = compsvg.append("g")
         .attr("transform", `translate(${compWidth - 170}, 70)`);
 
     legend.append("rect")
-        .attr("width", 300 * scaleFactor)  // Scale the width
-        .attr("height", (25 + sdgRegions.length * 25) * scaleFactor)  // Scale the height
+        .attr("width", 300 * scaleFactor)  // scale width
+        .attr("height", (25 + sdgRegions.length * 25) * scaleFactor)  //scale height
         .style("fill", "#000")
         .style("opacity", 0.15);
 
     legend.append("text")
-        .attr("x", 12 * scaleFactor)  // Scale the text position
-        .attr("y", 18 * scaleFactor)  // Scale the text position
-        .style("font-size", `${0.7 * scaleFactor}rem`)  // Scale the font size
+        .attr("x", 12 * scaleFactor)  // scale text position
+        .attr("y", 18 * scaleFactor) 
+        .style("font-size", `${0.7 * scaleFactor}rem`)  // scale font size
         .style("fill", "black")
         .text("SDG Regions");
 
     function updatePlotOpacity() {
         chart.selectAll("circle")
-            .transition()  // Apply a smooth transition when changing opacity
+            .transition()  // transition when changing opacity
             .style("opacity", function(d) {
                 return selectedRegion && d['SDG Region'] !== selectedRegion ? 0.1 : 1;
             });
@@ -611,10 +576,9 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 if (selectedRegion === null || selectedRegion === d) {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === d ? 1 : 0.2;  // Lower opacity for non-matching points
+                            return pointData['SDG Region'] === d ? 1 : 0.2;  
                         });
-                    // Optionally update the regression line on hover based on region
-                    regressionLine(d);  // This will update the regression line for the hovered SDG region
+                    regressionLine(d);
                 }
             }
         })
@@ -623,7 +587,7 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "default");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
-                        .style("opacity", 1);  // Reset to default opacity
+                        .style("opacity", 1);  
                 } else {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
@@ -663,10 +627,11 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 if (selectedRegion === null || selectedRegion === d) {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === d ? 1 : 0.2;  // Lower opacity for non-matching points
-                        });
-                    // Optionally update the regression line on hover based on region
-                    regressionLine(d);  // This will update the regression line for the hovered SDG region
+                            return pointData['SDG Region'] === d ? 1 : 0.2;  // opacity lower
+                        })
+                        .transition()
+                        .duration(1000);
+                    regressionLine(d); 
                 }
             }
         })
@@ -675,7 +640,7 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "default");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
-                        .style("opacity", 1);  // Reset to default opacity
+                        .style("opacity", 1);  // reset opacity
                 } else {
                     chart.selectAll("circle")
                         .style("opacity", function(pointData) {
