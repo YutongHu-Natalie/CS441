@@ -258,6 +258,10 @@ html {
     background-color: transparent; /* Make background transparent */
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     padding: 20px;
+    position: absolute;
+    top: 50%;             /* Move it down by 50% of the parent's height */
+    left: 50%;            /* Move it right by 50% of the parent's width */
+    transform: translate(-50%, -50%); /* Adjust position to truly center it */
   }
   /* comp scatter plot stylings */
   

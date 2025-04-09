@@ -32,7 +32,7 @@ let mapheight = 500;
 
 const myProjection = d3.geoNaturalEarth1()
     // CHANGE 2: Scale the projection to fit the reduced dimensions
-    .scale(mapwidth / 8.5)
+    .scale(mapwidth / 7.5)
     .translate([mapwidth / 3, mapheight / 3]);
 const path = d3.geoPath().projection(myProjection);
 const graticule = d3.geoGraticule();
@@ -123,8 +123,15 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     
     // Create a map group to hold all map elements
     // CHANGE 6: Create a group for the map content with proper positioning
+    const svgWidth = parseInt(mapsvg.style("width"));  // Get the actual width of the SVG container
+    const svgHeight = parseInt(mapsvg.style("height"));  // Get the actual height of the SVG container
+
+    // Translate the map group so it's centered in the SVG container
+    const translateX = -(svgWidth - mapwidth) / 5;
+    const translateY = -(svgHeight - mapheight) / 4;
+
     const mapGroup = mapsvg.append("g")
-        .attr("transform", `translate(0, 50)`);
+        .attr("transform", `translate(${translateX}, ${translateY})`);
         
     // graticules
     //for the lat/long lines
@@ -202,7 +209,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
                 }
             }
             console.log(selectedCountries)
-            console.log(countriesWithValueOverTwenty)
+            console.log(count)
 
         }
     })
@@ -235,7 +242,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     });
 
     // CHANGE 7: Adjusted legend positioning and size
-    legendWidth = 30;
+    legendWidth = 40;
     legendHeight = 120;
     
     const legendGroup = mapsvg.append("g")
@@ -243,7 +250,8 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         
     legendGroup.append("rect")
         .attr("width", legendWidth*3)
-        .attr("height", legendHeight*1.2)
+        .attr("height", legendHeight*1.5)
+        .attr("transform", `translate(${0}, ${-25})`)
         .style("fill", "#555")
         .style("opacity", "0.5");
 
