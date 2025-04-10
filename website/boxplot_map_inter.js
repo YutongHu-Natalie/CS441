@@ -12,8 +12,8 @@
     const boxplotMargin = { top: 50, right: 40, bottom: 70, left: 200 };
     const boxplotWidth = 700, boxplotHeight = 350; // Reduced height for boxplot
     
-    const mapMargin = { top: 30, right: 40, bottom: 30, left: 50 };
-    const mapWidth = 1000, mapHeight = 450; // Dimensions for map
+    const mapMargin = { top: 20, right: 40, bottom: 10, left: 50 };
+    const mapWidth = 1000, mapHeight = 500; // Dimensions for map
     
     // Define projections for the map
     const myProjection = d3.geoNaturalEarth1()
