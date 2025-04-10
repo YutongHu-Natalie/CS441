@@ -174,12 +174,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Special handling for boxplot
-            if (vizId === 'fampboxw') {
-              setTimeout(() => {
-                vizElement.setAttribute('display', 'block');
-                vizElement.style.opacity = 1;
-              }, 100);
-            }
+            if (slide.visualization[0] !== 'none') {
+                window.vizController.show(slide.visualization);
+              } else {
+                window.vizController.reset();
+              }
           }
         });
       }

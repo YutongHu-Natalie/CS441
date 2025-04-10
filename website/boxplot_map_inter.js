@@ -36,6 +36,9 @@
     
     // Reference to SVG elements
     const boxplotSvg = d3.select("#fampboxw");
+    if (!boxplotSvg.classed('active')) {
+        return;
+      }
     const mapSvg = d3.select("#famplanmap");
     
     // Main initialization function
@@ -138,6 +141,9 @@
     
     // Initialize boxplot SVG
     function initializeBoxplotSVG() {
+        if (!boxplotSvg.classed('active')) {
+  return;
+}
         boxplotSvg.selectAll("*").remove();
         
         boxplotSvg

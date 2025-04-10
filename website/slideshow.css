@@ -101,21 +101,17 @@ html {
 /* Visualization container styles */
 .visualization-container {
     flex: 3;
-    padding: 30px;
-    background-color: #C599B6;
-    display: flex;
-    flex-direction: column;
     position: relative;
-}
+    overflow: hidden;
+    background-color: #E6B2BA;
+  }
 
 #visualization-wrapper {
     position: relative;
     width: 100%;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+    overflow: hidden;
+  }
 
 /* SVG styling */
 .viz-svg {
@@ -123,11 +119,15 @@ html {
     width: 100%;
     height: 100%;
     opacity: 0;
+    /* Hide by default */
     transition: opacity 0.5s ease;
+    pointer-events: none;
+    /* Disable interaction when not active */
 }
 
 .viz-svg.active {
     opacity: 1;
+    pointer-events: all;
 }
 
 /* Boxplot specific styling for the combined view */
@@ -140,11 +140,14 @@ html {
 #fampboxw.active.split-view {
     height: 50% !important;
     top: 0;
+    position: absolute;
 }
+
 
 #famplanmap.active.split-view {
     height: 50% !important;
     top: 50%;
+    position: absolute;
 }
 
 /* Map styling */
@@ -212,6 +215,7 @@ html {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -224,19 +228,19 @@ html {
         height: 40px;
         font-size: 16px;
     }
-    
+
     .swipe-indicator.left {
         left: 10px;
     }
-    
+
     .swipe-indicator.right {
         right: 10px;
     }
-    
+
     .verse-text {
         font-size: 1.2rem;
     }
-    
+
     .slide-content.text-only .verse-text {
         font-size: 2rem;
     }
@@ -244,7 +248,8 @@ html {
 
 /* Visualization-specific styling */
 #dvmap {
-    background-color: transparent; /* Make background transparent */
+    background-color: transparent;
+    /* Make background transparent */
 }
 
 /* DV map stylings */
@@ -269,13 +274,17 @@ path.highlighted {
 }
 
 #dvmap {
-    background-color: transparent; /* Make background transparent */
+    background-color: transparent;
+    /* Make background transparent */
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     padding: 20px;
     position: absolute;
-    top: 50%;             /* Move it down by 50% of the parent's height */
-    left: 50%;            /* Move it right by 50% of the parent's width */
-    transform: translate(-50%, -50%); /* Adjust position to truly center it */
+    top: 50%;
+    /* Move it down by 50% of the parent's height */
+    left: 50%;
+    /* Move it right by 50% of the parent's width */
+    transform: translate(-50%, -50%);
+    /* Adjust position to truly center it */
 }
 
 /* Comp scatter plot stylings */
@@ -284,15 +293,19 @@ path.highlighted {
     padding: 20px;
 }
 
-.tooltip{
+.tooltip {
     z-index: 9999;
 }
 
 /* Bar chart SVG elements */
-#ylcbarchart, #abrbarchart {
-    width: 100%;       /* Fill the width of the parent div */
-    height: 500px;     /* Taller height */
-    max-width: 800px;  /* But don't exceed 800px */
+#ylcbarchart,
+#abrbarchart {
+    width: 100%;
+    /* Fill the width of the parent div */
+    height: 500px;
+    /* Taller height */
+    max-width: 800px;
+    /* But don't exceed 800px */
     display: flex;
     justify-content: center;
     padding-left: 30px;
@@ -300,13 +313,10 @@ path.highlighted {
 
 /* Boxplot styling */
 #fampboxw {
-    width: 100%;       
-    height: 50%;     
-    max-width: 800px;  
-    display: flex;
-    justify-content: center;
-    padding-left: 30px;
-    z-index: 100; /* Make sure boxplot is visible when active */
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    /* Override existing max-width to fill container */
 }
 
 /* Map styling when it's in split view */
@@ -319,13 +329,23 @@ path.highlighted {
 
 #viz-title {
     position: relative;
-    z-index: 1002; /* Ensure title is always visible, above everything else */
+    z-index: 1002;
+    /* Ensure title is always visible, above everything else */
     color: rgb(137, 80, 51);
     margin-bottom: 15px;
     text-align: center;
     font-size: 1.2rem;
 }
 
-#fampboxw:not(.active) svg {
-    opacity: 0;
+#fampboxw:not(.active) {
+    opacity: 0 !important;
+    visibility: hidden;
 }
+
+.viz-svg[style*="display: block"] {
+    display: block !important;
+  }
+
+  .viz-svg:not(.active) * {
+    /* visibility: hidden; */ /* Uncommenting this might help with some browsers */
+  }
