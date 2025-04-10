@@ -105,6 +105,7 @@ html {
     background-color: #C599B6;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 #visualization-wrapper {
@@ -129,12 +130,29 @@ html {
     opacity: 1;
 }
 
+/* Boxplot specific styling for the combined view */
+#fampboxw.active {
+    display: block !important;
+    opacity: 1 !important;
+}
+
+/* Specific styles for the slide with boxplot and map combined */
+#fampboxw.active.split-view {
+    height: 50% !important;
+    top: 0;
+}
+
+#famplanmap.active.split-view {
+    height: 50% !important;
+    top: 50%;
+}
+
 /* Map styling */
 .map {
     height: 100%;
 }
 
-/* Swipe indicators styling - FIXED VERSION */
+/* Swipe indicators styling */
 .swipe-indicator {
     position: absolute;
     top: 50%;
@@ -148,7 +166,7 @@ html {
     justify-content: center;
     align-items: center;
     font-size: 24px;
-    z-index: 100;
+    z-index: 1000;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -174,16 +192,6 @@ html {
     right: 20px;
 }
 
-/* Swipe area for better touch detection */
-.swipe-area {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 50;
-}
-
 /* Slide indicator */
 .slide-indicator {
     position: absolute;
@@ -195,7 +203,7 @@ html {
     border-radius: 15px;
     font-size: 1rem;
     color: rgb(137, 80, 51);
-    z-index: 95;
+    z-index: 1001;
     caret-color: transparent;
 }
 
@@ -233,28 +241,34 @@ html {
         font-size: 2rem;
     }
 }
+
+/* Visualization-specific styling */
 #dvmap {
     background-color: transparent; /* Make background transparent */
-  }
-  /* dv map stylings */
+}
 
-  path {
+/* DV map stylings */
+path {
     stroke: #000;
-  }
-  path.highlighted {
+}
+
+path.highlighted {
     stroke: purple;
-  }
-  .graticule {
+}
+
+.graticule {
     fill: none;
     stroke: #76148e;
     stroke-width: .5px;
-  }
-  .foreground {
+}
+
+.foreground {
     fill: none;
     stroke: #333;
     stroke-width: 1.5px;
-  }
-  #dvmap {
+}
+
+#dvmap {
     background-color: transparent; /* Make background transparent */
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     padding: 20px;
@@ -262,41 +276,56 @@ html {
     top: 50%;             /* Move it down by 50% of the parent's height */
     left: 50%;            /* Move it right by 50% of the parent's width */
     transform: translate(-50%, -50%); /* Adjust position to truly center it */
-  }
-  /* comp scatter plot stylings */
-  
-  #compplot {
+}
+
+/* Comp scatter plot stylings */
+#compplot {
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
     padding: 20px;
-  }
-  .tooltip{
+}
+
+.tooltip{
     z-index: 9999;
-  }
-  
-  
-  
-  /* Bar chart SVG elements */
-  #ylcbarchart, #abrbarchart {
+}
+
+/* Bar chart SVG elements */
+#ylcbarchart, #abrbarchart {
     width: 100%;       /* Fill the width of the parent div */
     height: 500px;     /* Taller height */
     max-width: 800px;  /* But don't exceed 800px */
     display: flex;
     justify-content: center;
     padding-left: 30px;
-  }
-  
-  /* Container divs for the bar charts */
-  .right-column div:has(#ylcbarchart), 
-  .right-column div:has(#abrbarchart) {
-    width: 100%;      /* Take full width of right column */
-    padding: 2px;    /* Add some padding */
-    box-sizing: border-box; /* Include padding in width calculation */
-  }
-  #fampboxw {
-    width: 100%;       /* Fill the width of the parent div */
-    height: 500px;     /* Taller height */
-    max-width: 800px;  /* But don't exceed 800px */
+}
+
+/* Boxplot styling */
+#fampboxw {
+    width: 100%;       
+    height: 50%;     
+    max-width: 800px;  
     display: flex;
     justify-content: center;
     padding-left: 30px;
-  }
+    z-index: 100; /* Make sure boxplot is visible when active */
+}
+
+/* Map styling when it's in split view */
+#famplanmap.active {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 90;
+}
+
+#viz-title {
+    position: relative;
+    z-index: 1002; /* Ensure title is always visible, above everything else */
+    color: rgb(137, 80, 51);
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+#fampboxw:not(.active) svg {
+    opacity: 0;
+}

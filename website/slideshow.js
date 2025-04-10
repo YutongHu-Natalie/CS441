@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
       {
         verse: 0,
         text: `a girl's dream\nby jiya shah and yutong hu`,
-        visualization: 'none',
+        visualization: ['none'],
         title: ''
       },
       {
@@ -12,20 +12,20 @@ document.addEventListener('DOMContentLoaded', function() {
         text: `since i was small, i have always dreamed big
   "a doctor—no lawyer!—no…
   scientist!"`,
-        visualization: 'none',
+        visualization: ['none'],
         title: ''
       },
       {
         verse: 2,
         text: `yet when the time came, the boys ran ahead
   reading and writing and learning while i—`,
-        visualization: 'ylcbarchart',
+        visualization: ['ylcbarchart'],
         title: 'Youth Literacy Disparity'
       },
       {
         verse: 3,
         text: 'i stayed home instead.',
-        visualization: 'none', 
+        visualization: ['none'], 
         title: ''
       },
       {
@@ -34,65 +34,59 @@ document.addEventListener('DOMContentLoaded', function() {
   to plan out my life, when i'll have my kids?
   not go through
   what women before me did?`,
-        visualization: 'famplanmap',
+        visualization: ['fampboxw', 'famplanmap'],  // Both boxplot and map on the same slide
         title: 'Family Planning Access by Region'
       },
       {
-        verse: 4,
-        text: `
-  it's a joke, of course. 
+        verse: 5,
+        text: `it's a joke, of course. 
   like everything is.`,
-        visualization: 'none',
+        visualization: ['none'],  
         title: ''
       },
       {
-        verse: 5,
+        verse: 6,
         text: `too young to drive, i rock my baby slow
   my childhood dolls still scattered on the floor
   old dreams in dust, baby cries forevermore...
   what could i be—? hush, my love, don't you cry
   all for her now, i'll be here 'till i die`,
-        visualization: 'abrbarchart',
+        visualization: ['abrbarchart'],
         title: 'Adolescent Birth Rate'
       },
       {
-        verse: 6,
+        verse: 7,
         text: 'withering away.',
-        visualization: 'none', // Text only slide
+        visualization: ['none'], // Text only slide
         title: ''
       },
       {
-        verse: 7,
+        verse: 8,
         text: `dreamed of love notes, gentle hands and a home 
   from fist to fist, all i could do was roam 
   "he'll change." i say, but purple blots still bloom
   no warmth and no home, what more could i lose?`,
-        visualization: 'dvmap',
+        visualization: ['dvmap'],
         title: 'Women Subjected to Violence'
       },
       {
-        verse: 8,
+        verse: 9,
         text: `please don't forget me, i'm not a shadow,
   not a number, just
   a girl with a`,
-        visualization: 'compplot',
+        visualization: ['compplot'],
         title: 'The Full Picture'
       },
       {
-        verse: 9,
+        verse: 10,
         text: 'dream',
-        visualization: 'none', // Text only slide
+        visualization: ['none'], // Text only slide
         title: ''
       }
     ];
   
     let currentSlideIndex = 0;
-    let touchStartX = null;
-    let touchEndX = null;
-    let touchStartY = null;
-    let touchEndY = null;
-    let touchStartTime = null;
-  
+    
     // DOM elements
     const verseText = document.getElementById('verse-text');
     const vizTitle = document.getElementById('viz-title');
@@ -109,8 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const slideIndicator = document.createElement('div');
     slideIndicator.className = 'slide-indicator';
     slideIndicator.id = 'slide-indicator';
-  
-    
     
     // Add interactive swipe indicators that will act as navigation buttons
     const leftIndicator = document.createElement('div');
@@ -152,19 +144,48 @@ document.addEventListener('DOMContentLoaded', function() {
       // Hide all visualizations first
       document.querySelectorAll('.viz-svg').forEach(svg => {
         svg.classList.remove('active');
+        svg.style.zIndex = 0;  // Reset z-index for all
       });
       
-      // Show the current visualization
-      if (slide.visualization !== 'none') {
-        const vizElement = document.getElementById(slide.visualization);
-        if (vizElement) {
-          vizElement.classList.add('active');
-          vizElement.style.zIndex = 100;  // Set a high z-index for the active visualization
-        }
+      // Show the current visualizations
+      if (slide.visualization[0] !== 'none') {
+        // Loop through all visualizations for this slide
+        slide.visualization.forEach((vizId, index) => {
+          const vizElement = document.getElementById(vizId);
+          if (vizElement) {
+            vizElement.classList.add('active');
+            
+            // For the family planning slide with multiple visualizations
+            if (slide.visualization.includes('fampboxw') && slide.visualization.includes('famplanmap')) {
+              if (vizId === 'fampboxw') {
+                // Position boxplot at the top
+                vizElement.style.top = '0';
+                vizElement.style.height = '50%';
+                vizElement.style.zIndex = 100;
+              } else if (vizId === 'famplanmap') {
+                // Position map at the bottom
+                vizElement.style.top = '50%';
+                vizElement.style.height = '50%';
+                vizElement.style.zIndex = 90;
+              }
+            } else {
+              // Normal z-index for single visualizations
+              vizElement.style.zIndex = 100 - index;  // Ensure proper stacking order
+            }
+            
+            // Special handling for boxplot
+            if (vizId === 'fampboxw') {
+              setTimeout(() => {
+                vizElement.setAttribute('display', 'block');
+                vizElement.style.opacity = 1;
+              }, 100);
+            }
+          }
+        });
       }
       
       // Update classes for text-only slides
-      if (slide.visualization === 'none') {
+      if (slide.visualization[0] === 'none') {
         slideContainer.classList.add('text-only');
       } else {
         slideContainer.classList.remove('text-only');
@@ -173,7 +194,6 @@ document.addEventListener('DOMContentLoaded', function() {
       // Update slide indicator
       slideIndicator.textContent = `${index + 1} / ${slides.length}`;
       
-     
       // Update swipe indicator states
       if (index === 0) {
         leftIndicator.classList.add('disabled');
@@ -186,8 +206,6 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         rightIndicator.classList.remove('disabled');
       }
-   
-      
       
       // Update current index
       currentSlideIndex = index;
@@ -206,7 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   
-    // *** FIX: Clear event listeners and add them properly ***
     // Event listeners for swipe indicators that now act as buttons
     leftIndicator.onclick = function() {
       console.log("Left indicator clicked");
@@ -228,8 +245,6 @@ document.addEventListener('DOMContentLoaded', function() {
         e.preventDefault(); // Prevent default scroll behavior
       }
     });
-  
-    
   
     // Initialize the first slide
     updateSlide(0);
