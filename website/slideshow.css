@@ -131,24 +131,25 @@ html {
 }
 
 /* Boxplot specific styling for the combined view */
-#fampboxw.active {
+/* Special handling for split view */
+#fampboxw.active, #famplanmap.active {
     display: block !important;
     opacity: 1 !important;
-}
-
-/* Specific styles for the slide with boxplot and map combined */
-#fampboxw.active.split-view {
+  }
+  
+  #fampboxw.active.split-view {
     height: 50% !important;
     top: 0;
     position: absolute;
-}
-
-
-#famplanmap.active.split-view {
+    z-index: 100;
+  }
+  
+  #famplanmap.active.split-view {
     height: 50% !important;
     top: 50%;
     position: absolute;
-}
+    z-index: 90;
+  }
 
 /* Map styling */
 .map {

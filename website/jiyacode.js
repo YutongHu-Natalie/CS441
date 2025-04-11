@@ -1,5 +1,5 @@
 /*
-NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP AND FAM PLANNING MAP
+NEXT LINES ARE ALL FOR THE SUBJECTED VIOLENCE MAP
 */
 const basePath1 = window.location.hostname === "localhost" || 
                 window.location.hostname === "127.0.0.1" 
@@ -38,11 +38,11 @@ const path = d3.geoPath().projection(myProjection);
 const graticule = d3.geoGraticule();
 
 let dvMapData;
+let adolBirthData;
 let famPlanData;
 let currDat;
 
 let dvMapSvg = d3.select("#dvmap");
-let fpMapSVG = d3.select("#famplanmap");
 
 let dvMapTrue = false;
 
@@ -50,30 +50,14 @@ async function loadDVMapData(){
     await d3.csv(`${basePath1}/Data/Subjected_violence.csv`).then(data => {
         dvMapData = data;
     });
-    await d3.csv(`${basePath1}/Data/final_family_planning.csv`).then(data => {
-        famPlanData = data;
-    });
 }
 
 async function initializeMapSVG() {
     await loadDVMapData();
     
-    // CHANGE 3: Set responsive attributes for family planning map
-    fpMapSVG.attr("width", "100%")
-        .attr("height", mapheight)
-        .attr("viewBox", `0 0 ${mapwidth} ${mapheight}`)
-        .attr("preserveAspectRatio", "xMidYMid meet");
-        
-    fpColorScale = d3.scaleSequential(d3.interpolateRgb("white", "#AA336A"))
-        .domain([0, d3.max(famPlanData, d => parseFloat(d['Value(%)']))]);
-
-    // world map for family planning
-    await d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(world=> drawMap(world, fpMapSVG, famPlanData, fpColorScale))
-    .catch((err) => console.error("Error loading map data:", err));
-
     dvMapTrue = true;
     
-    // CHANGE 4: Set responsive attributes for violence map
+    // Set responsive attributes for violence map
     dvMapSvg.attr("width", "100%")
         .attr("height", mapheight)
         .attr("viewBox", `0 0 ${mapwidth} ${mapheight}`)
@@ -86,7 +70,6 @@ async function initializeMapSVG() {
     await d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(world=> drawMap(world, dvMapSvg, dvMapData, dvColorScale))
     .catch((err) => console.error("Error loading map data:", err));
 }
-
 
 function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     mapdata.forEach(d => {
@@ -101,7 +84,6 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         titleMap = "% of Women That Have Been Subjected to Intimate Partner Violence";
     }  
     else{
-        mapsvg = d3.select("#famplanmap");
         titleMap = "% of Women with Access to Adequate Family Planning";
     } 
 
@@ -112,7 +94,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     var defs = mapsvg.append("defs");
 
     //title
-    // CHANGE 5: Adjusted title positioning
+    // Adjusted title positioning
     mapsvg.append("text")
     .style("background-color", "transparent")
     .attr("x", mapwidth/2)
@@ -122,7 +104,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     .text(titleMap); 
     
     // create map group to hold all map elements
-    // CHANGE 6: create a group for the map content with proper positioning
+    // Create a group for the map content with proper positioning
     const svgWidth = parseInt(mapsvg.style("width"));  // actual width of the SVG container
     const svgHeight = parseInt(mapsvg.style("height"));  // actual height of the SVG container
 
@@ -240,7 +222,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         }
     });
 
-    // CHANGE 7: Adjusted legend positioning and size
+    // Adjusted legend positioning and size
     legendWidth = 40;
     legendHeight = 120;
     
@@ -309,7 +291,6 @@ NEXT LINES ARE ALL FOR THE COMPARISON SCATTER PLOT
 */
 
 let compsvg = d3.select("#compplot");
-let adolBirthData;
 
 // CHANGE 8: Adjusted scatter plot dimensions to be 25% larger
 let compWind = 1000;  
