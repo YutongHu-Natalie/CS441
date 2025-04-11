@@ -23,6 +23,7 @@ html {
     margin: 0 auto;
     background-color: #FAD0C4;
     touch-action: pan-y;
+    caret-color: transparent;
 }
 
 /* Hide original controls */

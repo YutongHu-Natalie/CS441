@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const boxplotMargin = { top: 50, right: 40, bottom: 70, left: 200 };
     const boxplotWidth = 700, boxplotHeight = 350;
     
-    const mapMargin = { top: 20, right: 40, bottom: 10, left: 50 };
+    const mapMargin = { top: 20, right: 40, bottom: 40, left: 50 };
     const mapWidth = 1000, mapHeight = 500;
     
     // Define projections for the map
