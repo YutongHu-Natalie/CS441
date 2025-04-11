@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Container for the map
         mapSvg.append("g")
             .attr("class", "map-container")
-            .attr("transform", `translate(0, 50)`);
+            .attr("transform", `translate(350, 40)`);
 
         console.log("Map SVG initialized");
     }
@@ -461,6 +461,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Rendering map with world data");
         const mapSvg = getMapSvg();
         const mapContainer = mapSvg.select(".map-container");
+        
 
         // Draw graticules
         mapContainer.append("path")
@@ -558,7 +559,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const legendHeight = 120;
 
         const legendGroup = mapSvg.append("g")
-            .attr("transform", `translate(20, ${mapHeight - 150})`);
+            .attr("transform", `translate(200, ${mapHeight - 300})`);
 
         legendGroup.append("rect")
             .attr("width", legendWidth * 3)
