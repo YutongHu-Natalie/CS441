@@ -93,6 +93,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     //defs (for definition) element to your SVG
     var defs = mapsvg.append("defs");
 
+
     //title
     // Adjusted title positioning
     mapsvg.append("text")
@@ -129,21 +130,43 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
       .attr("d", path);
 
     //diagonal fill for non-existent data
-      defs.append("pattern")
-      .attr("id", "diagonal-stripes")
-      .attr("patternUnits", "userSpaceOnUse")
-      .attr("width", 10)
-      .attr("height", 10)
-      .append("rect")
-      .attr("width", 10)
-      .attr("height", 10)
-      .attr("fill", "#fff");
+    const pattern = defs.append("pattern")
+    .attr("id", "diagonal-stripes")
+    .attr("patternUnits", "userSpaceOnUse")
+    .attr("width", 10)
+    .attr("height", 10);
   
-    defs.select("#diagonal-stripes")
-        .append("path")
+    pattern.append("rect")
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("fill", "#ffffff");
+    
+    pattern.append("path")
         .attr("d", "M 0 0 L 10 10")
-        .attr("stroke", "#000") 
-        .attr("stroke-width", 0.5); 
+        .attr("stroke", "#000000")
+        .attr("stroke-width", 0.5);
+    
+       
+        
+    const dvpattern = dvMapSvg.append("defs").append("pattern")
+        .attr("id", "diagonalHatch")
+        .attr("patternUnits", "userSpaceOnUse")
+        .attr("width", 10)
+        .attr("height", 10);
+    
+        dvpattern.append("rect")
+        .attr("width", 10)
+        .attr("height", 10)
+        .attr("fill", "#ffffff");
+    
+        dvpattern.append("path")
+        .attr("d", "M 0 0 L 10 10")
+        .attr("stroke", "#000000")
+        .attr("stroke-width", 0.5);
+        
+    
+    
+  
 
     let selectedCountries = []
     let countriesWithValueOverTwenty = dvMapData.filter(country => {
@@ -160,7 +183,7 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         if (countryData){
             return mapcolorscale(countryData['Value(%)']);
         } else {
-            return "url(#diagonal-stripes)";
+            return "url(#diagonalHatch)";
         }
       })
       .attr("stroke", "#fff")
@@ -200,7 +223,8 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
             let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
             if (countryData) {
                 // show tooltip and update its content
-                tooltip.style("visibility", "visible")
+                tooltip.style("visibility", "visible").style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px")
                     .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
     
                 // highlight on hover (if not already clicked)
@@ -209,6 +233,11 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
                     .attr("stroke-width", 2); // increase stroke width
             }
         }
+    })
+    .on("mousemove", function(event) {
+        const [x, y] = d3.pointer(event); // mouse position
+        tooltip.style("left", (event.pageX + 10) + "px") 
+        .style("top", (event.pageY + 10) + "px"); 
     })
     .on("mouseout", function(event, d) {
         // hide the tooltip when mouse leaves
@@ -440,7 +469,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     .on("mouseover", function(event, d) {
         if(compsvg.classed('active')){ //if the svg is active
             let row = adolBirthData.find(abr => abr['ISO3'] === d['ISO3']);
-            tooltip.style("visibility", "visible")
+            tooltip.style("left", (event.pageX + 10) + "px") 
+            .style("top", (event.pageY + 10) + "px").style("visibility", "visible")
                 .html(`
                     <strong>Country:</strong> ${d['Geographic Area Name']}<br>
                     <strong>SDG Region:</strong> ${d['SDG Region']}<br>
@@ -452,8 +482,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     })
     .on("mousemove", function(event) {
         const [x, y] = d3.pointer(event); // mouse position
-        tooltip.style("top", (y + 10) + "px")
-            .style("left", (x + 10) + "px");
+        tooltip.style("left", (event.pageX + 10) + "px") 
+        .style("top", (event.pageY + 10) + "px"); 
     })
     .on("mouseout", function() {
         tooltip.style("visibility", "hidden");
