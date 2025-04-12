@@ -2,15 +2,67 @@
 <html>
 <head>
   <title>a girl's dream</title>
-  <!-- <link rel="stylesheet" type="text/css" href="styles.css" /> -->
+  <!-- Original stylesheets -->
   <link rel="stylesheet" type="text/css" href="slideshow.css" />
   <link rel="stylesheet" type="text/css" href="country-selector.css" />
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson@3.0.2/dist/topojson.min.js"></script>
   <script src='https://unpkg.com/simple-statistics@7.8.8/dist/simple-statistics.min.js'></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <!-- Important: Add styles to remove the jitter during initialization -->
+  <style>
+    /* Ensure visualizations start hidden */
+    .viz-svg {
+      opacity: 0;
+      visibility: hidden;
+      display: none;
+      transition: opacity 0.3s;
+    }
+    
+    /* Only show active visualizations */
+    .viz-svg.active {
+      opacity: 1;
+      visibility: visible;
+      display: block;
+    }
+    
+    /* Fixed positions for the family planning split view */
+    #fampboxw.active.split-view {
+      display: block !important;
+      opacity: 1 !important;
+      position: absolute !important;
+      top: 0 !important;
+      height: 50% !important;
+      z-index: 100 !important;
+      visibility: visible !important;
+    }
+    
+    #famplanmap.active.split-view {
+      display: block !important;
+      opacity: 1 !important;
+      position: absolute !important;
+      top: 50% !important;
+      height: 50% !important;
+      z-index: 90 !important;
+      visibility: visible !important;
+    }
+    
+    /* Country selector fixes */
+    .country-selector {
+      display: none;
+      z-index: 1001 !important;
+    }
+    
+    /* Prevent unwanted position changes during transitions */
+    .visualization-container {
+      position: relative;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
+  <!-- Original HTML structure -->
   <div class="slideshow-container">
     <div class="slide">
       <div class="slide-content">
@@ -35,15 +87,19 @@
         </div>
       </div>
     </div>
-    <!-- No footer controls as per requirements -->
   </div>
 
-  <!-- Load visualization scripts -->
+  <!-- Original visualization scripts -->
   <script src="boxplot.js"></script>
   <script src="barchart.js"></script>
   <script src="jiyacode.js"></script>
   <script src="slideshow.js"></script>
   <script src="boxplot_map_inter.js"></script>
   <script src="visualization-controller.js"></script>
+  <script src="timing-fix.js"></script>
+  <script src="famplan-split-fix.js"></script>
+  
+  
+  
 </body>
 </html>
