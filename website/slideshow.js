@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
         text: `yet when the time came, the boys ran ahead
   reading and writing and learning while i—`,
         visualization: ['ylcbarchart'],
-        title: 'Youth Literacy Disparity'
+        title: ''
       },
       {
         verse: 3,
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
   not go through
   what women before me did?`,
         visualization: ['fampboxw', 'famplanmap'],  // Both boxplot and map on the same slide
-        title: 'Family Planning Access by Region'
+        title: ''
       },
       {
         verse: 5,
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
   what could i be—? hush, my love, don't you cry
   all for her now, i'll be here 'till i die`,
         visualization: ['abrbarchart'],
-        title: 'Adolescent Birth Rate'
+        title: ''
       },
       {
         verse: 7,
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "he'll change." i say, but purple blots still bloom
   no warmth and no home, what more could i lose?`,
         visualization: ['dvmap'],
-        title: 'Women Subjected to Violence'
+        title: ''
       },
       {
         verse: 9,
@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
   not a number, just
   a girl with a`,
         visualization: ['compplot'],
-        title: 'The Full Picture'
+        title: ''
       },
       {
         verse: 10,
