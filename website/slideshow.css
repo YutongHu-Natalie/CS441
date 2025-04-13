@@ -263,6 +263,19 @@ path {
 path.highlighted {
     stroke: purple;
 }
+path.corrAnswer {
+    stroke: #4caf50;
+    stroke-width: 2;
+}
+path.incorrAnswer {
+    stroke: #da2e22;
+    stroke-width: 2;
+}
+path.missedAnswer {
+    stroke: #9c27b0;
+    stroke-width: 2;
+}
+
 
 .graticule {
     fill: none;
@@ -352,4 +365,25 @@ path.highlighted {
 .viz-svg:not(.active) * {
     visibility: hidden;
     /* Uncommenting this might help with some browsers */
+}
+
+
+/*game stylings*/ 
+
+
+.selBtn{
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: .8rem;
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.selBtn:hover {
+    background-color: rgba(197, 153, 182, 1);
+    transform: translateY(-5px) scale(1.1);
 }

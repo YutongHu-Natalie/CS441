@@ -41,7 +41,9 @@ let dvMapData;
 let adolBirthData;
 let famPlanData;
 let currDat;
+let worldDataCopy;
 
+let countryPaths;
 let dvMapSvg = d3.select("#dvmap");
 
 let dvMapTrue = false;
@@ -67,8 +69,100 @@ async function initializeMapSVG() {
         .domain([0, d3.max(dvMapData, d => parseFloat(d['Value(%)']))]);
 
     // world map for subjected violence
-    await d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(world=> drawMap(world, dvMapSvg, dvMapData, dvColorScale))
-    .catch((err) => console.error("Error loading map data:", err));
+    let worldDataCopy;
+    await d3.json("https://unpkg.com/world-atlas@1.1.4/world/110m.json").then(world => {
+        worldDataCopy = world;
+        drawMap(world, dvMapSvg, dvMapData, dvColorScale);
+    });
+
+    guessingGame();
+
+}
+let guessed = false;
+
+let selCountries = [];
+let correctCountries = [];
+function guessingGame(){
+    let correctCountries = dvMapData
+    .filter(country => parseFloat(country['Value(%)']) > 18)
+    .map(country => country['Geographic Area Name']);
+
+    dvMapSvg.append("text")
+    .style("background-color", "transparent")
+    .attr("x", mapwidth/2)
+    .attr("y", -20)
+    .attr("text-anchor", "middle")
+    .style("font-size", "1.5rem")
+    .text("In which countries have over 18% of women faced initimate partner violence?\nSelect below:"); 
+
+    const submitBtn = dvMapSvg.append("foreignObject")
+    .attr("x", mapwidth / 2 - 50)
+    .attr("y", mapheight - 40)
+    .attr("width", 80)
+    .attr("height", 50)
+    .append("xhtml:div")
+    .attr("class", "selBtn")
+    .style("text-align", "center")
+    .style("font-family", "Futura, Trebuchet MS, Arial, sans-serif")
+    .text("Submit")
+    .on("click", function(event, d) {
+        if (dvMapSvg.classed("active")) {
+
+            d3.select(this.parentNode).transition()
+            .duration(100).remove();
+            console.log(selCountries)
+            console.log(correctCountries)
+            guessed = true;
+    
+            dvMapSvg.selectAll(".countryGroup path")
+                .transition()
+                .duration(100)
+                .attr("fill", function(d) {
+                    const countryData = dvMapData.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
+                    return countryData ? dvColorScale(countryData['Value(%)']) : "url(#diagonalHatch)";
+                })
+                .each(function(d) {
+                    const countryData = dvMapData.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
+                    if (!countryData) return;
+            
+                    const name = countryData['Geographic Area Name'];
+                    const isSelected = selCountries.includes(name);
+                    const isCorrect = correctCountries.includes(name);
+            
+                    const path = d3.select(this);
+                    path.classed("highlighted", false); // clear prior highlight
+            
+                    if (isSelected && isCorrect) {
+                        path.classed("corrAnswer", true)
+                            .classed("incorrAnswer", false)
+                            .classed("missedAnswer", false)
+                            .attr("stroke", "#4caf50") // green
+                            .attr("stroke-width", 2);
+                    } else if (isSelected) {
+                        path.classed("corrAnswer", false)
+                            .classed("incorrAnswer", true)
+                            .classed("missedAnswer", false)
+                            .attr("stroke", "#f44336") // red
+                            .attr("stroke-width", 2);
+                    } else if (isCorrect) {
+                        path.classed("corrAnswer", false)
+                            .classed("incorrAnswer", false)
+                            .classed("missedAnswer", true)
+                            .attr("stroke", "#9c27b0") // purple
+                            .attr("stroke-width", 2);
+                    } else {
+                        path.classed("corrAnswer", false)
+                            .classed("incorrAnswer", false)
+                            .classed("missedAnswer", false)
+                            .attr("stroke", "#000")
+                            .attr("stroke-width", 0.5);
+                    }
+                });
+        }
+    })
+
+    
+    
 }
 
 function drawMap(world, mapsvg, mapdata, mapcolorscale) {
@@ -167,72 +261,79 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     
     
   
-
-    let selectedCountries = []
-    let countriesWithValueOverTwenty = dvMapData.filter(country => {
-        return parseFloat(country['Value(%)']) > 20;
-      });
+    
     // countries topo-json
-    mapGroup.append("g")
+    countryPaths = mapGroup.append("g")
+    .attr("class", "countryGroup")
       .selectAll("path")
       .data(topojson.feature(world, world.objects.countries).features)
       .enter().append("path")
       .attr("d", path)
       .attr("fill", function(d){
         let countryData = mapdata.find(item=>parseInt(item['Geographic Area Code']) === parseInt(d.id));
-        if (countryData){
-            return mapcolorscale(countryData['Value(%)']);
+        if (!guessed) {
+            // before guessing: everything white or hatched
+            return countryData ? "#ffffff" : "url(#diagonalHatch)";
         } else {
-            return "url(#diagonalHatch)";
+            // after guessing: show proper data
+            return countryData ? mapcolorscale(countryData['Value(%)']) : "url(#diagonalHatch)";
         }
       })
       .attr("stroke", "#fff")
       .attr("stroke-width", 0.5)
       .on("click", function(event, d) {
         let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
-        if(dvMapSvg.classed("active")){
-            if (countryData) {
-                // show the tooltip and update its content
-                tooltip.style("visibility", "visible")
-                    .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
-        
-                // toggle highlight (if already highlighted, remove the highlight)
-                if (d3.select(this).classed("highlighted")) {
-                    d3.select(this)
-                        .classed("highlighted", false)
-                        .classed("unhighlighted", true)
-                        .attr("stroke", "#fff") // revert to original stroke color
-                        .attr("stroke-width", 0.5); // revert to original stroke width
-                        selectedCountries = selectedCountries.filter(country => country !== countryData['Geographic Area Name']);
-                } else {
-                    d3.select(this)
-                        .classed("unhighlighted", false)
-                        .classed("highlighted", true) 
-                        .attr("stroke", "red") 
-                        .attr("stroke-width", 2); 
-                        selectedCountries.push(countryData['Geographic Area Name']);
+        if(!guessed){
+            if(dvMapSvg.classed("active")){
+                if (countryData) {
+                    // show the tooltip and update its content
+                    tooltip.style("visibility", "visible")
+                        .text(`${countryData['Geographic Area Name']}`);
+            
+                    // toggle highlight (if already highlighted, remove the highlight)
+                    if (d3.select(this).classed("highlighted")) {
+                        d3.select(this)
+                            .classed("highlighted", false)
+                            .classed("unhighlighted", true)
+                            .attr("stroke", "#fff") // revert to original stroke color
+                            .attr("stroke-width", 0.5); // revert to original stroke width
+                            selCountries = selCountries.filter(country => country !== countryData['Geographic Area Name']);
+                    } else {
+                        d3.select(this)
+                            .classed("unhighlighted", false)
+                            .classed("highlighted", true) 
+                            .attr("stroke", "red") 
+                            .attr("stroke-width", 2); 
+                            selCountries.push(countryData['Geographic Area Name']);
+                    }
                 }
-            }
-            console.log(selectedCountries)
-
+                console.log(selCountries)
+        }
         }
     })
     .on("mouseover", function(event, d) {
-        if (!d3.select(this).classed("highlighted")) {
             // only show hover highlight if not clicked (not already highlighted)
             let countryData = mapdata.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
             if (countryData) {
-                // show tooltip and update its content
+                if(guessed){
+                    // show tooltip and update its content
                 tooltip.style("visibility", "visible").style("left", (event.pageX + 10) + "px") 
                 .style("top", (event.pageY + 10) + "px")
                     .text(`${countryData['Geographic Area Name']}: ${countryData['Value(%)']}%`);
     
                 // highlight on hover (if not already clicked)
+                
+                }
+                else{
+                    tooltip.style("visibility", "visible").style("left", (event.pageX + 10) + "px") 
+                    .style("top", (event.pageY + 10) + "px")
+                        .text(`${countryData['Geographic Area Name']}`);
+
+                }   
                 d3.select(this)
                     .attr("stroke", "#000") // change to black for hover effect
                     .attr("stroke-width", 2); // increase stroke width
             }
-        }
     })
     .on("mousemove", function(event) {
         const [x, y] = d3.pointer(event); // mouse position
