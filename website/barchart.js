@@ -97,7 +97,7 @@ function createCountrySelector(data, containerId, valueKey) {
     selectorContainer.id = `${containerId.substring(1)}-selector`;
     selectorContainer.className = "country-selector";
     selectorContainer.style.position = "absolute";
-    selectorContainer.style.top = "500px"; // Positioned below the viz title
+    selectorContainer.style.top = "450px"; // Positioned below the viz title
     selectorContainer.style.right = "280px";
     selectorContainer.style.background = "rgba(255, 255, 255, 0.9)";
     selectorContainer.style.padding = "10px";

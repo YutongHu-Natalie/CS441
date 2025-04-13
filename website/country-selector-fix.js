@@ -12,7 +12,6 @@
       // Reference slide indices where selectors should appear
       const SELECTOR_SLIDES = {
         ylcbarchart: 2,  // Youth Literacy Chart appears on slide index 2
-        abrbarchart: 6   // Adolescent Birth Rate Chart appears on slide index 6
       };
       
       // Get current slide index

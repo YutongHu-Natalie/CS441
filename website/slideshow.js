@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   old dreams in dust, baby cries forevermore...
   what could i be—? hush, my love, don't you cry
   all for her now, i'll be here 'till i die`,
-        visualization: ['abrbarchart'],
+        visualization: ['abr-histogram'],
         title: ''
       },
       {
