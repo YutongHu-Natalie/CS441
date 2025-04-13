@@ -403,6 +403,8 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
 
         // Apply zoom behavior to the svg element
         mapGroup.call(zoom)
+        .on("click.zoom", null) 
+        .on("drag.zoom", null)
     .on("mousedown.zoom", null)  // Disable mouse drag interaction
     .on("mousemove.zoom", null)  // Disable mouse move interaction
     .on("mouseup.zoom", null)    // Disable mouse up event
