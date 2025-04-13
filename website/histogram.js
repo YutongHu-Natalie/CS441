@@ -38,16 +38,51 @@ function initialiseHistogramSVG() {
 function processBirthRateHistogramData(data) {
     console.log("Processing data for histogram:", data.length, "records");
     
-    // Extract birth rate values
-    const birthRates = data.map(d => +d["Value(per 1,000 population)"]).filter(v => !isNaN(v));
+    // Extract birth rate values with country names
+    const birthRateData = data.map(d => ({
+        country: d["Geographic Area Name"],
+        value: +d["Value(per 1,000 population)"]
+    })).filter(d => !isNaN(d.value));
     
-    // Define histogram function
-    const histogram = d3.histogram()
-        .domain([0, Math.ceil(d3.max(birthRates) / 10) * 10]) // Round max to next 10
-        .thresholds(10); // 10 bins
+    // Sort data by value for easier binning
+    birthRateData.sort((a, b) => a.value - b.value);
     
-    // Generate bins
-    const bins = histogram(birthRates);
+    // Define histogram bins
+    const minValue = 0;  // Start at 0 for better understanding
+    const maxValue = Math.ceil(d3.max(birthRateData, d => d.value) / 10) * 10; // Round up to nearest 10
+    const binCount = 10;
+    const binWidth = maxValue / binCount;
+    
+    // Create empty bins
+    const bins = Array(binCount).fill(0).map((_, i) => {
+        const binStart = i * binWidth;
+        const binEnd = (i + 1) * binWidth;
+        return {
+            binStart,
+            binEnd,
+            count: 0,
+            countries: [] // Array to store countries in this bin
+        };
+    });
+    
+    // Assign countries to bins
+    birthRateData.forEach(d => {
+        for (let i = 0; i < bins.length; i++) {
+            if (d.value >= bins[i].binStart && (i === bins.length - 1 || d.value < bins[i].binEnd)) {
+                bins[i].count++;
+                bins[i].countries.push({
+                    name: d.country,
+                    value: d.value
+                });
+                break;
+            }
+        }
+    });
+    
+    // Sort countries within each bin
+    bins.forEach(bin => {
+        bin.countries.sort((a, b) => b.value - a.value); // Sort by value descending
+    });
     
     console.log("Generated histogram bins:", bins.length);
     return bins;
@@ -60,14 +95,30 @@ function renderHistogram(bins) {
     const chartWidth = histWidth - histMargin.left - histMargin.right;
     const chartHeight = histHeight - histMargin.top - histMargin.bottom;
     
+    // Create tooltip
+    const tooltip = d3.select("body").append("div")
+        .attr("class", "histogram-tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background-color", "rgba(0, 0, 0, 0.8)")
+        .style("color", "white")
+        .style("padding", "10px")
+        .style("border-radius", "5px")
+        .style("font-size", "12px")
+        .style("max-width", "300px")
+        .style("max-height", "250px")
+        .style("overflow-y", "auto")
+        .style("pointer-events", "none")
+        .style("z-index", "9999");
+    
     // X scale - for bin positions
     const xScale = d3.scaleLinear()
-        .domain([bins[0].x0, bins[bins.length - 1].x1])
+        .domain([bins[0].binStart, bins[bins.length - 1].binEnd])
         .range([0, chartWidth]);
     
     // Y scale - for bin heights
     const yScale = d3.scaleLinear()
-        .domain([0, d3.max(bins, d => d.length)])
+        .domain([0, d3.max(bins, d => d.count)])
         .nice()
         .range([chartHeight, 0]);
     
@@ -94,11 +145,55 @@ function renderHistogram(bins) {
         .enter()
         .append("rect")
         .attr("class", "histogram-bar")
-        .attr("x", d => xScale(d.x0) + 1)
-        .attr("y", d => yScale(d.length))
-        .attr("width", d => Math.max(0, xScale(d.x1) - xScale(d.x0) - 1))
-        .attr("height", d => chartHeight - yScale(d.length))
-        .style("fill", "rgb(220, 120, 140)"); // Same color as bar chart
+        .attr("x", d => xScale(d.binStart) + 1)
+        .attr("y", d => yScale(d.count))
+        .attr("width", d => Math.max(0, xScale(d.binEnd) - xScale(d.binStart) - 1))
+        .attr("height", d => chartHeight - yScale(d.count))
+        .style("fill", "rgb(220, 120, 140)") // Same color as bar chart
+        .on("mouseover", function(event, d) {
+            // Format tooltip content
+            let tooltipContent = `<strong>${d.count} countries</strong> with birth rates between ${d.binStart.toFixed(0)} and ${d.binEnd.toFixed(0)}<br><br>`;
+            
+            // Add a section showing top countries in this bin
+            const countriesToShow = d.countries.slice(0, 10); // Show top 10 countries at most
+            
+            if (countriesToShow.length > 0) {
+                tooltipContent += "<strong>Top countries in this range:</strong><br>";
+                countriesToShow.forEach(country => {
+                    tooltipContent += `${country.name}: ${country.value.toFixed(1)} per 1,000<br>`;
+                });
+                
+                // Indicate if there are more countries not shown
+                if (d.countries.length > 10) {
+                    tooltipContent += `<em>...and ${d.countries.length - 10} more countries</em>`;
+                }
+            } else {
+                tooltipContent += "<em>No country data available</em>";
+            }
+            
+            // Show and position the tooltip
+            tooltip.html(tooltipContent)
+                .style("visibility", "visible")
+                .style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
+            
+            // Highlight the bar
+            d3.select(this)
+                .style("fill", "rgb(180, 90, 110)"); // Darker version of the original color
+        })
+        .on("mousemove", function(event) {
+            // Move tooltip with the mouse
+            tooltip.style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", function() {
+            // Hide the tooltip
+            tooltip.style("visibility", "hidden");
+            
+            // Restore the original bar color
+            d3.select(this)
+                .style("fill", "rgb(220, 120, 140)");
+        });
     
     // Add bar count labels
     chart.selectAll(".bar-label")
@@ -106,13 +201,13 @@ function renderHistogram(bins) {
         .enter()
         .append("text")
         .attr("class", "bar-label")
-        .attr("x", d => xScale(d.x0) + (xScale(d.x1) - xScale(d.x0)) / 2)
-        .attr("y", d => yScale(d.length) - 5)
+        .attr("x", d => xScale(d.binStart) + (xScale(d.binEnd) - xScale(d.binStart)) / 2)
+        .attr("y", d => yScale(d.count) - 5)
         .attr("text-anchor", "middle")
-        .text(d => d.length > 0 ? d.length : "")
+        .text(d => d.count > 0 ? d.count : "")
         .style("fill", "black")
         .style("font-size", "10px")
-        .style("opacity", d => d.length > 0 ? 1 : 0);
+        .style("opacity", d => d.count > 0 ? 1 : 0);
     
     // Add title
     svg.append("text")
@@ -193,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
         container.style.display = "flex";
         container.style.justifyContent = "center";
         container.style.alignItems = "flex-start"; 
-        container.style.paddingTop = "500px"; // Significantly increased padding to push content much lower
+        container.style.paddingTop = "250px"; // Significantly increased padding to push content much lower
         container.style.position = "absolute";
         container.style.top = "0";
         container.style.left = "0";
