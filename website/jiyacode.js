@@ -705,8 +705,6 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 });
         });
     }
-    
-    
 
     //  title
     let plotTitle = compsvg.select("#chart-title");
@@ -784,10 +782,18 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
             filteredData = filteredFPData.filter(d => d['SDG Region'] === sdgRegion);
         }
 
-        let combinedData = filteredData.map(d => [
-            d[xVal],
-            yData.find(abr => abr['ISO3'] === d['ISO3'])[yVal]
-        ]);
+        let combinedData = filteredData.map(d => {
+            let match = yData.find(abr => abr['ISO3'] === d['ISO3']);
+            if (match) {
+                let x = parseFloat(d[xVal]);
+                let y = parseFloat(match[yVal]);
+                if (!isNaN(x) && !isNaN(y)) {
+                    return [x, y];
+                }
+            }
+            return null;
+        }).filter(d => d !== null);
+              
     
         //simple statistics library to generate lbf
         let regression = ss.linearRegression(combinedData);
@@ -818,9 +824,9 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     
     const scaleFactor = 0.7;  
 
-    let legend = compsvg.select("#scatterlegend");
-    if(legend.empty()){
-    legend = compsvg.append("g")
+    compsvg.select("#scatterlegend").remove();
+    
+    let legend = compsvg.append("g")
     .attr("id", "scatterlegend")
     .attr("transform", `translate(${compWidth - 230}, ${margin.top*1.5})`);
     
@@ -840,7 +846,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
 
     function updatePlotOpacity() {
         chart.selectAll("circle")
-            .transition()  // transition when changing opacity
+            .transition()
+            .duration(400)  // transition when changing opacity
             .style("opacity", function(d) {
                 return selectedRegion && d['SDG Region'] !== selectedRegion ? 0.1 : 1;
             });
@@ -873,6 +880,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "pointer");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === d ? 1 : 0.1;  
                         });
@@ -885,9 +894,13 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "default");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", 1);  
                 } else {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
                         });
@@ -925,6 +938,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "pointer");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === d ? 1 : 0.1;  // opacity lower
                         })
@@ -939,10 +954,14 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "default");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", 1);  // reset opacity
                     regressionLine();
                 } else {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
                         });
@@ -950,7 +969,5 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
             }
         });
     }
-};
-
 initializeMapSVG();
 initializeCompSvg();
