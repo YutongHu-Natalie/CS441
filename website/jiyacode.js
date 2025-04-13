@@ -20,11 +20,13 @@ let mapsvg;
         .style("border-radius", "5px")
         .style("font-size", "0.8rem")
         .style("pointer-events", "none")
-        .style("z-index", "9999");;
+        .style("z-index", "9999");
         d3.select("body").on("mousemove", function(event) { //move it to where the mouse is
             tooltip.style("left", (event.pageX + 10) + "px") 
                    .style("top", (event.pageY + 10) + "px"); 
         });
+
+
 
 let mapwidth = 1000;
 let mapheight = 500;
@@ -211,6 +213,21 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     //defs (for definition) element to your SVG
     var defs = mapsvg.append("defs");
 
+    
+
+    
+
+
+    const mapBounds = path.bounds({type: "Sphere"});
+    defs.append("clipPath")
+        .attr("id", "map-clip")
+        .append("rect")
+        .attr("x", 148)
+        .attr("y",  76)
+        .attr("width", mapBounds[1][0] - mapBounds[0][0] + 2)
+        .attr("height", mapBounds[1][1] - mapBounds[0][1] + 2);
+
+
 
     //title
     mapsvg.append("text")
@@ -229,8 +246,14 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     const translateX = -(svgWidth - mapwidth) / 5;
     const translateY = -(svgHeight - mapheight) / 4;
 
-    const mapGroup = mapsvg.append("g")
+    const containerGroup = mapsvg.append("g");
+    const clipGroup = mapsvg.append("g")
+    .attr("clip-path", "url(#map-clip)");
+
+    const mapGroup = clipGroup.append("g")
         .attr("transform", `translate(${translateX}, ${translateY})`);
+
+        
         
     // graticules
     //for the lat/long lines
@@ -368,6 +391,24 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
                 .attr("stroke-width", 0.5); // revert to original stroke width
         }
     });
+
+        // Define the zoom behavior
+        const zoom = d3.zoom()
+        .scaleExtent([1, 8])  // Adjust zoom scale range as needed
+        .on("zoom", function(event) {
+            const transform = event.transform;
+            mapGroup.attr("transform", `translate(${translateX}, ${translateY}) scale(${transform.k}) translate(${transform.x / transform.k}, ${transform.y / transform.k})`);
+        });
+        
+
+        // Apply zoom behavior to the svg element
+        mapGroup.call(zoom)
+    .on("mousedown.zoom", null)  // Disable mouse drag interaction
+    .on("mousemove.zoom", null)  // Disable mouse move interaction
+    .on("mouseup.zoom", null)    // Disable mouse up event
+    .on("touchstart.zoom", null) // Disable touch start event
+    .on("touchmove.zoom", null)  // Disable touch move interaction
+    .on("touchend.zoom", null);  // Disable touch end event
 
     // legend positioning and size
     legendWidth = 40;
