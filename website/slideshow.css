@@ -387,3 +387,12 @@ path.missedAnswer {
     background-color: rgba(197, 153, 182, 1);
     transform: translateY(-5px) scale(1.1);
 }
+
+/*axis changing shenanigans*/
+.axis-dropdown {
+    font-size: 14px;
+    padding: 4px;
+
+    font-family: Futura, "Trebuchet MS", Arial, sans-serif;
+}
+
