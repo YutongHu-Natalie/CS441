@@ -20,18 +20,18 @@ let mapsvg;
         .style("border-radius", "5px")
         .style("font-size", "0.8rem")
         .style("pointer-events", "none")
-        .style("z-index", "9999");;
+        .style("z-index", "9999");
         d3.select("body").on("mousemove", function(event) { //move it to where the mouse is
             tooltip.style("left", (event.pageX + 10) + "px") 
                    .style("top", (event.pageY + 10) + "px"); 
         });
 
-// CHANGE 1: Reduced map dimensions for better display
+
+
 let mapwidth = 1000;
 let mapheight = 500;
 
 const myProjection = d3.geoNaturalEarth1()
-    // CHANGE 2: Scale the projection to fit the reduced dimensions
     .scale(mapwidth / 7.5)
     .translate([mapwidth / 3, mapheight / 3]);
 const path = d3.geoPath().projection(myProjection);
@@ -40,6 +40,7 @@ const graticule = d3.geoGraticule();
 let dvMapData;
 let adolBirthData;
 let famPlanData;
+let literDifData;
 let currDat;
 let worldDataCopy;
 
@@ -52,14 +53,41 @@ async function loadDVMapData(){
     await d3.csv(`${basePath1}/Data/Subjected_violence.csv`).then(data => {
         dvMapData = data;
     });
+    await d3.csv(`${basePath}/Data/final_youth_literacy.csv`).then(data => {
+        literDifData = transformLiteracyData(data);
+        console.log(literDifData)
+    });
+    
 }
+function transformLiteracyData(data) {
+    const maleData = data.filter(d => d['Sex Code'] === 'M');
+    const femaleData = data.filter(d => d['Sex Code'] === 'F');
+
+    const disparityData = maleData.map(male => {
+        const female = femaleData.find(f => f['ISO3'] === male['ISO3']);
+        if (female) {
+            const difference = parseFloat(male['Value(%)']) - parseFloat(female['Value(%)']);
+            const roundedDifference = Math.round((difference + Number.EPSILON) * 100) / 100;
+
+            return {
+                ISO3: male['ISO3'],
+                "Geographic Area Name": male['Geographic Area Name'],
+                "SDG Region": male['SDG Region'],
+                "Value(%)": roundedDifference
+            };
+        }
+        return null;
+    }).filter(d => d !== null);
+
+    return disparityData;
+}
+
 
 async function initializeMapSVG() {
     await loadDVMapData();
     
     dvMapTrue = true;
     
-    // Set responsive attributes for violence map
     dvMapSvg.attr("width", "100%")
         .attr("height", mapheight)
         .attr("viewBox", `0 0 ${mapwidth} ${mapheight}`)
@@ -110,13 +138,11 @@ function guessingGame(){
 
             d3.select(this.parentNode).transition()
             .duration(100).remove();
-            console.log(selCountries)
-            console.log(correctCountries)
             guessed = true;
     
             dvMapSvg.selectAll(".countryGroup path")
                 .transition()
-                .duration(100)
+                .duration(1000)
                 .attr("fill", function(d) {
                     const countryData = dvMapData.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
                     return countryData ? dvColorScale(countryData['Value(%)']) : "url(#diagonalHatch)";
@@ -187,9 +213,23 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     //defs (for definition) element to your SVG
     var defs = mapsvg.append("defs");
 
+    
+
+    
+
+
+    const mapBounds = path.bounds({type: "Sphere"});
+    defs.append("clipPath")
+        .attr("id", "map-clip")
+        .append("rect")
+        .attr("x", 148)
+        .attr("y",  76)
+        .attr("width", mapBounds[1][0] - mapBounds[0][0] + 2)
+        .attr("height", mapBounds[1][1] - mapBounds[0][1] + 2);
+
+
 
     //title
-    // Adjusted title positioning
     mapsvg.append("text")
     .style("background-color", "transparent")
     .attr("x", mapwidth/2)
@@ -199,16 +239,21 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     .text(titleMap); 
     
     // create map group to hold all map elements
-    // Create a group for the map content with proper positioning
     const svgWidth = parseInt(mapsvg.style("width"));  // actual width of the SVG container
     const svgHeight = parseInt(mapsvg.style("height"));  // actual height of the SVG container
 
-    // Translate the map group so it's centered in the SVG container
+    // translate the map group so it's centered in the SVG container
     const translateX = -(svgWidth - mapwidth) / 5;
     const translateY = -(svgHeight - mapheight) / 4;
 
-    const mapGroup = mapsvg.append("g")
+    const containerGroup = mapsvg.append("g");
+    const clipGroup = mapsvg.append("g")
+    .attr("clip-path", "url(#map-clip)");
+
+    const mapGroup = clipGroup.append("g")
         .attr("transform", `translate(${translateX}, ${translateY})`);
+
+        
         
     // graticules
     //for the lat/long lines
@@ -258,10 +303,6 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         .attr("stroke", "#000000")
         .attr("stroke-width", 0.5);
         
-    
-    
-  
-    
     // countries topo-json
     countryPaths = mapGroup.append("g")
     .attr("class", "countryGroup")
@@ -307,7 +348,6 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
                             selCountries.push(countryData['Geographic Area Name']);
                     }
                 }
-                console.log(selCountries)
         }
         }
     })
@@ -352,7 +392,27 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
         }
     });
 
-    // Adjusted legend positioning and size
+        // Define the zoom behavior
+        const zoom = d3.zoom()
+        .scaleExtent([1, 8])  // Adjust zoom scale range as needed
+        .on("zoom", function(event) {
+            const transform = event.transform;
+            mapGroup.attr("transform", `translate(${translateX}, ${translateY}) scale(${transform.k}) translate(${transform.x / transform.k}, ${transform.y / transform.k})`);
+        });
+        
+
+        // Apply zoom behavior to the svg element
+        mapGroup.call(zoom)
+        .on("click.zoom", null) 
+        .on("drag.zoom", null)
+    .on("mousedown.zoom", null)  // Disable mouse drag interaction
+    .on("mousemove.zoom", null)  // Disable mouse move interaction
+    .on("mouseup.zoom", null)    // Disable mouse up event
+    .on("touchstart.zoom", null) // Disable touch start event
+    .on("touchmove.zoom", null)  // Disable touch move interaction
+    .on("touchend.zoom", null);  // Disable touch end event
+
+    // legend positioning and size
     legendWidth = 40;
     legendHeight = 120;
     
@@ -434,15 +494,7 @@ async function loadCompDatas(){
     await d3.csv(`${basePath1}/Data/final_family_planning.csv`).then(data => {
         famPlanData = data;
     });
-}
-
-async function initializeCompSvg() {
-    await loadCompDatas();
-    drawCompPlot();
-}
-
-function drawCompPlot(xData=famPlanData, yData=adolBirthData){
-    famPlanData.forEach(d => {
+    famPlanData.forEach(d => { 
         d['Value(%)'] = parseFloat(d['Value(%)']);
         if (isNaN(d['Value(%)'])) {
             console.error(`Invalid Value(%) found in data: ${d['Value(%)']}`);
@@ -454,65 +506,138 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
             console.error(`Invalid Value(%) found in data: ${d['Value(per 1,000 population)']}`);
         }
     });
+}
 
-    // CHANGE 9: Set responsive attributes for scatter plot
+async function initializeCompSvg() {
+    await loadCompDatas();
+    drawCompPlot();
+}
+
+function drawCompPlot(xData=famPlanData, yData=adolBirthData){
+    let dropDownOpen = false;
+    const dataOptions = {
+        "Family Planning Access (%)": famPlanData,
+        "Adolescent Birth Rate (per 1,000)": adolBirthData,
+        "Women Subjected to Intimate Partner Violence (%)": dvMapData,
+        "Disparity in Youth Literacy Rates (M-F)%": literDifData
+
+    };
+
+    function getDataLabelByValue(dataObj) {
+        for (let [label, dataset] of Object.entries(dataOptions)) {
+            if (dataset === dataObj) {
+                return label;
+            }
+        }
+        return null;
+    }
+
+    let xVal = "Value(%)";
+    if (getDataLabelByValue(xData) == "Adolescent Birth Rate (per 1,000)"){
+        xVal = 'Value(per 1,000 population)';
+    }
+    let yVal = "Value(%)";
+    if (getDataLabelByValue(yData) == "Adolescent Birth Rate (per 1,000)"){
+        yVal = 'Value(per 1,000 population)';
+    }
+
     compsvg.attr("width", "100%")
         .attr("height", compHeight)
         .attr("viewBox", `0 0 ${compWidth} ${compHeight}`)
         .attr("preserveAspectRatio", "xMidYMid meet");
 
-    // clear any existing elements
-    compsvg.selectAll("*").remove();
-
-    // Increased margins proportionally for the larger plot
-    const margin = { top: 60, right: 60, bottom: 90, left: 90 };
+    // increased margins proportionally for the larger plot
+    const margin = { top: 90, right: 90, bottom: 90, left: 90 };
     chartWidth = compWidth - margin.left - margin.right;
     chartHeight = compHeight - margin.top - margin.bottom;
 
-    chart = compsvg.append("g")
-        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-    //filter fam plan by countries in abr
-    let countries1 = xData.map(d => d['ISO3']);  
+    let chart = compsvg.select("g");
+    if (chart.empty()) {
+        chart = compsvg.append("g")
+            .attr("transform", `translate(${margin.left}, ${margin.top*1.5}) scale(0.8)`);
+    }
+
+    //filter xData by countries in yData
+    let countries1 = xData.map(d => d['ISO3']);
     let countries2 = yData.map(d => d['ISO3']);  
-
     let commonCountries = countries1.filter(country => countries2.includes(country));
     let filteredFPData = xData.filter(d => commonCountries.includes(d['ISO3']));
 
-    xScale = d3.scaleLinear()
-    .domain([
-        Math.min(0, d3.min(filteredFPData, d => parseFloat(d['Value(%)']))),  
-        d3.max(filteredFPData, d => parseFloat(d['Value(%)'])), 
-    ])
-    .range([0, chartWidth]);
+    // recalculate the xScale and yScale based on filtered data
+    let xScale = d3.scaleLinear()
+        .domain([
+            Math.min(0, d3.min(filteredFPData, d => parseFloat(d[xVal]))),
+            d3.max(filteredFPData, d => parseFloat(d[xVal]))
+        ])
+        .range([0, chartWidth]);
 
-    // yscale based on adol birth data
-    yScale = d3.scaleLinear()
-    .domain(d3.extent(adolBirthData, d => parseFloat(d['Value(per 1,000 population)']))) 
-    .nice()
-    .range([chartHeight, 0]);
+    let yScale = d3.scaleLinear()
+        .domain(d3.extent(yData, d => parseFloat(d[yVal])))
+        .nice()
+        .range([chartHeight, 0]);
 
     // x-axis
-    chart.append("g")
-    .attr("class", "x-axis")
-    .attr("transform", `translate(0,${chartHeight})`)
-    .call(d3.axisBottom(xScale)
-    .ticks(8)  
-    .tickFormat(d3.format(".0f")))
-    .selectAll("text")
-    .style("fill", "black")
-    .style("font-size", "0.75rem");
+    let xAxis = chart.select(".x-axis");
+    if (xAxis.empty()) {
+        xAxis = chart.append("g")
+        .attr("class", "x-axis")
+        .attr("transform", `translate(0,${chartHeight})`)
+        .call(d3.axisBottom(xScale)
+        .ticks(8)  
+        .tickFormat(d3.format(".0f")))
+        .selectAll("text")
+        .style("fill", "black")
+        .style("font-size", "0.75rem");
+    }
+    else{
+        xAxis.transition()
+        .duration(1000)
+        .call(d3.axisBottom(xScale).ticks(8).tickFormat(d3.format(".0f")))
+        .selectAll("text")
+        .style("fill", "black")
+        .style("font-size", "0.75rem");
+    }
 
     // x-axis label
-    chart.append("text")
-    .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + 50})`) 
-    .style("text-anchor", "middle")
-    .style("font-size", "1rem")
-    .style("fill", "black")
-    .text("% of Women With Adequate Access to Family Planning");
+    let xAxisLabel = chart.select(".x-axis-label");
+    if (xAxisLabel.empty()) {
+        chart.append("text")
+        .attr("class", "x-axis-label")
+        .attr("transform", `translate(${chartWidth / 2}, ${chartHeight + 50})`) 
+        .style("text-anchor", "middle")
+        .style("font-size", "1rem")
+        .style("fill", "black")
+        .style("cursor", "pointer")
+        .text(getDataLabelByValue(xData));
+    }
+    else{
+        xAxisLabel
+        .text(getDataLabelByValue(xData));
+    }
+
+    
+    d3.select(".x-axis-label").on("click", function(event) {
+        if (compsvg.classed("active")) {
+            if(dropDownOpen === false){
+                dropDownOpen = true;
+                const currentLabel = getDataLabelByValue(xData); // for x-axis
+                createDropdown("x", currentLabel, (newLabel) => {
+                drawCompPlot(dataOptions[newLabel], yData);
+            });
+            }
+            else{
+                d3.select(".axis-dropdown").remove();
+                dropDownOpen = false;
+            }
+        }
+    });
+    
 
     // y-axis
-    chart.append("g")
+    let yAxis = chart.select(".y-axis");
+    if (yAxis.empty()) {
+        yAxis = chart.append("g")
         .attr("class", "y-axis")
         .call(d3.axisLeft(yScale)
         .ticks(10)  
@@ -520,24 +645,127 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .selectAll("text")
         .style("fill", "black")
         .style("font-size", "0.85rem");
+    }
+    else{
+        yAxis.transition()
+        .duration(1000)
+        .call(d3.axisLeft(yScale).ticks(10).tickFormat(d3.format(".0f")))
+        .selectAll("text")
+        .style("fill", "black")
+        .style("font-size", "0.85rem");
+    }
+
 
     // y-axis label
-    chart.append("text")
-    .attr("transform", `translate(${-55}, ${chartHeight/2})rotate(-90)`) 
-    .style("text-anchor", "middle")
-    .style("font-size", "1rem")
-    .style("fill", "black")
-    .text("Adolescent Births per Thousand");
+    yAxisLabel = chart.select(".y-axis-label");
+    if(yAxisLabel.empty()){
+        chart.append("text")
+        .attr("class", "y-axis-label")
+        .attr("transform", `translate(${-55}, ${chartHeight/2})rotate(-90)`) 
+        .style("text-anchor", "middle")
+        .style("font-size", "1rem")
+        .style("fill", "black")
+        .style("cursor", "pointer")
+        .text(getDataLabelByValue(yData));
+    }
+    else{
+        yAxisLabel.transition()
+        .duration(1000)
+        .text(getDataLabelByValue(yData));
+    }
+
+    d3.select(".y-axis-label").on("click", function(event) {
+        if (compsvg.classed("active")) {
+            if(dropDownOpen === false){
+                dropDownOpen = true;
+                const currentLabel = getDataLabelByValue(yData); // for y-axis
+                createDropdown("y", currentLabel, (newLabel) => {
+                drawCompPlot(xData, dataOptions[newLabel]);
+                });
+            }
+            else{
+                d3.select(".axis-dropdown").remove();
+                dropDownOpen = false;
+            }
+        }
+    });
+
     
+
+    function createDropdown(axis, currentValue, onSelect) {
+        // remove prev dropdowns
+        d3.select(".axis-dropdown").remove(); 
+        
+        let otherAxis = axis === "x" ? "y" : "x";
+        let otherSelected = otherAxis === "x" ? getDataLabelByValue(xData) : getDataLabelByValue(yData);
+        
+        const availableOptions = Object.keys(dataOptions).filter(label => label !== otherSelected && label!== currentValue);
+        console.log(availableOptions);
+    
+        // select axis label
+        const axisLabel = d3.select(`.${axis}-axis-label`);
+        
+        // position of axis label
+        const axisLabelBounds = axisLabel.node().getBoundingClientRect();
+        
+        //fixed position just below the label
+        if (axis === "x") {
+            fixedX = axisLabelBounds.left;
+            fixedY = axisLabelBounds.bottom + 10; 
+        } else if (axis === "y") {
+            fixedX = axisLabelBounds.left - axisLabelBounds.height - 10; 
+            fixedY = axisLabelBounds.top + axisLabelBounds.height / 2 + 10;
+            console.log("HELLO Y")
+        }
+    
+        //div to hold the options
+        const dropdown = d3.select("body")
+            .append("div")
+            .attr("class", "axis-dropdown")
+            .style("position", "absolute")
+            .style("left", `${fixedX}px`)
+            .style("top", `${fixedY}px`) 
+            .style("z-index", 101)
+            .style("background-color", "#ffffff")
+            .style("border", "1px solid #ccc")
+            .style("border-radius", "5px")
+            .style("box-shadow", "0 0 10px rgba(0, 0, 0, 0.2)")
+            .style("padding", "5px 0px");
+    
+        // list of options as clickable divs
+        availableOptions.forEach(label => {
+            dropdown.append("div")
+                .attr("class", "dropdown-option")
+                .style("padding", "8px")
+                .style("cursor", "pointer")
+                .style("border-bottom", "1px solid #eee")
+                .style("font-size", "0.9rem")
+                .text(label)
+                .on("click", function () {
+                    dropDownOpen = false;
+                    onSelect(label);  // update plot with the selected label
+                    dropdown.remove();
+                });
+        });
+    }
+
     //  title
-    compsvg.append("text")
+    let plotTitle = compsvg.select("#chart-title");
+    if (plotTitle.empty()) {
+        compsvg.append("text")
         .attr("id", "chart-title")
         .attr("x", compWidth / 2)
-        .attr("y", 25)
+        .attr("y", margin.top*1.5 -30)
         .attr("text-anchor", "middle")
         .style("font-size", "1.2rem")
         .style("fill", "black")
-        .text("Adolescent Birth Rate vs Family Planning Access by Country");
+        .text(`${getDataLabelByValue(xData)} vs ${getDataLabelByValue(yData)}`);
+    }
+    else{  
+        plotTitle.transition()
+        .duration(1000)
+        .text(`${getDataLabelByValue(xData)} vs ${getDataLabelByValue(yData)}`);
+    }
 
     let sdgRegions = [...new Set(famPlanData.map(d => d['SDG Region']))];
     
@@ -546,65 +774,69 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     .domain(sdgRegions)
     .range(["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#a65b85"]); 
 
-
-    
-        const selectxaxis = d3.select("body").append("div");
-
     //plot points
-    chart.selectAll("circle")
-    .data(filteredFPData)
-    .enter()
-    .append("circle")
-    .attr("cx", function(d){
-        return xScale(parseFloat(d['Value(%)']));
-    })
-    .attr("cy", function(d){
-        let row = adolBirthData.find(abr=>abr['ISO3'] === d['ISO3'])
-        return yScale(parseFloat(row['Value(per 1,000 population)']));
-    })
-    .attr("r", 5)
-    .attr("fill", function(d){
-        let color = colorScale(d['SDG Region']);
-        return color;
-    })
-    .on("mouseover", function(event, d) {
-        if(compsvg.classed('active')){ //if the svg is active
-            let row = adolBirthData.find(abr => abr['ISO3'] === d['ISO3']);
-            tooltip.style("left", (event.pageX + 10) + "px") 
-            .style("top", (event.pageY + 10) + "px").style("visibility", "visible")
-                .html(`
-                    <strong>Country:</strong> ${d['Geographic Area Name']}<br>
-                    <strong>SDG Region:</strong> ${d['SDG Region']}<br>
-                    <strong>Family Planning Access:</strong> ${d['Value(%)']}%<br>
-                    <strong>Adolescent Birth Rate:</strong> ${row ? row['Value(per 1,000 population)'] : "N/A"} per 1,000
-            `);
-        }
-        
-    })
-    .on("mousemove", function(event) {
-        const [x, y] = d3.pointer(event); // mouse position
-        tooltip.style("left", (event.pageX + 10) + "px") 
-        .style("top", (event.pageY + 10) + "px"); 
-    })
-    .on("mouseout", function() {
-        tooltip.style("visibility", "hidden");
-    })
-    .style("pointer-events", "all");
+    let circles = chart.selectAll("circle")
+    .data(filteredFPData);
 
+    //transition circles to new points
+    circles.transition()
+    .duration(1000)
+    .attr("cx", d => xScale(parseFloat(d[xVal])))
+    .attr("cy", d => yScale(parseFloat(yData.find(abr => abr['ISO3'] === d['ISO3'])[yVal])))
+    .attr("fill", d => colorScale(d['SDG Region']))
+    .attr("r", 5);
+
+    // add new if needed
+    circles.enter().append("circle")
+        .attr("cx", d => xScale(parseFloat(d[xVal])))
+        .attr("cy", d => yScale(parseFloat(yData.find(abr => abr['ISO3'] === d['ISO3'])[yVal])))
+        .attr("r", 5)
+        .attr("fill", d => colorScale(d['SDG Region']))
+        .on("mouseover", function(event, d) {
+            if (compsvg.classed('active')) {
+                let row = yData.find(abr => abr['ISO3'] === d['ISO3']);
+                tooltip.style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY + 10) + "px").style("visibility", "visible")
+                    .html(`
+                        <strong>Country:</strong> ${d['Geographic Area Name']}<br>
+                        <strong>SDG Region:</strong> ${d['SDG Region']}<br>
+                        <strong>${getDataLabelByValue(xData)}</strong>: ${d[xVal]}%<br>
+                        <strong>${getDataLabelByValue(yData)}</strong>: ${row ? row[yVal] : "N/A"} per 1,000
+                    `);
+            }
+        })
+        .on("mousemove", function(event) {
+            const [x, y] = d3.pointer(event);
+            tooltip.style("left", (event.pageX + 10) + "px")
+                .style("top", (event.pageY + 10) + "px");
+        })
+        .on("mouseout", function() {
+            tooltip.style("visibility", "hidden");
+        })
+        .style("pointer-events", "all");
+
+    // remove non-existent
+    circles.exit().remove();
 
     //regression line
-    //combine data
     function regressionLine(sdgRegion = null){
-        console.log('hi')
         let filteredData = filteredFPData;
         if (sdgRegion) {
             filteredData = filteredFPData.filter(d => d['SDG Region'] === sdgRegion);
         }
 
-        let combinedData = filteredData.map(d => [
-            d['Value(%)'],
-            adolBirthData.find(abr => abr['ISO3'] === d['ISO3'])['Value(per 1,000 population)']
-        ]);
+        let combinedData = filteredData.map(d => {
+            let match = yData.find(abr => abr['ISO3'] === d['ISO3']);
+            if (match) {
+                let x = parseFloat(d[xVal]);
+                let y = parseFloat(match[yVal]);
+                if (!isNaN(x) && !isNaN(y)) {
+                    return [x, y];
+                }
+            }
+            return null;
+        }).filter(d => d !== null);
+              
     
         //simple statistics library to generate lbf
         let regression = ss.linearRegression(combinedData);
@@ -627,17 +859,20 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
             .attr("stroke-width", 2);
     
         //statistical measures
-        let r2 = ss.rSquared(combinedData, ss.linearRegressionLine(regression));
     }
     regressionLine(); 
    
 
     let selectedRegion = null;
-    // CHANGE 10: Repositioned and resized legend to account for larger plot
-    const scaleFactor = 0.8;  
+    
+    const scaleFactor = 0.7;  
 
+    compsvg.select("#scatterlegend").remove();
+    
     let legend = compsvg.append("g")
-        .attr("transform", `translate(${compWidth - 170}, 70)`);
+    .attr("id", "scatterlegend")
+    .attr("transform", `translate(${compWidth - 230}, ${margin.top*1.5})`);
+    
 
     legend.append("rect")
         .attr("width", 300 * scaleFactor)  // scale width
@@ -654,7 +889,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
 
     function updatePlotOpacity() {
         chart.selectAll("circle")
-            .transition()  // transition when changing opacity
+            .transition()
+            .duration(400)  // transition when changing opacity
             .style("opacity", function(d) {
                 return selectedRegion && d['SDG Region'] !== selectedRegion ? 0.1 : 1;
             });
@@ -687,6 +923,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "pointer");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === d ? 1 : 0.1;  
                         });
@@ -699,9 +937,13 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "default");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", 1);  
                 } else {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
                         });
@@ -739,6 +981,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "pointer");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === d ? 1 : 0.1;  // opacity lower
                         })
@@ -753,17 +997,20 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                 d3.select(this).style("cursor", "default");
                 if (selectedRegion === null) {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", 1);  // reset opacity
                     regressionLine();
                 } else {
                     chart.selectAll("circle")
+                    .transition()
+                    .duration(200) 
                         .style("opacity", function(pointData) {
                             return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
                         });
                 }
             }
         });
-};
-
+    }
 initializeMapSVG();
 initializeCompSvg();
