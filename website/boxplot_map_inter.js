@@ -219,6 +219,14 @@ document.addEventListener('DOMContentLoaded', function () {
             .style("font-size", "18px")
             .style("fill", "black")
             .text("Female Access to Family Planning by SDG Region");
+        boxplotSvg.append("text")
+            .attr("class", "inter-instruction")
+            .attr("x", boxplotWidth / 2-200)
+            .attr("y", 350)
+            .attr("text-anchor", "middle")
+            .style("font-size", "10px")
+            .style("fill", "gray")
+            .text("Click the box plot/map to see its corresponding countries/data");
 
         console.log("Boxplot SVG initialized");
     }
@@ -461,7 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Rendering map with world data");
         const mapSvg = getMapSvg();
         const mapContainer = mapSvg.select(".map-container");
-        
+
 
         // Draw graticules
         mapContainer.append("path")
