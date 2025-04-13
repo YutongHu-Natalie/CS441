@@ -142,7 +142,7 @@ function guessingGame(){
     
             dvMapSvg.selectAll(".countryGroup path")
                 .transition()
-                .duration(100)
+                .duration(1000)
                 .attr("fill", function(d) {
                     const countryData = dvMapData.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
                     return countryData ? dvColorScale(countryData['Value(%)']) : "url(#diagonalHatch)";
