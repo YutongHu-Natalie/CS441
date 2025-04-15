@@ -233,8 +233,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         boxplotSvg.append("text")
             .attr("class", "inter-instruction")
-            .attr("x", boxplotWidth / 2-200)
-            .attr("y", 350)
+            .attr("x", boxplotWidth / 2 +30)
+            .attr("y", 340)
             .attr("text-anchor", "middle")
             .style("font-size", "10px")
             .style("fill", "gray")
@@ -471,7 +471,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // Add x-axis label
         boxplotSvg.append("text")
             .attr("x", boxplotWidth / 2 + 50)
-            .attr("y", boxplotHeight - 10)
+            .attr("y", boxplotHeight - 25)
             .attr("text-anchor", "middle")
             .style("font-size", "14px")
             .style("fill", "black")

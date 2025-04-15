@@ -20,7 +20,7 @@ function initialiseHistogramSVG() {
         .append("svg")
         .attr("width", "100%")
         .attr("height", histHeight)
-        .attr("viewBox", `0 0 ${histWidth} ${histHeight}`)
+        .attr("viewBox", `0 0 ${histWidth} ${histHeight+ 20}`)
         .attr("preserveAspectRatio", "xMidYMid meet")
         .style("display", "block")
         .style("margin", "0 auto"); // Center the SVG horizontally
@@ -240,7 +240,7 @@ function renderHistogram(bins) {
     // Add explanation note
     svg.append("text")
         .attr("x", histWidth / 2)
-        .attr("y", histHeight - 30)
+        .attr("y", histHeight+10 )
         .attr("text-anchor", "middle")
         .style("font-size", "12px")
         .style("fill", "gray")
