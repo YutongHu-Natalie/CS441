@@ -99,8 +99,8 @@ function createCountrySelector(data, containerId, valueKey) {
     selectorContainer.id = `${containerId.substring(1)}-selector`;
     selectorContainer.className = "country-selector";
     selectorContainer.style.position = "absolute";
-    selectorContainer.style.top = (window.innerHeight/2.5) + "px";
-    selectorContainer.style.right = "100px";
+    selectorContainer.style.top = (window.innerHeight/10) + "px";
+    selectorContainer.style.right = "60px";
     selectorContainer.style.background = "rgba(255, 255, 255, 0.9)";
     selectorContainer.style.padding = "10px";
     selectorContainer.style.borderRadius = "5px";
@@ -284,7 +284,7 @@ function createCountrySelector(data, containerId, valueKey) {
         else{
 
             selectorContainer.style.position = "absolute";
-            selectorContainer.style.top = (window.innerHeight/2.8) + "px";
+            selectorContainer.style.top = (window.innerHeight/6) + "px";
             selectorContainer.style.left = "";
             selectorContainer.style.right = "100px";
             selectorContainer.style.maxHeight = "300px";
