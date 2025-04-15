@@ -82,7 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
         text: 'dream',
         visualization: ['none'], // Text only slide
         title: ''
-      }
+      },
+      {
+        verse: 11,
+        html: `These visualizations were created for <a href="https://emilywall.github.io/vis/">Dr. Emily Wall's Information Visualization</a> course at Emory University. All data was gathered from the <a href="https://gender-data-hub-2-undesa.hub.arcgis.com/pages/indicators" target="_blank" rel="noopener noreferrer">United Nations Statistical Commission’s database</a> pertaining to the Minimum Set of Gender Indicators.`,
+        visualization: ['none'],
+        title: ''
+      }      
     ];
   
     let currentSlideIndex = 0;
@@ -129,14 +135,23 @@ document.addEventListener('DOMContentLoaded', function() {
       // Clear previous verse text
       verseText.innerHTML = '';
       
-      // Add each line as a paragraph
-      const lines = slide.text.split('\n');
-      lines.forEach(line => {
+      if(slide.html){
+        // Handle raw HTML (used for last slide with a link)
         const p = document.createElement('p');
         p.className = 'verse-line';
-        p.textContent = line;
+        p.innerHTML = slide.html;
         verseText.appendChild(p);
-      });
+      }
+      else{
+        // Add each line as a paragraph
+        const lines = slide.text.split('\n');
+        lines.forEach(line => {
+          const p = document.createElement('p');
+          p.className = 'verse-line';
+          p.textContent = line;
+          verseText.appendChild(p);
+        });
+      }
       
       // Update visualization title
       vizTitle.textContent = slide.title;

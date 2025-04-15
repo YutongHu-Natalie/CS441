@@ -11,9 +11,12 @@ let allLiteracyData = [];
 let selectedCountries = new Set(); // To store user's country selections
 const MAX_SELECTED_COUNTRIES = 5;
 
+
+
+
+
 function initialiseSVG(containerId) {
     d3.select(containerId).selectAll("*").remove();
-    console.log('initialize SVG for', containerId);
     const svg = d3.select(containerId)
         .append("svg")
         .attr("width", "100%")
@@ -23,16 +26,16 @@ function initialiseSVG(containerId) {
     
     let margin_left = containerId == "#abrbarchart" ? margin.left + 100 : margin.left;
     const chart = svg.append("g")
-        .attr("transform", `translate(${margin_left}, ${margin.top})`);
+        .attr("transform", `translate(${margin_left}, ${margin.top})`)
+        .attr("id", "abrchart");
 
     chart.append("g").attr("class", "x-axis");
     chart.append("g").attr("class", "y-axis");
-
     return { svg, chart };
+    
 }
 
 function processLiteracyData(data) {
-    console.log(data);
     const countryMap = new Map();
 
     data.forEach(d => {
@@ -58,7 +61,6 @@ function processLiteracyData(data) {
 }
 
 function processBirthRateData(data) {
-    console.log(data);
     return data.map(d => ({
         country: d["Geographic Area Name"],
         value: +d["Value(per 1,000 population)"]
@@ -97,8 +99,8 @@ function createCountrySelector(data, containerId, valueKey) {
     selectorContainer.id = `${containerId.substring(1)}-selector`;
     selectorContainer.className = "country-selector";
     selectorContainer.style.position = "absolute";
-    selectorContainer.style.top = "450px"; // Positioned below the viz title
-    selectorContainer.style.right = "280px";
+    selectorContainer.style.top = (window.innerHeight/2.5) + "px";
+    selectorContainer.style.right = "100px";
     selectorContainer.style.background = "rgba(255, 255, 255, 0.9)";
     selectorContainer.style.padding = "10px";
     selectorContainer.style.borderRadius = "5px";
@@ -107,7 +109,7 @@ function createCountrySelector(data, containerId, valueKey) {
     selectorContainer.style.maxHeight = "300px";
     selectorContainer.style.overflow = "auto";
     selectorContainer.style.width = "250px";
-    
+
     // Add header
     const header = document.createElement("h3");
     header.textContent = "Select Countries (max 5)";
@@ -255,6 +257,40 @@ function createCountrySelector(data, containerId, valueKey) {
     
     // Initially hide/show based on active state
     selectorContainer.style.display = "none"; // Will be shown by toggleCountrySelector if active
+    
+    // Function to update the position of the selector
+    window.addEventListener('resize', function() {
+        const svgrect = document.getElementById("visualization-wrapper").getBoundingClientRect();
+        const chartrect = document.getElementById("abrchart").getBoundingClientRect();
+        
+        
+        function windowBigEnough() {
+            const selectorWidth = selectorContainer.getBoundingClientRect().width;
+            const chartWidth = chartrect.width;
+            const svgwidth = svgrect.width;
+            if (chartWidth*1.25 + selectorWidth > svgwidth) {
+                return false;
+            }
+            else{
+                return true;
+            }
+    
+        }
+        if (!windowBigEnough()) {
+            selectorContainer.style.top = chartrect.top + chartrect.height + 50 + "px"; // Position below the chart
+            selectorContainer.style.left = chartrect.left/2 + "px"; // Align with the left side of the chart
+            selectorContainer.style.maxHeight = "220px";
+        }
+        else{
+
+            selectorContainer.style.position = "absolute";
+            selectorContainer.style.top = (window.innerHeight/2.8) + "px";
+            selectorContainer.style.left = "";
+            selectorContainer.style.right = "100px";
+            selectorContainer.style.maxHeight = "300px";
+
+        }
+    });
 }
 
 // Function to update chart based on country selection
@@ -302,10 +338,6 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         const minValue = Math.min(0, d3.min(data, d => d[valueKey]));
         const maxValue = Math.max(0, d3.max(data, d => d[valueKey]));
         yScale.domain([minValue, maxValue]).nice();
-        
-        // Log domain information for debugging
-        console.log('Y-scale domain:', yScale.domain());
-        console.log('Data values:', data.map(d => ({ country: d.country, value: d[valueKey] })));
     }
 
     chart.select(".x-axis")
@@ -352,19 +384,38 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
             .attr("y", d => yScale(d.country))
             .attr("width", d => xScale(d[valueKey]))
             .attr("height", yScale.bandwidth())
-            .style("fill", "rgb(220, 120, 140)");
+            .style("fill", "rgb(220, 120, 140)")
+            .style("cursor", "pointer");
     } else {
         // Vertical bars with fix for negative values
+
+        const tooltip = d3.select(".tooltip");
+        console.log(tooltip)
         bars.enter()
             .append("rect")
             .attr("class", "bar")
             .merge(bars)
+            .on("mouseover", function(event, d){
+                tooltip.style("visibility", "visible").style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px").text(`${d.country}: ${d[valueKey].toFixed(1)}%`);
+
+            })
+            .on("mousemove", function(event) {
+                const [x, y] = d3.pointer(event);
+                tooltip.style("left", (event.pageX + 10) + "px")
+                    .style("top", (event.pageY + 10) + "px");
+            })
+            .on("mouseout", function(){
+                tooltip.style("visibility", "hidden");
+            })
             .transition().duration(500)
             .attr("x", d => xScale(d.country))
             .attr("y", d => d[valueKey] < 0 ? yScale(0) : yScale(d[valueKey]))
             .attr("width", xScale.bandwidth())
             .attr("height", d => Math.abs(yScale(d[valueKey]) - yScale(0)))
-            .style("fill", d => d[valueKey] < 0 ? "rgb(255, 150, 170)" : "rgb(220, 120, 140)"); // Slightly different color for negative values
+            .style("fill", d => d[valueKey] < 0 ? "rgb(255, 150, 170)" : "rgb(220, 120, 140)")
+            .style("cursor", "pointer")
+            ; // Slightly different color for negative values
     }
 
     // Remove bars that no longer exist
@@ -376,7 +427,19 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
         .attr("y", 20)
         .attr("text-anchor", "middle")
         .style("font-size", "18px")
-        .style("fill", "black")
+        .style("fill", "black").on("mouseover", function(){
+            tooltip.style("visibility", "visible")
+            .text(`from the UN Statistical Commission’s database pertaining to the Minimum Set of Gender Indicators`);
+        })
+        .on("mousemove", function(event) {
+            const [x, y] = d3.pointer(event); // mouse position
+            tooltip.style("left", (event.pageX + 10) + "px") 
+            .style("top", (event.pageY + 10) + "px"); 
+        })
+        .on("mouseout", function(){
+            tooltip.style("visibility", "hidden").style("left", (event.pageX + 10) + "px") 
+            .style("top", (event.pageY + 10) + "px")
+        })
         .text(title);
         
     let x_label_width = isHorizontal ? width / 2 + 50 : width / 2;
@@ -403,10 +466,10 @@ function renderChart(data, containerId, title, valueKey, isHorizontal) {
     // Update the note text based on selection
     const noteText = selectedCountries.size > 0 
         ? `Showing ${data.length} selected countries` 
-        : "Only the top 5 countries in the descending order will be presented initially by default";
+        : "*Only the top 5 countries in the descending order will be presented initially by default";
         
     svg.append("text")
-        .attr("x", width / 3)
+        .attr("x", width / 3 +100)
         .attr("y", height - 10)
         .attr("text-anchor", "middle")
         .style("font-size", "14px")
@@ -429,22 +492,18 @@ function toggleCountrySelector() {
     const ylcChartActive = document.getElementById('ylcbarchart').classList.contains('active');
     const abrChartActive = document.getElementById('abrbarchart').classList.contains('active');
     
-    console.log("Toggle country selector - YLC active:", ylcChartActive, "ABR active:", abrChartActive);
     
     if (ylcSelector) {
         ylcSelector.style.display = ylcChartActive ? "block" : "none";
-        console.log("YLC selector display set to:", ylcSelector.style.display);
     }
     
     if (abrSelector) {
         abrSelector.style.display = abrChartActive ? "block" : "none";
-        console.log("ABR selector display set to:", abrSelector.style.display);
     }
 }
 
 // Monitor slide changes to toggle the selector visibility
 document.addEventListener('slideChanged', function(e) {
-    console.log('Slide changed event detected, updating selectors');
     // Small delay to ensure the visualization has been updated
     setTimeout(toggleCountrySelector, 100);
 });
@@ -465,11 +524,9 @@ Promise.all([
     
     // Initial rendering with default selection
     const processedBirthData = selectTopOrRandom(allBirthRateData, "value");
-    console.log(processedBirthData);
     renderChart(processedBirthData, "#abrbarchart", "Adolescent Birth Rate", "value", true);
 
     const processedLiteracyData = selectTopOrRandom(allLiteracyData, "disparity");
-    console.log(processedLiteracyData);
     renderChart(processedLiteracyData, "#ylcbarchart", "Youth Literacy Disparity (M - F)", "disparity", false);
     
     // Check visibility on load
@@ -487,12 +544,10 @@ window.forceSelectorsVisible = function() {
     if (ylcSelector) {
         ylcSelector.style.display = "block";
         ylcSelector.style.zIndex = "9999";
-        console.log("Forced YLC selector visible");
     }
     
     if (abrSelector) {
         abrSelector.style.display = "block";
         abrSelector.style.zIndex = "9999";
-        console.log("Forced ABR selector visible");
     }
 };

@@ -218,7 +218,19 @@ document.addEventListener('DOMContentLoaded', function () {
             .attr("text-anchor", "middle")
             .style("font-size", "18px")
             .style("fill", "black")
-            .text("Female Access to Family Planning by SDG Region");
+            .text("Female Access to Family Planning by SDG Region").on("mouseover", function(){
+                tooltip.style("visibility", "visible")
+                .text(`from the UN Statistical Commission’s database pertaining to the Minimum Set of Gender Indicators`);
+            })
+            .on("mousemove", function(event) {
+                const [x, y] = d3.pointer(event); // mouse position
+                tooltip.style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px"); 
+            })
+            .on("mouseout", function(){
+                tooltip.style("visibility", "hidden").style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px")
+            });
         boxplotSvg.append("text")
             .attr("class", "inter-instruction")
             .attr("x", boxplotWidth / 2-200)
@@ -271,7 +283,19 @@ document.addEventListener('DOMContentLoaded', function () {
             .attr("y", 30)
             .attr("text-anchor", "middle")
             .style("font-size", "18px")
-            .style("fill", "black")
+            .style("fill", "black").on("mouseover", function(){
+                tooltip.style("visibility", "visible")
+                .text(`from the UN Statistical Commission’s database pertaining to the Minimum Set of Gender Indicators`);
+            })
+            .on("mousemove", function(event) {
+                const [x, y] = d3.pointer(event); // mouse position
+                tooltip.style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px"); 
+            })
+            .on("mouseout", function(){
+                tooltip.style("visibility", "hidden").style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px")
+            })
             .text("% of Women with Access to Adequate Family Planning");
 
         // Container for the map
@@ -570,8 +594,9 @@ document.addEventListener('DOMContentLoaded', function () {
             .attr("transform", `translate(200, ${mapHeight - 300})`);
 
         legendGroup.append("rect")
-            .attr("width", legendWidth * 3)
-            .attr("height", legendHeight * 1.2)
+            .attr("width", legendWidth * 3.2)
+            .attr("height", legendHeight * 1.35)
+            .attr("y", "-20px")
             .style("fill", "#555")
             .style("opacity", "0.5");
 
@@ -604,7 +629,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .attr("y", 0)
             .style("text-anchor", "start")
             .style("font-size", "0.8rem")
-            .text("Legend");
+            .text("legend");
 
         // Min value
         const minValue = d3.min(famPlanData, d => parseFloat(d['Value(%)']));
@@ -699,7 +724,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const mapSvg = getMapSvg();
         mapSvg.selectAll(".country")
             .style("opacity", 1)
-            .style("stroke", "#fff")
+            .style("stroke", "#000")
             .style("stroke-width", 0.5);
     }
 

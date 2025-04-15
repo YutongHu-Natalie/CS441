@@ -48,6 +48,9 @@ document.addEventListener('DOMContentLoaded', function() {
             vizElement.style.zIndex = 90;
           }
         }
+        if(vizId==='ylcbarchart' || vizId === 'abr-histogram'){
+          vizElement.style.top = '25%';
+        }
       }
     });
   }

@@ -51,7 +51,7 @@ html {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #E6B2BA;
     transition: opacity 0.5s ease;
 }
 
@@ -81,6 +81,7 @@ html {
 .verse-container {
     flex: 1;
     padding: 20px;
+    margin-left: 75px;
     background-color: #E6B2BA;
     color: rgb(137, 80, 51);
     display: flex;
@@ -395,4 +396,3 @@ path.missedAnswer {
 
     font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
-

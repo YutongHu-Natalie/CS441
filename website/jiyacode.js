@@ -59,7 +59,7 @@ async function loadDVMapData(){
     });
     
 }
-function transformLiteracyData(data) {
+function transformLiteracyData(data) { //same format as other data
     const maleData = data.filter(d => d['Sex Code'] === 'M');
     const femaleData = data.filter(d => d['Sex Code'] === 'F');
 
@@ -110,6 +110,7 @@ let guessed = false;
 
 let selCountries = [];
 let correctCountries = [];
+//set up guessing game
 function guessingGame(){
     let correctCountries = dvMapData
     .filter(country => parseFloat(country['Value(%)']) > 18)
@@ -121,7 +122,15 @@ function guessingGame(){
     .attr("y", -20)
     .attr("text-anchor", "middle")
     .style("font-size", "1.5rem")
-    .text("In which countries have over 18% of women faced initimate partner violence?\nSelect below:"); 
+    .text("In which countries have over 18% of women faced initimate partner violence?\nGuess below:"); 
+
+
+    dvMapSvg.append("text").attr("x", mapwidth/2)
+    .attr("y", 70)
+    .attr("text-anchor", "middle")
+    .style("font-size", "14px")
+    .style("fill", "gray")
+    .text("Tip: You can zoom if necessary. Hover to see country names.");
 
     const submitBtn = dvMapSvg.append("foreignObject")
     .attr("x", mapwidth / 2 - 50)
@@ -147,6 +156,7 @@ function guessingGame(){
                     const countryData = dvMapData.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
                     return countryData ? dvColorScale(countryData['Value(%)']) : "url(#diagonalHatch)";
                 })
+                .attr("cursor", "")
                 .each(function(d) {
                     const countryData = dvMapData.find(item => parseInt(item['Geographic Area Code']) === parseInt(d.id));
                     if (!countryData) return;
@@ -236,7 +246,22 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
     .attr("y", 30)
     .attr("text-anchor", "middle")
     .style("font-size", "1.2rem")
-    .text(titleMap); 
+    .style("cursor", "default")
+    .on("mouseover", function(){
+        tooltip.style("visibility", "visible")
+        .text(`from the UN Statistical Commission’s database pertaining to the Minimum Set of Gender Indicators`);
+    })
+    .on("mousemove", function(event) {
+        const [x, y] = d3.pointer(event); // mouse position
+        tooltip.style("left", (event.pageX + 10) + "px") 
+        .style("top", (event.pageY + 10) + "px"); 
+    })
+    .on("mouseout", function(){
+        tooltip.style("visibility", "hidden").style("left", (event.pageX + 10) + "px") 
+        .style("top", (event.pageY + 10) + "px")
+    })
+    .text(titleMap);
+
     
     // create map group to hold all map elements
     const svgWidth = parseInt(mapsvg.style("width"));  // actual width of the SVG container
@@ -320,6 +345,16 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
             return countryData ? mapcolorscale(countryData['Value(%)']) : "url(#diagonalHatch)";
         }
       })
+      .attr("cursor", function(d){
+        let countryData = mapdata.find(item=>parseInt(item['Geographic Area Code']) === parseInt(d.id));
+        if (!guessed) {
+            // before guessing: everything white or hatched
+            return countryData ? "pointer" : "";
+        } else {
+            // after guessing: show proper data
+            return "";
+        }
+      })
       .attr("stroke", "#fff")
       .attr("stroke-width", 0.5)
       .on("click", function(event, d) {
@@ -328,7 +363,8 @@ function drawMap(world, mapsvg, mapdata, mapcolorscale) {
             if(dvMapSvg.classed("active")){
                 if (countryData) {
                     // show the tooltip and update its content
-                    tooltip.style("visibility", "visible")
+                    tooltip.style("visibility", "visible").style("left", (event.pageX + 10) + "px") 
+                .style("top", (event.pageY + 10) + "px")
                         .text(`${countryData['Geographic Area Name']}`);
             
                     // toggle highlight (if already highlighted, remove the highlight)
@@ -757,14 +793,27 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .attr("x", compWidth / 2)
         .attr("y", margin.top*1.5 -30)
         .attr("text-anchor", "middle")
+        .on("mouseover", function(){
+            tooltip.style("visibility", "visible")
+            .text(`from the UN Statistical Commission’s database pertaining to the Minimum Set of Gender Indicators`);
+        })
+        .on("mousemove", function(event) {
+            const [x, y] = d3.pointer(event); // mouse position
+            tooltip.style("left", (event.pageX + 10) + "px") 
+            .style("top", (event.pageY + 10) + "px"); 
+        })
+        .on("mouseout", function(){
+            tooltip.style("visibility", "hidden").style("left", (event.pageX + 10) + "px") 
+            .style("top", (event.pageY + 10) + "px")
+        })
         .style("font-size", "1.2rem")
         .style("fill", "black")
-        .text(`${getDataLabelByValue(xData)} vs ${getDataLabelByValue(yData)}`);
+        .text(`${getDataLabelByValue(xData)} vs. ${getDataLabelByValue(yData)}`);
     }
     else{  
         plotTitle.transition()
         .duration(1000)
-        .text(`${getDataLabelByValue(xData)} vs ${getDataLabelByValue(yData)}`);
+        .text(`${getDataLabelByValue(xData)} vs. ${getDataLabelByValue(yData)}`);
     }
 
     let sdgRegions = [...new Set(famPlanData.map(d => d['SDG Region']))];
@@ -880,10 +929,42 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .style("fill", "#000")
         .style("opacity", 0.15);
 
+
+
+    const legendText = "Tip: Hover on a point to see its information. Hover or click on an SDG Region to highlight its points and see its regression line. Click on an axis to change which dataset is shown.";
+    const maxCharsPerLine = 25;
+    const words = legendText.split(" ");
+    let line = [];
+    let lines = [];
+    words.forEach(word => {
+        const testLine = [...line, word].join(" ");
+        if (testLine.length > maxCharsPerLine) {
+            lines.push(line.join(" "));
+            line = [word];
+        } else {
+            line.push(word);
+        }
+    });
+    if (line.length > 0) lines.push(line.join(" "));
+    const text = legend.append("text")
+    .attr("x", 20)
+    .attr("y", (25 + sdgRegions.length * 25) * scaleFactor + 30)
+    .attr("text-anchor", "start")
+    .style("font-size", "14px")
+    .style("fill", "gray");
+
+    lines.forEach((line, i) => {
+        text.append("tspan")
+            .attr("x", 20)
+            .attr("dy", i === 0 ? 0 : "1.2em")
+            .text(line);
+    });
+
+
     legend.append("text")
         .attr("x", 12 * scaleFactor)  // scale text position
         .attr("y", 18 * scaleFactor) 
-        .style("font-size", `${0.7 * scaleFactor}rem`)  // scale font size
+        .style("font-size", `${0.7}rem`)  // scale font size
         .style("fill", "black")
         .text("SDG Regions");
 
