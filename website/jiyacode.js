@@ -6,7 +6,6 @@ const basePath1 = window.location.hostname === "localhost" ||
                 ? "" 
                 : "/CS441";
 
-
 let mapsvg;
 
     // tooltip
