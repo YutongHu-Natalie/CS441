@@ -822,6 +822,9 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     .domain(sdgRegions)
     .range(["#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#a65b85"]); 
 
+
+
+    let selectedRegion = null;
     //plot points
     let circles = chart.selectAll("circle")
     .data(filteredFPData);
@@ -842,7 +845,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
         .attr("fill", d => colorScale(d['SDG Region']))
         .on("mouseover", function(event, d) {
             if (compsvg.classed('active')) {
-                let row = yData.find(abr => abr['ISO3'] === d['ISO3']);
+                if(!selectedRegion || (selectedRegion && d['SDG Region'] === selectedRegion)){
+                    let row = yData.find(abr => abr['ISO3'] === d['ISO3']);
                 tooltip.style("left", (event.pageX + 10) + "px")
                     .style("top", (event.pageY + 10) + "px").style("visibility", "visible")
                     .html(`
@@ -851,6 +855,8 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                         <strong>${getDataLabelByValue(xData)}</strong>: ${d[xVal]}%<br>
                         <strong>${getDataLabelByValue(yData)}</strong>: ${row ? row[yVal] : "N/A"} per 1,000
                     `);
+                }
+                
             }
         })
         .on("mousemove", function(event) {
@@ -910,8 +916,6 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
     }
     regressionLine(); 
    
-
-    let selectedRegion = null;
     
     const scaleFactor = 0.7;  
 
@@ -1085,9 +1089,9 @@ function drawCompPlot(xData=famPlanData, yData=adolBirthData){
                     chart.selectAll("circle")
                     .transition()
                     .duration(200) 
-                        .style("opacity", function(pointData) {
-                            return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
-                        });
+                    .style("opacity", function(pointData) {
+                        return pointData['SDG Region'] === selectedRegion ? 1 : 0.1;
+                    });
                 }
             }
         });
