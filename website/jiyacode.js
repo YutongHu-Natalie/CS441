@@ -121,7 +121,7 @@ function guessingGame(){
     .attr("y", -20)
     .attr("text-anchor", "middle")
     .style("font-size", "1.5rem")
-    .text("In which countries have over 18% of women faced initimate partner violence?\nGuess below:"); 
+    .text("In which countries have over 18% of women faced intimate partner violence?\nGuess below:"); 
 
 
     dvMapSvg.append("text").attr("x", mapwidth/2)
